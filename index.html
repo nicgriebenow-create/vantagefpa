@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vantage FP&A — Financial Planning & Analysis for Growing Companies</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1F3C;
+    --navy-mid: #1A3358;
+    --navy-light: #243E6B;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --white: #FFFFFF;
+    --off-white: #F7F8FA;
+    --gray-100: #EEF0F4;
+    --gray-400: #8A95A3;
+    --gray-600: #4A5568;
+    --text: #1A202C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13, 31, 60, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 48px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 4.5vw, 58px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 44px;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--white); }
+  .btn-ghost::after { content: '→'; }
+
+  /* HERO STATS */
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-left: 48px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat-item {}
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-number span { color: var(--gold); font-size: 28px; }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .stat-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* MARQUEE */
+  .marquee-bar {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 24s linear infinite;
+    gap: 0;
+  }
+
+  .marquee-item {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding: 0 40px;
+  }
+
+  .marquee-item::after {
+    content: '·';
+    margin-left: 40px;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 48px;
+    background: var(--off-white);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    font-weight: 300;
+    align-self: end;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 48px 40px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+
+  .service-card:hover { transform: translateY(-4px); }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 40px; right: 40px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 28px;
+    color: var(--gold);
+  }
+
+  .service-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .service-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-bullets li {
+    font-size: 13px;
+    color: var(--gray-600);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .service-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* WHY VANTAGE */
+  .why {
+    padding: 120px 48px;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why::before {
+    content: '';
+    position: absolute;
+    bottom: -300px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+
+  .why .section-title { color: var(--white); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .why-item {
+    padding: 48px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.2s;
+  }
+
+  .why-item:hover { border-color: rgba(201,168,76,0.3); }
+
+  .why-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .why-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+  }
+
+  .why-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 48px;
+    background: var(--white);
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .contact-left {}
+
+  .contact-detail {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .contact-value {
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: 400;
+  }
+
+  .contact-value a {
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value a:hover { color: var(--gold); }
+
+  /* FORM */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--gray-100);
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    background: var(--navy);
+    color: var(--white);
+    padding: 15px 36px;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .hero-stats { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; flex-direction: row; flex-wrap: wrap; gap: 32px; }
+    .services { padding: 80px 24px; }
+    .section-header { grid-template-columns: 1fr; gap: 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why { padding: 80px 24px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .contact { padding: 80px 24px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Vantage <span>FP&A</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Vantage</a></li>
+    <li><a href="#contact" class="nav-cta">Schedule a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Austin, TX — Serving clients nationally</div>
+      <h1>FP&A built for companies that are <em>actually growing</em></h1>
+      <p class="hero-sub">Vantage FP&A delivers institutional-grade financial planning, budgeting, and reporting to mid-market and growth-stage companies — without the enterprise overhead.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">3.5<span>yrs</span></div>
+        <div class="stat-label">FP&A Experience</div>
+        <div class="stat-desc">Direct PE stakeholder reporting across healthcare and manufacturing sectors</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$5M<span>–$150M</span></div>
+        <div class="stat-label">Target Client Range</div>
+        <div class="stat-desc">Growth-stage to mid-market companies that need real finance infrastructure</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3<span>wks</span></div>
+        <div class="stat-label">Typical Onboarding</div>
+        <div class="stat-desc">From kickoff to your first board-ready financial package</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">Three-Statement Modeling</span>
+    <span class="marquee-item">Budget vs. Actual Analysis</span>
+    <span class="marquee-item">PE Readiness</span>
+    <span class="marquee-item">Board Reporting</span>
+    <span class="marquee-item">KPI Dashboards</span>
+    <span class="marquee-item">Scenario Planning</span>
+    <span class="marquee-item">Cash Flow Forecasting</span>
+    <span class="marquee-item">Fractional FP&A</span>
+    <span class="marquee-item">Three-Statement Modeling</span>
+    <span class="marquee-item">Budget vs. Actual Analysis</span>
+    <span class="marquee-item">PE Readiness</span>
+    <span class="marquee-item">Board Reporting</span>
+    <span class="marquee-item">KPI Dashboards</span>
+    <span class="marquee-item">Scenario Planning</span>
+    <span class="marquee-item">Cash Flow Forecasting</span>
+    <span class="marquee-item">Fractional FP&A</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">What we do</div>
+        <h2 class="section-title">Finance infrastructure your business can grow into</h2>
+      </div>
+      <p class="section-desc">Most growing companies outpace their financial systems before they realize it. Vantage FP&A closes that gap with the models, reporting, and strategic analysis that PE-backed companies rely on — delivered at a fraction of the cost.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="8" width="36" height="32" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="6" y1="18" x2="42" y2="18" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="18" y1="18" x2="18" y2="40" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M24 28 L28 24 L32 26 L38 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="service-tag">Retainer</div>
+        <div class="service-name">Fractional FP&A</div>
+        <p class="service-desc">A dedicated FP&A function without the full-time hire. You get the forecasting, reporting, and analysis your business needs on a flexible monthly engagement.</p>
+        <ul class="service-bullets">
+          <li>Monthly budget vs. actual reporting</li>
+          <li>Rolling cash flow forecasts</li>
+          <li>KPI tracking and variance commentary</li>
+          <li>Board and management reporting packs</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="14" y1="16" x2="34" y2="16" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="14" y1="22" x2="34" y2="22" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="14" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="34" cy="36" r="6" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="34" y1="33" x2="34" y2="39" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="31" y1="36" x2="37" y2="36" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <div class="service-tag">Project-Based</div>
+        <div class="service-name">Financial Model Builds</div>
+        <p class="service-desc">Institutional-quality financial models built from scratch. Whether you need a full three-statement model or a targeted tool for a specific decision, we build it right.</p>
+        <ul class="service-bullets">
+          <li>Three-statement integrated models</li>
+          <li>Scenario and sensitivity analysis</li>
+          <li>Acquisition and investment models</li>
+          <li>Custom KPI and driver dashboards</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6 L40 14 L40 26 C40 34 32 40 24 43 C16 40 8 34 8 26 L8 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M16 24 L21 29 L32 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="service-tag">Advisory</div>
+        <div class="service-name">PE Readiness</div>
+        <p class="service-desc">Built from direct experience reporting to PE stakeholders. We prepare your financial infrastructure for capital raises, ownership transitions, and investor scrutiny.</p>
+        <ul class="service-bullets">
+          <li>Investor-ready reporting packages</li>
+          <li>Board deck financial sections</li>
+          <li>Diligence data room preparation</li>
+          <li>Management presentation support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VANTAGE -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow" style="color: var(--gold);">Why Vantage</div>
+        <h2 class="section-title">The FP&A firm built for your stage</h2>
+      </div>
+      <p class="section-desc" style="color: rgba(255,255,255,0.5);">Enterprise FP&A tools and Big 4 advisory rates were built for companies twice your size. Vantage was built for the gap.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-number">01</div>
+        <div class="why-title">PE-Grade Analysis at Your Price Point</div>
+        <p class="why-desc">We bring the same financial rigor demanded by private equity sponsors — three-statement models, variance analysis, investor reporting — to companies that don't have a $50K/year software budget.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">02</div>
+        <div class="why-title">Operator Experience, Not Just Advisory</div>
+        <p class="why-desc">Built by a finance operator who has owned P&Ls, reported directly to PE stakeholders, and managed budgets under real business pressure — not a consultant who hasn't sat in the seat.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">03</div>
+        <div class="why-title">Fast Deployment, No IT Required</div>
+        <p class="why-desc">Your first board-ready financial package in weeks, not quarters. No 6-month software implementations. No IT dependencies. We work in your existing Excel and accounting environment.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">04</div>
+        <div class="why-title">AI-Augmented Delivery</div>
+        <p class="why-desc">We use modern AI tooling to move faster and deliver more insight per engagement — so you get enterprise-level output on a timeline and price that matches where your company actually is today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-eyebrow">Get in touch</div>
+      <h2 class="section-title">Let's talk about your finance function</h2>
+      <div class="contact-detail">
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:ngriebenow@vantagefpa.com">ngriebenow@vantagefpa.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Austin, TX — Serving clients nationally</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Engagements</div>
+          <div class="contact-value">Retainers from $2,500/mo · Project work from $3,000</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" placeholder="Acme Corp">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-group">
+          <label for="service">Service Interest</label>
+          <select id="service">
+            <option value="">Select a service...</option>
+            <option>Fractional FP&A (Retainer)</option>
+            <option>Financial Model Build</option>
+            <option>PE Readiness Package</option>
+            <option>Not sure yet — let's talk</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your situation</label>
+          <textarea id="message" placeholder="What's your biggest financial planning challenge right now?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vantage <span>FP&A</span> LLC</div>
+  <div class="footer-copy">© 2026 Vantage FP&A LLC · Austin, Texas · ngriebenow@vantagefpa.com</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#2D6A4F';
+  setTimeout(() => {
+    btn.textContent = 'Send Message';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>
