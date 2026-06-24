@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vantage FP&A — Financial Planning & Analysis for Growing Companies</title>
+<title>Vantage FP&A | AI-Powered Finance Systems for PE-Backed Companies</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -213,8 +213,6 @@
     border-left: 1px solid rgba(255,255,255,0.1);
   }
 
-  .stat-item {}
-
   .stat-number {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
@@ -250,7 +248,7 @@
 
   .marquee-track {
     display: inline-flex;
-    animation: marquee 24s linear infinite;
+    animation: marquee 28s linear infinite;
     gap: 0;
   }
 
@@ -273,10 +271,10 @@
     to { transform: translateX(-50%); }
   }
 
-  /* SERVICES */
-  .services {
+  /* HOW IT WORKS */
+  .how {
     padding: 120px 48px;
-    background: var(--off-white);
+    background: var(--white);
   }
 
   .section-inner {
@@ -327,6 +325,89 @@
     color: var(--gray-600);
     font-weight: 300;
     align-self: end;
+  }
+
+  /* PROCESS STEPS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .process-step {
+    background: var(--off-white);
+    padding: 48px 40px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+
+  .process-step:hover { transform: translateY(-4px); }
+
+  .process-step::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 40px; right: 40px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .process-step:hover::after { transform: scaleX(1); }
+
+  .step-phase {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    color: rgba(13, 31, 60, 0.08);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .step-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .step-detail {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding: 10px 16px;
+    background: var(--white);
+    border-left: 2px solid var(--gold);
+    line-height: 1.5;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 48px;
+    background: var(--off-white);
   }
 
   .services-grid {
@@ -487,8 +568,6 @@
     align-items: start;
   }
 
-  .contact-left {}
-
   .contact-detail {
     margin-top: 48px;
     display: flex;
@@ -625,8 +704,10 @@
     .hero { padding: 100px 24px 60px; }
     .hero-inner { grid-template-columns: 1fr; gap: 48px; }
     .hero-stats { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; flex-direction: row; flex-wrap: wrap; gap: 32px; }
+    .how { padding: 80px 24px; }
     .services { padding: 80px 24px; }
     .section-header { grid-template-columns: 1fr; gap: 24px; }
+    .process-steps { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
     .why { padding: 80px 24px; }
     .why-grid { grid-template-columns: 1fr; }
@@ -643,6 +724,7 @@
 <nav>
   <div class="nav-logo">Vantage <span>FP&A</span></div>
   <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Vantage</a></li>
     <li><a href="#contact" class="nav-cta">Schedule a Call</a></li>
@@ -653,29 +735,29 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Austin, TX — Serving clients nationally</div>
-      <h1>FP&A built for companies that are <em>actually growing</em></h1>
-      <p class="hero-sub">Vantage FP&A delivers institutional-grade financial planning, budgeting, and reporting to mid-market and growth-stage companies — without the enterprise overhead.</p>
+      <div class="hero-eyebrow">PE-Backed Finance Infrastructure</div>
+      <h1>We build the AI finance system. You <em>own it forever.</em></h1>
+      <p class="hero-sub">Vantage FP&A builds custom AI-powered FP&A systems for PE-backed companies at the $50M to $150M revenue range. One build. One monthly maintenance fee. No dependency on expensive SaaS platforms.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Schedule a Consultation</a>
-        <a href="#services" class="btn-ghost">View Services</a>
+        <a href="#how" class="btn-ghost">See How It Works</a>
       </div>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-number">3.5<span>yrs</span></div>
-        <div class="stat-label">FP&A Experience</div>
-        <div class="stat-desc">Direct PE stakeholder reporting across healthcare and manufacturing sectors</div>
+        <div class="stat-number">30<span>days</span></div>
+        <div class="stat-label">Typical Deployment</div>
+        <div class="stat-desc">From kickoff to a fully automated close cycle and board-ready reporting package</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">$5M<span>–$150M</span></div>
+        <div class="stat-number">$50<span>M+</span></div>
         <div class="stat-label">Target Client Range</div>
-        <div class="stat-desc">Growth-stage to mid-market companies that need real finance infrastructure</div>
+        <div class="stat-desc">PE-backed companies at the $50M to $150M revenue stage that need real finance infrastructure</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">3<span>wks</span></div>
-        <div class="stat-label">Typical Onboarding</div>
-        <div class="stat-desc">From kickoff to your first board-ready financial package</div>
+        <div class="stat-number">80<span>%</span></div>
+        <div class="stat-label">Manual Work Eliminated</div>
+        <div class="stat-desc">Average reduction in close cycle manual effort after system deployment</div>
       </div>
     </div>
   </div>
@@ -684,34 +766,70 @@
 <!-- MARQUEE -->
 <div class="marquee-bar">
   <div class="marquee-track">
-    <span class="marquee-item">Three-Statement Modeling</span>
-    <span class="marquee-item">Budget vs. Actual Analysis</span>
-    <span class="marquee-item">PE Readiness</span>
-    <span class="marquee-item">Board Reporting</span>
-    <span class="marquee-item">KPI Dashboards</span>
-    <span class="marquee-item">Scenario Planning</span>
-    <span class="marquee-item">Cash Flow Forecasting</span>
-    <span class="marquee-item">Fractional FP&A</span>
-    <span class="marquee-item">Three-Statement Modeling</span>
-    <span class="marquee-item">Budget vs. Actual Analysis</span>
-    <span class="marquee-item">PE Readiness</span>
-    <span class="marquee-item">Board Reporting</span>
-    <span class="marquee-item">KPI Dashboards</span>
-    <span class="marquee-item">Scenario Planning</span>
-    <span class="marquee-item">Cash Flow Forecasting</span>
-    <span class="marquee-item">Fractional FP&A</span>
+    <span class="marquee-item">AI Close Automation</span>
+    <span class="marquee-item">PE Board Reporting</span>
+    <span class="marquee-item">Variance Commentary</span>
+    <span class="marquee-item">ERP Integration</span>
+    <span class="marquee-item">Power BI Dashboards</span>
+    <span class="marquee-item">Rolling Forecasts</span>
+    <span class="marquee-item">Healthcare FP&A</span>
+    <span class="marquee-item">Maintenance Retainers</span>
+    <span class="marquee-item">AI Close Automation</span>
+    <span class="marquee-item">PE Board Reporting</span>
+    <span class="marquee-item">Variance Commentary</span>
+    <span class="marquee-item">ERP Integration</span>
+    <span class="marquee-item">Power BI Dashboards</span>
+    <span class="marquee-item">Rolling Forecasts</span>
+    <span class="marquee-item">Healthcare FP&A</span>
+    <span class="marquee-item">Maintenance Retainers</span>
   </div>
 </div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">The Model</div>
+        <h2 class="section-title">Built once. Maintained permanently.</h2>
+      </div>
+      <p class="section-desc">Most finance tools ask you to pay forever for something generic. We build a system specific to your company, your ERP, your PE reporting requirements, and your close schedule. Then we maintain it so it never breaks when it matters most.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-phase">Phase One</div>
+        <div class="step-num">01</div>
+        <div class="step-name">Finance AI Audit</div>
+        <p class="step-desc">We spend two to three weeks mapping your current close cycle, ERP setup, reporting stack, and board pack requirements. You get a prioritized roadmap and a clear picture of what automation can deliver in your specific environment.</p>
+        <div class="step-detail">Fixed fee from $6,500</div>
+      </div>
+      <div class="process-step">
+        <div class="step-phase">Phase Two</div>
+        <div class="step-num">02</div>
+        <div class="step-name">System Build</div>
+        <p class="step-desc">We build your custom FP&A automation system. ERP to reporting pipeline, automated variance commentary, rolling forecast refresh, and a live Power BI dashboard your PE board can access anytime. Deployed in 30 days or fewer.</p>
+        <div class="step-detail">Project fee from $20,000</div>
+      </div>
+      <div class="process-step">
+        <div class="step-phase">Phase Three</div>
+        <div class="step-num">03</div>
+        <div class="step-name">Ongoing Maintenance</div>
+        <p class="step-desc">The system runs. We keep it running. Monthly data refresh, error monitoring, quarterly model updates, and board cycle support. Your CFO gets the board pack on Day 1 of close instead of Day 8. Every month.</p>
+        <div class="step-detail">Monthly retainer from $3,500</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <div class="section-eyebrow">What we do</div>
-        <h2 class="section-title">Finance infrastructure your business can grow into</h2>
+        <div class="section-eyebrow">What We Build</div>
+        <h2 class="section-title">Finance infrastructure your PE board will trust</h2>
       </div>
-      <p class="section-desc">Most growing companies outpace their financial systems before they realize it. Vantage FP&A closes that gap with the models, reporting, and strategic analysis that PE-backed companies rely on — delivered at a fraction of the cost.</p>
+      <p class="section-desc">Every system is built on your chart of accounts, your ERP, your PE firm's reporting template, and your close schedule. Nothing off the shelf. Nothing that requires a software subscription to keep running.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
@@ -721,14 +839,14 @@
           <line x1="18" y1="18" x2="18" y2="40" stroke="currentColor" stroke-width="1.5"/>
           <path d="M24 28 L28 24 L32 26 L38 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <div class="service-tag">Retainer</div>
-        <div class="service-name">Fractional FP&A</div>
-        <p class="service-desc">A dedicated FP&A function without the full-time hire. You get the forecasting, reporting, and analysis your business needs on a flexible monthly engagement.</p>
+        <div class="service-tag">Core Build</div>
+        <div class="service-name">Automated Close and Reporting</div>
+        <p class="service-desc">We automate the monthly close cycle from ERP data pull through board pack delivery. Your finance team stops spending 40 hours on manual exports and formatting and starts spending that time on analysis.</p>
         <ul class="service-bullets">
-          <li>Monthly budget vs. actual reporting</li>
-          <li>Rolling cash flow forecasts</li>
-          <li>KPI tracking and variance commentary</li>
-          <li>Board and management reporting packs</li>
+          <li>ERP to Excel automated data pipeline</li>
+          <li>AI-generated variance commentary</li>
+          <li>Live Power BI dashboard for stakeholders</li>
+          <li>Board pack compiled and formatted automatically</li>
         </ul>
       </div>
       <div class="service-card">
@@ -741,14 +859,14 @@
           <line x1="34" y1="33" x2="34" y2="39" stroke="currentColor" stroke-width="1.5"/>
           <line x1="31" y1="36" x2="37" y2="36" stroke="currentColor" stroke-width="1.5"/>
         </svg>
-        <div class="service-tag">Project-Based</div>
-        <div class="service-name">Financial Model Builds</div>
-        <p class="service-desc">Institutional-quality financial models built from scratch. Whether you need a full three-statement model or a targeted tool for a specific decision, we build it right.</p>
+        <div class="service-tag">PE Focused</div>
+        <div class="service-name">PE Board Reporting Systems</div>
+        <p class="service-desc">Built from direct experience sitting in PE-reported finance roles. Your board package lands in the format your GP expects, with the metrics they track, on the timeline they require. No surprises at the quarterly review.</p>
         <ul class="service-bullets">
-          <li>Three-statement integrated models</li>
-          <li>Scenario and sensitivity analysis</li>
-          <li>Acquisition and investment models</li>
-          <li>Custom KPI and driver dashboards</li>
+          <li>EBITDA bridge and waterfall automation</li>
+          <li>KPI tracking tied to your value creation plan</li>
+          <li>Covenant monitoring and alert triggers</li>
+          <li>Management presentation financial sections</li>
         </ul>
       </div>
       <div class="service-card">
@@ -756,14 +874,14 @@
           <path d="M24 6 L40 14 L40 26 C40 34 32 40 24 43 C16 40 8 34 8 26 L8 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           <path d="M16 24 L21 29 L32 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div class="service-tag">Advisory</div>
-        <div class="service-name">PE Readiness</div>
-        <p class="service-desc">Built from direct experience reporting to PE stakeholders. We prepare your financial infrastructure for capital raises, ownership transitions, and investor scrutiny.</p>
+        <div class="service-tag">Retainer</div>
+        <div class="service-name">System Maintenance and Support</div>
+        <p class="service-desc">The system we build is yours. We maintain it permanently so it never breaks quietly in the background. Monthly monitoring, model updates as your business evolves, and on-call support through every close cycle.</p>
         <ul class="service-bullets">
-          <li>Investor-ready reporting packages</li>
-          <li>Board deck financial sections</li>
-          <li>Diligence data room preparation</li>
-          <li>Management presentation support</li>
+          <li>Monthly system monitoring and data refresh</li>
+          <li>Quarterly model and forecast updates</li>
+          <li>API and integration maintenance</li>
+          <li>Board cycle support and scenario requests</li>
         </ul>
       </div>
     </div>
@@ -776,30 +894,30 @@
     <div class="section-header">
       <div>
         <div class="section-eyebrow" style="color: var(--gold);">Why Vantage</div>
-        <h2 class="section-title">The FP&A firm built for your stage</h2>
+        <h2 class="section-title">The gap nobody else fills</h2>
       </div>
-      <p class="section-desc" style="color: rgba(255,255,255,0.5);">Enterprise FP&A tools and Big 4 advisory rates were built for companies twice your size. Vantage was built for the gap.</p>
+      <p class="section-desc" style="color: rgba(255,255,255,0.5);">Big 4 firms charge $250K to start. SaaS platforms cost $35K a year and require your team to learn them. General automation shops have never built an FP&A model or run a PE close cycle. Vantage is the only option that combines all three in one place.</p>
     </div>
     <div class="why-grid">
       <div class="why-item">
         <div class="why-number">01</div>
-        <div class="why-title">PE-Grade Analysis at Your Price Point</div>
-        <p class="why-desc">We bring the same financial rigor demanded by private equity sponsors — three-statement models, variance analysis, investor reporting — to companies that don't have a $50K/year software budget.</p>
+        <div class="why-title">PE Operator Background, Not Consultant Background</div>
+        <p class="why-desc">We have sat in the seat. Direct PE stakeholder reporting, live budget cycles under board scrutiny, healthcare and multi-entity consolidations. The systems we build reflect what actually matters in a GP review, not what looks good in a proposal.</p>
       </div>
       <div class="why-item">
         <div class="why-number">02</div>
-        <div class="why-title">Operator Experience, Not Just Advisory</div>
-        <p class="why-desc">Built by a finance operator who has owned P&Ls, reported directly to PE stakeholders, and managed budgets under real business pressure — not a consultant who hasn't sat in the seat.</p>
+        <div class="why-title">You Own the System We Build</div>
+        <p class="why-desc">Every workflow, model, and dashboard we build belongs to your company. There is no platform license required to keep it running. If you ever move on, the system moves with you. No vendor lock-in, no annual renewal, no hostage situation.</p>
       </div>
       <div class="why-item">
         <div class="why-number">03</div>
-        <div class="why-title">Fast Deployment, No IT Required</div>
-        <p class="why-desc">Your first board-ready financial package in weeks, not quarters. No 6-month software implementations. No IT dependencies. We work in your existing Excel and accounting environment.</p>
+        <div class="why-title">30-Day Deployment</div>
+        <p class="why-desc">We operate in your existing Excel and ERP environment. There are no IT projects, no six-month implementations, and no change management programs. Your first automated board pack is ready within 30 days of engagement start.</p>
       </div>
       <div class="why-item">
         <div class="why-number">04</div>
-        <div class="why-title">AI-Augmented Delivery</div>
-        <p class="why-desc">We use modern AI tooling to move faster and deliver more insight per engagement — so you get enterprise-level output on a timeline and price that matches where your company actually is today.</p>
+        <div class="why-title">Healthcare and Industrial Vertical Depth</div>
+        <p class="why-desc">Our systems are built for the financial structures common in PE-backed healthcare services and industrial companies. Payor mix analysis, provider productivity KPIs, multi-site P&Ls, job cost variance. The model architecture reflects your industry from day one.</p>
       </div>
     </div>
   </div>
@@ -809,7 +927,7 @@
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="contact-left">
-      <div class="section-eyebrow">Get in touch</div>
+      <div class="section-eyebrow">Get in Touch</div>
       <h2 class="section-title">Let's talk about your finance function</h2>
       <div class="contact-detail">
         <div class="contact-item">
@@ -818,11 +936,11 @@
         </div>
         <div class="contact-item">
           <div class="contact-label">Location</div>
-          <div class="contact-value">Austin, TX — Serving clients nationally</div>
+          <div class="contact-value">Austin, TX. Serving clients nationally.</div>
         </div>
         <div class="contact-item">
           <div class="contact-label">Engagements</div>
-          <div class="contact-value">Retainers from $2,500/mo · Project work from $3,000</div>
+          <div class="contact-value">Audits from $6,500 · Builds from $20,000 · Retainers from $3,500 per month</div>
         </div>
       </div>
     </div>
@@ -843,18 +961,30 @@
           <input type="email" id="email" placeholder="jane@company.com" required>
         </div>
         <div class="form-group">
-          <label for="service">Service Interest</label>
+          <label for="revenue">Annual Revenue</label>
+          <select id="revenue">
+            <option value="">Select a range</option>
+            <option>Under $25M</option>
+            <option>$25M to $50M</option>
+            <option>$50M to $100M</option>
+            <option>$100M to $150M</option>
+            <option>Over $150M</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="service">What brings you here</label>
           <select id="service">
-            <option value="">Select a service...</option>
-            <option>Fractional FP&A (Retainer)</option>
-            <option>Financial Model Build</option>
-            <option>PE Readiness Package</option>
-            <option>Not sure yet — let's talk</option>
+            <option value="">Select an option</option>
+            <option>Finance AI Audit</option>
+            <option>Custom System Build</option>
+            <option>Maintenance Retainer</option>
+            <option>PE Board Reporting</option>
+            <option>Not sure yet. Let's talk.</option>
           </select>
         </div>
         <div class="form-group">
           <label for="message">Tell us about your situation</label>
-          <textarea id="message" placeholder="What's your biggest financial planning challenge right now?"></textarea>
+          <textarea id="message" placeholder="What does your current close cycle look like? What is the board asking for that your team struggles to deliver?"></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message</button>
       </form>
