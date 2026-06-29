@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vantage FP&A | AI-Powered Finance Systems for PE-Backed Companies</title>
+<title>Vantage FP&A | AI-Powered Finance Infrastructure for PE-Backed Companies</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -553,6 +553,69 @@
     font-weight: 300;
   }
 
+  /* VS ENTERPRISE */
+  .vs {
+    padding: 120px 48px;
+    background: var(--white);
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 56px;
+    border: 1px solid var(--gray-100);
+  }
+
+  .compare-col { padding: 44px 40px; background: var(--off-white); }
+  .compare-us { background: var(--navy); }
+
+  .compare-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .compare-them .compare-head { color: var(--gray-400); }
+  .compare-us .compare-head { color: var(--gold); border-bottom-color: rgba(201,168,76,0.25); }
+
+  .compare-col ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+
+  .compare-col li {
+    font-size: 14px;
+    line-height: 1.5;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .compare-them li { color: var(--gray-600); }
+  .compare-us li { color: rgba(255,255,255,0.85); }
+  .compare-them li::before { content: '\00d7'; position: absolute; left: 0; color: var(--gray-400); font-weight: 600; }
+  .compare-us li::before { content: '\2713'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+
+  .vs-body { margin-top: 48px; }
+
+  .vs-body p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--gray-600);
+    font-weight: 300;
+    max-width: 760px;
+  }
+
+  .vs-kicker {
+    margin-top: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px !important;
+    line-height: 1.45 !important;
+    color: var(--navy) !important;
+    font-weight: 500 !important;
+  }
+
   /* CONTACT */
   .contact {
     padding: 120px 48px;
@@ -560,25 +623,38 @@
   }
 
   .contact-inner {
-    max-width: 1100px;
+    max-width: 720px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
+    text-align: center;
   }
 
+  .contact-inner .section-eyebrow { justify-content: center; }
+
+  .contact-lead {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    font-weight: 300;
+    margin: 24px auto 36px;
+    max-width: 560px;
+  }
+
+  .contact-btn { margin-bottom: 64px; }
+
   .contact-detail {
-    margin-top: 48px;
     display: flex;
-    flex-direction: column;
-    gap: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--gray-100);
   }
 
   .contact-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    text-align: center;
   }
 
   .contact-label {
@@ -711,6 +787,8 @@
     .services-grid { grid-template-columns: 1fr; }
     .why { padding: 80px 24px; }
     .why-grid { grid-template-columns: 1fr; }
+    .vs { padding: 80px 24px; }
+    .compare { grid-template-columns: 1fr; }
     .contact { padding: 80px 24px; }
     .contact-inner { grid-template-columns: 1fr; gap: 60px; }
     .form-row { grid-template-columns: 1fr; }
@@ -727,6 +805,7 @@
     <li><a href="#how">How It Works</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Vantage</a></li>
+    <li><a href="#compare">Vs. Firms</a></li>
     <li><a href="#contact" class="nav-cta">Schedule a Call</a></li>
   </ul>
 </nav>
@@ -737,7 +816,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">PE-Backed Finance Infrastructure</div>
       <h1>We build the AI finance system. You <em>own it forever.</em></h1>
-      <p class="hero-sub">Vantage FP&A builds custom AI-powered FP&A systems for PE-backed companies at the $50M to $150M revenue range. One build. One monthly maintenance fee. No dependency on expensive SaaS platforms.</p>
+      <p class="hero-sub">Vantage FP&A builds and runs the financial reporting infrastructure for PE-backed companies in the $50M to $150M range. The ones too small for a six-figure platform implementation and too lean to hire a full FP&A team. One build, one monthly retainer, no platform license holding you hostage.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Schedule a Consultation</a>
         <a href="#how" class="btn-ghost">See How It Works</a>
@@ -800,8 +879,8 @@
         <div class="step-phase">Phase One</div>
         <div class="step-num">01</div>
         <div class="step-name">Finance AI Audit</div>
-        <p class="step-desc">We spend two to three weeks mapping your current close cycle, ERP setup, reporting stack, and board pack requirements. You get a prioritized roadmap and a clear picture of what automation can deliver in your specific environment.</p>
-        <div class="step-detail">Fixed-fee engagement</div>
+        <p class="step-desc">We spend two to three weeks mapping your current close cycle, ERP setup, reporting stack, and board pack requirements. You get a prioritized roadmap and a clear picture of what automation can deliver in your specific environment. If the audit does not surface automation value worth at least the fee, you do not pay for it.</p>
+        <div class="step-detail">Fixed fee · Credited toward your build</div>
       </div>
       <div class="process-step">
         <div class="step-phase">Phase Two</div>
@@ -861,7 +940,7 @@
         </svg>
         <div class="service-tag">PE Focused</div>
         <div class="service-name">PE Board Reporting Systems</div>
-        <p class="service-desc">Built from direct experience sitting in PE-reported finance roles. Your board package lands in the format your GP expects, with the metrics they track, on the timeline they require. No surprises at the quarterly review.</p>
+        <p class="service-desc">Built from direct experience sitting in PE-reported finance roles. Your board package lands in the format your GP expects, on the timeline they require, so your CFO walks into the quarterly review telling the story instead of defending the numbers.</p>
         <ul class="service-bullets">
           <li>EBITDA bridge and waterfall automation</li>
           <li>KPI tracking tied to your value creation plan</li>
@@ -917,8 +996,47 @@
       <div class="why-item">
         <div class="why-number">04</div>
         <div class="why-title">Sector Depth Across PE Verticals</div>
-        <p class="why-desc">Our systems are built for the financial structures common in PE-backed businesses across sectors — healthcare services, capital-intensive infrastructure, and industrial operations. Multi-site P&Ls, capacity and utilization metrics, job cost variance, customer or payor concentration. The model architecture reflects your sector from day one.</p>
+        <p class="why-desc">Our systems are built for the financial structures common in PE-backed businesses across sectors. Healthcare services with payor concentration and provider productivity, capital-intensive infrastructure with capacity and utilization metrics, industrial operations with multi-site P&Ls and job cost variance. The model architecture reflects your sector from day one.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS ENTERPRISE -->
+<section class="vs" id="compare">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Vantage vs. Enterprise Firms</div>
+        <h2 class="section-title">You don't need an enterprise transformation. You need this fixed.</h2>
+      </div>
+      <p class="section-desc">The large finance-transformation firms do real work, for companies with seven-figure budgets and twelve-month timelines. That model does not fit a $90M PE-backed business. You would pay to implement a licensed platform you then pay for every year, on a timeline that outlasts the operating partner's patience.</p>
+    </div>
+    <div class="compare">
+      <div class="compare-col compare-them">
+        <div class="compare-head">Enterprise Firms</div>
+        <ul>
+          <li>Six to twelve month implementation</li>
+          <li>License plus implementation, billed every year</li>
+          <li>Built for seven-figure enterprise budgets</li>
+          <li>Consultant delivers the project, then leaves</li>
+          <li>You rent their platform indefinitely</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-us">
+        <div class="compare-head">Vantage FP&A</div>
+        <ul>
+          <li>Live in 30 days or fewer</li>
+          <li>One build, one retainer, no license</li>
+          <li>Built for PE-backed companies at $50M to $150M</li>
+          <li>We build it and keep it running</li>
+          <li>You own the system outright</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vs-body">
+      <p>Vantage is built for the company that sits below that line. We work inside the ERP and Excel environment you already run, build a system specific to your chart of accounts and your sponsor's reporting template, and hand it to you to own outright. Maintained on a retainer that costs less than the annual license alone on an enterprise platform, and a fraction of a full-time FP&A hire.</p>
+      <p class="vs-kicker">Enterprise firms implement software. We build and run your finance function's infrastructure. At your size, that is the difference that matters.</p>
     </div>
   </div>
 </section>
@@ -926,68 +1044,23 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="contact-left">
-      <div class="section-eyebrow">Get in Touch</div>
-      <h2 class="section-title">Let's talk about your finance function</h2>
-      <div class="contact-detail">
-        <div class="contact-item">
-          <div class="contact-label">Email</div>
-          <div class="contact-value"><a href="mailto:ngriebenow@vantagefpa.com">ngriebenow@vantagefpa.com</a></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Austin, TX. Serving clients nationally.</div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-label">Engagements</div>
-          <div class="contact-value">Audit · Build · Maintenance Retainer. Pricing discussed on consultation.</div>
-        </div>
+    <div class="section-eyebrow">Get in Touch</div>
+    <h2 class="section-title">Let's talk about your finance function</h2>
+    <p class="contact-lead">If a portfolio company's close is running long or the board pack lands late every month, that is a 20-minute conversation. Email directly and we will find a time. No form, no funnel.</p>
+    <a href="mailto:ngriebenow@vantagefpa.com?subject=Vantage%20FP%26A%20Consultation" class="btn-primary contact-btn">Email to Schedule a Call</a>
+    <div class="contact-detail">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:ngriebenow@vantagefpa.com">ngriebenow@vantagefpa.com</a></div>
       </div>
-    </div>
-    <div class="contact-right">
-      <form class="contact-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Jane Smith" required>
-          </div>
-          <div class="form-group">
-            <label for="company">Company</label>
-            <input type="text" id="company" placeholder="Acme Corp">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="jane@company.com" required>
-        </div>
-        <div class="form-group">
-          <label for="revenue">Annual Revenue</label>
-          <select id="revenue">
-            <option value="">Select a range</option>
-            <option>Under $25M</option>
-            <option>$25M to $50M</option>
-            <option>$50M to $100M</option>
-            <option>$100M to $150M</option>
-            <option>Over $150M</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="service">What brings you here</label>
-          <select id="service">
-            <option value="">Select an option</option>
-            <option>Finance AI Audit</option>
-            <option>Custom System Build</option>
-            <option>Maintenance Retainer</option>
-            <option>PE Board Reporting</option>
-            <option>Not sure yet. Let's talk.</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Tell us about your situation</label>
-          <textarea id="message" placeholder="What does your current close cycle look like? What is the board asking for that your team struggles to deliver?"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
-      </form>
+      <div class="contact-item">
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Austin, TX. Serving clients nationally.</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Engagements</div>
+        <div class="contact-value">Audit · Build · Maintenance Retainer</div>
+      </div>
     </div>
   </div>
 </section>
@@ -998,18 +1071,5 @@
   <div class="footer-copy">© 2026 Vantage FP&A LLC · Austin, Texas · ngriebenow@vantagefpa.com</div>
 </footer>
 
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = '#2D6A4F';
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
-}
-</script>
 </body>
 </html>
