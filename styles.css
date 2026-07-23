@@ -199,20 +199,28 @@ nav {
 /* HERO, home only */
 /* No 100vh lock. The hero is sized by its content so the capability tape peeks
    above the fold and acts as the scroll affordance, instead of the block being
-   vertically centred in a viewport-tall box with dead navy above and below. */
+   vertically centred in a viewport-tall box with dead navy above and below.
+   Composition is a single left-aligned stack on the same 1100px rail every
+   section below uses, which is also the composition the five interior page
+   heroes already use. One vertical left edge runs the whole page. There is no
+   second column, so there is no empty column to explain. */
 .hero {
   background: var(--navy);
-  padding: 132px 48px 84px;
+  padding: 144px 48px 104px;
   position: relative;
   overflow: hidden;
 }
 
+/* The upper right carries a broad, low gold wash rather than a component. With
+   the copy set left on a measure, this is what keeps the right of the rail
+   reading as composed atmosphere instead of unused navy. Kept wide and low so it
+   is a field, not a blob, and it never sits under type. */
 .hero::before {
   content: '';
   position: absolute;
-  top: -200px; right: -200px;
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: -300px; right: -260px;
+  width: 1000px; height: 1000px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.05) 45%, transparent 72%);
   pointer-events: none;
 }
 
@@ -229,17 +237,6 @@ nav {
   margin: 0 auto;
   width: 100%;
 }
-
-.hero-head { margin-bottom: 44px; }
-
-.hero-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 72px;
-  align-items: start;
-}
-
-.hero-left { max-width: 640px; }
 
 .hero-eyebrow {
   font-size: 11px;
@@ -261,14 +258,20 @@ nav {
   background: var(--gold);
 }
 
+/* max-width stays at 900px. The balance keyword only evens the two lines out so
+   the break lands on the clause boundary, prove the numbers over make the call,
+   instead of stranding a two-word second line and leaving a wedge of empty navy
+   in the top right. Browsers without it fall back to the previous ragged break,
+   which is still inside the same max-width. */
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(38px, 4.5vw, 58px);
+  font-size: clamp(38px, 4.5vw, 66px);
   font-weight: 400;
   color: var(--white);
   line-height: 1.15;
   letter-spacing: -0.01em;
   max-width: 900px;
+  text-wrap: balance;
 }
 
 .hero h1 em {
@@ -276,13 +279,30 @@ nav {
   color: var(--gold);
 }
 
+/* The measure widens from 620px to 720px, matching .page-hero-sub. At 1100px of
+   rail that is a two-thirds line, which reads as a set measure rather than a
+   column that stops early because something used to sit beside it. */
 .hero-sub {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.75;
   color: rgba(255,255,255,0.65);
-  margin-bottom: 44px;
+  margin-top: 28px;
   font-weight: 300;
-  max-width: 620px;
+  max-width: 720px;
+}
+
+/* The couplet that used to caption the removed figure, promoted into the hero
+   stack. It closes the paragraph and gives the block a gold beat below the
+   headline, so the composition is headline, argument, claim, action. */
+.hero-line {
+  margin-top: 26px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: rgba(201,168,76,0.92);
+  padding-left: 16px;
+  border-left: 1px solid rgba(201,168,76,0.5);
+  max-width: 720px;
 }
 
 .hero-actions {
@@ -290,6 +310,7 @@ nav {
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 44px;
 }
 
 .btn-primary {
@@ -322,117 +343,6 @@ nav {
 
 .btn-ghost:hover { color: var(--white); }
 .btn-ghost::after { content: '\2192'; }
-
-/* HERO TRACE CHAIN, right column of the home hero.
-   A stepped elbow chain. Each connector spans exactly one node to the next, so
-   nothing can overshoot. Indentation carries the descent, the gold terminal
-   carries the arrival. Typographic only, zero data, zero numerals. */
-.hero-right { padding-top: 2px; }
-
-/* The box hugs its widest row, so the bounding rules terminate on real content
-   instead of running out into empty navy. It is then pushed to the right edge of
-   the column, which is the same 1100px edge every section below it respects. */
-.trace-figure {
-  --trace-step: 26px;   /* horizontal indent per level */
-  --trace-arm: 14px;    /* gold arm arriving at each label */
-  --trace-row: 34px;    /* one full row, drives the elbow height */
-  width: fit-content;
-  max-width: 320px;
-  margin-left: auto;
-}
-
-.trace-head {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(201,168,76,0.45);
-}
-
-.trace {
-  list-style: none;
-  margin-top: 10px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-
-.trace-row {
-  position: relative;
-  height: var(--trace-row);
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.2;
-}
-
-/* Staircase. Level n sits n steps in, plus the arm. */
-.trace-row:nth-child(1) { padding-left: var(--trace-arm); }
-.trace-row:nth-child(2) { padding-left: calc(var(--trace-step) + var(--trace-arm)); }
-.trace-row:nth-child(3) { padding-left: calc(var(--trace-step) * 2 + var(--trace-arm)); }
-.trace-row:nth-child(4) { padding-left: calc(var(--trace-step) * 3 + var(--trace-arm)); }
-.trace-row:nth-child(5) { padding-left: calc(var(--trace-step) * 4 + var(--trace-arm)); }
-
-/* Head node. A stub arm only, because nothing sits above it to connect to. */
-.trace-row:first-child::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: calc(var(--trace-arm) - 4px);
-  height: 1px;
-  background: rgba(201,168,76,0.55);
-}
-
-/* Every other node. An elbow that starts at the previous node's centre line and
-   turns into this label. Both ends terminate on a node, so there is no float. */
-.trace-row:not(:first-child)::before {
-  content: '';
-  position: absolute;
-  top: calc(var(--trace-row) / -2);
-  height: var(--trace-row);
-  width: calc(var(--trace-arm) - 4px);
-  border-left: 1px solid rgba(201,168,76,0.55);
-  border-bottom: 1px solid rgba(201,168,76,0.55);
-  border-bottom-left-radius: 3px;
-}
-
-.trace-row:nth-child(2)::before { left: var(--trace-step); }
-.trace-row:nth-child(3)::before { left: calc(var(--trace-step) * 2); }
-.trace-row:nth-child(4)::before { left: calc(var(--trace-step) * 3); }
-.trace-row:nth-child(5)::before { left: calc(var(--trace-step) * 4); }
-
-/* Descent ramp. Each step down the chain brightens, so the eye is pulled toward
-   the source rather than reading five rows of equal weight as a menu. */
-.trace-row:nth-child(1) { color: rgba(255,255,255,0.52); }
-.trace-row:nth-child(2) { color: rgba(255,255,255,0.62); }
-.trace-row:nth-child(3) { color: rgba(255,255,255,0.72); }
-.trace-row:nth-child(4) { color: rgba(255,255,255,0.84); }
-
-.trace-row:nth-child(2)::before { border-color: rgba(201,168,76,0.42); }
-.trace-row:nth-child(3)::before { border-color: rgba(201,168,76,0.56); }
-.trace-row:nth-child(4)::before { border-color: rgba(201,168,76,0.72); }
-
-/* The terminal. The chain ends in gold, the same way the headline does. */
-.trace-row:last-child { color: var(--gold); }
-.trace-row:last-child::before { border-color: var(--gold); }
-
-.trace-caption {
-  margin-top: 16px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.6;
-  color: rgba(201,168,76,0.9);
-}
-
-/* Fixed break, so the couplet never rags differently at a different width. */
-.trace-caption span { display: block; }
 
 /* PAGE HERO, interior pages */
 .page-hero {
@@ -485,30 +395,40 @@ nav {
   margin-top: 40px;
 }
 
-/* CAPABILITY TAPE, white ground, gold hairlines, 45px per second, one row at every width */
+/* CAPABILITY TAPE, full-bleed dulled gold ground, navy type, 45px per second,
+   one row at every width. The ground is the house gold #C9A84C at full strength,
+   which is the muted antique gold the bar carried before the six-page split, not
+   a saturated yellow. Navy type on it measures 7.2 to 1, so it clears AA at this
+   size with headroom and AAA as well.
+   The ground stays solid edge to edge. The edge fade lives on the viewport
+   inside it, so the type fades out at both ends without the bar itself tapering
+   into the page. */
 .cap-tape {
-  background: var(--white);
-  border-top: 1px solid rgba(201, 168, 76, 0.55);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.55);
-  padding: 18px 0;
-  overflow: hidden;
+  background: var(--gold);
+  border-top: 1px solid rgba(13, 31, 60, 0.22);
+  border-bottom: 1px solid rgba(13, 31, 60, 0.22);
+  padding: 17px 0;
   white-space: nowrap;
+}
+
+.cap-tape-viewport {
+  overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
 }
 
 .cap-tape-track {
   display: inline-flex;
-  /* 45px per second. One copy of the seven-item track measures 1508px, so 1508 / 45 = 33.5s.
+  /* 45px per second. One copy of the seven-item track measures 1558px, so 1558 / 45 = 34.6s.
      If the item list changes, remeasure one copy and reset duration to width / 45. */
-  animation: cap-tape 33.5s linear infinite;
+  animation: cap-tape 34.6s linear infinite;
   will-change: transform;
 }
 
 .cap-tape:hover .cap-tape-track,
 .cap-tape:focus-within .cap-tape-track { animation-play-state: paused; }
 
-.cap-tape:focus-visible { outline: 1px solid var(--gold); outline-offset: -3px; }
+.cap-tape:focus-visible { outline: 2px solid var(--navy); outline-offset: -4px; }
 
 .cap-tape-list {
   display: flex;
@@ -530,10 +450,10 @@ nav {
 
 .cap-tape-list li::after {
   content: '\00B7';
-  color: rgba(201, 168, 76, 0.5);
+  color: rgba(13, 31, 60, 0.45);
   font-weight: 700;
   letter-spacing: 0;
-  margin: 0 20px;
+  margin: 0 22px;
 }
 
 @keyframes cap-tape {
@@ -1258,27 +1178,19 @@ footer {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .mobile-menu { display: block; }
-  .hero { padding: 104px 24px 64px; }
-  .hero-head { margin-bottom: 32px; }
-  .hero-body { grid-template-columns: 1fr; gap: 40px; }
-  .hero-left { max-width: none; }
-  /* The chain STACKS below the hero copy, it is never hidden. It is the only
-     demonstration of the core claim on the page and a large share of cold
-     traffic arrives from email and LinkedIn on a phone. It is pure type, so it
-     costs nothing to render. Left-aligned here because there is no second
-     column for its right edge to answer to. */
-  .hero-right { padding-top: 0; }
-  .trace-figure { margin-left: 0; }
+  .hero { padding: 112px 24px 72px; }
+  .hero-sub { margin-top: 22px; }
+  .hero-line { margin-top: 22px; }
+  .hero-actions { margin-top: 36px; }
   .page-hero { padding: 116px 24px 64px; }
-  .cap-tape {
+  .cap-tape-viewport {
     mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
   }
   .cap-tape-list li { font-size: 10px; }
-  .cap-tape-list li::after { margin: 0 16px; }
-  .trace-figure { --trace-step: 22px; }
-  /* One copy measures 1341px at this scale, so 1341 / 45 = 29.8s holds the same 45px per second. */
-  .cap-tape-track { animation-duration: 29.8s; }
+  .cap-tape-list li::after { margin: 0 17px; }
+  /* Remeasured at this scale. One copy measures 1375px, so 1375 / 45 = 30.6s. */
+  .cap-tape-track { animation-duration: 30.6s; }
   .how { padding: 80px 24px; }
   .services { padding: 80px 24px; }
   .section-header { grid-template-columns: 1fr; gap: 24px; }
@@ -1324,32 +1236,17 @@ footer {
   .footer-nav { justify-content: flex-start; gap: 18px; }
 }
 
-/* TABLET HERO. The nav collapses to the hamburger at 900px, but the hero has
-   room for two columns well below that. Left stacked, a 270px chain sits alone
-   in a 720px column and reads as stranded, so the two-column composition and
-   its right-hand edge are held down to 700px. Below that the column is narrow
-   enough that the stacked chain fills it. */
-@media (min-width: 700px) and (max-width: 900px) {
-  .hero-body {
-    grid-template-columns: minmax(0, 1fr) 288px;
-    gap: 40px;
-    align-items: start;
-  }
-  .hero-right { padding-top: 2px; }
-  .trace-figure { --trace-step: 24px; margin-left: auto; }
-}
-
 /* REDUCED MOTION, mandatory fallback for the capability tape */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .cap-tape-track { animation: none; transform: none; }
   .cap-tape-track [aria-hidden="true"] { display: none; }
-  .cap-tape {
+  .cap-tape-viewport {
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .cap-tape::-webkit-scrollbar { display: none; }
+  .cap-tape-viewport::-webkit-scrollbar { display: none; }
   .service-card:hover, .process-step:hover { transform: none; }
   .btn-primary:hover { transform: none; }
 }
