@@ -3,1365 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vantage FP&A | AI-Powered Finance Infrastructure for PE-Backed and Founder-Owned Companies</title>
-<meta name="description" content="Vantage FP&A builds AI-powered finance infrastructure for PE-backed and founder-owned companies in the $50M to $500M revenue range. Automated close, board-ready reporting, and quality-of-earnings work, built deterministically and auditable to the cell.">
+<title>Vantage FP&A | Quality of Earnings Support & Diligence-Grade Reporting</title>
+<meta name="description" content="Vantage FP&A delivers quality-of-earnings support and diligence-grade reporting for lower-middle-market deals. Proof of cash, red flags with the evidence attached, normalized EBITDA, every figure auditable to the cell. After close, the same architecture can become the reporting infrastructure the company runs on.">
+<link rel="canonical" href="https://vantagefpa.com/">
 <link rel="icon" type="image/png" href="vantage_favicon_32.png">
 <link rel="apple-touch-icon" href="vantage_appletouch_180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vantage FP&A">
-<meta property="og:title" content="Vantage FP&A | AI-Powered Finance Infrastructure for PE-Backed and Founder-Owned Companies">
-<meta property="og:description" content="AI-powered finance infrastructure for PE-backed and founder-owned companies in the $50M to $500M revenue range. Deterministic builds, auditable to the cell, run on a monthly retainer.">
+<meta property="og:title" content="Vantage FP&A | Quality of Earnings Support & Diligence-Grade Reporting">
+<meta property="og:description" content="Quality-of-earnings support and diligence-grade reporting for lower-middle-market deals. Proof of cash, red flags, normalized EBITDA, auditable to the cell. The machine detects and proves, a person decides.">
 <meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
-<meta property="og:url" content="https://vantagefpa.com">
+<meta property="og:url" content="https://vantagefpa.com/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://vantagefpa.com/#organization",
   "name": "Vantage FP&A",
   "url": "https://vantagefpa.com",
   "logo": "https://vantagefpa.com/vantage_lockup_light.png",
-  "description": "AI-powered finance infrastructure for PE-backed and founder-owned companies in the $50M to $500M revenue range.",
+  "description": "Quality-of-earnings support and diligence-grade reporting for lower-middle-market deals, plus the finance infrastructure PE-backed and founder-owned companies in the $50M to $500M revenue range run on after close. Infrastructure engagements begin with a Finance Automation Assessment. Vantage FP&A LLC is not a CPA firm and does not perform audit, review, compilation, or attest engagements.",
   "areaServed": "US",
   "email": "ngriebenow@vantagefpa.com"
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #0D1F3C;
-    --navy-mid: #1A3358;
-    --navy-light: #243E6B;
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --white: #FFFFFF;
-    --off-white: #F7F8FA;
-    --gray-100: #EEF0F4;
-    --gray-400: #8A95A3;
-    --gray-600: #4A5568;
-    --text: #1A202C;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(13, 31, 60, 0.97);
-    backdrop-filter: blur(8px);
-    padding: 0 48px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-  }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--white);
-    letter-spacing: 0.02em;
-  }
-
-  .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--gold); }
-
-  .nav-cta {
-    background: var(--gold);
-    color: var(--navy) !important;
-    padding: 10px 22px;
-    border-radius: 3px;
-    font-weight: 600 !important;
-    letter-spacing: 0.06em !important;
-    transition: background 0.2s !important;
-  }
-
-  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
-  }
-
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 4.5vw, 58px);
-    font-weight: 400;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 28px;
-    letter-spacing: -0.01em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    font-size: 16px;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 44px;
-    font-weight: 300;
-    max-width: 480px;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .btn-primary {
-    background: var(--gold);
-    color: var(--navy);
-    padding: 14px 32px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
-
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-  .btn-ghost {
-    color: rgba(255,255,255,0.6);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-  }
-
-  .btn-ghost:hover { color: var(--white); }
-  .btn-ghost::after { content: '\2192'; }
-
-  /* HERO STATS */
-  .hero-stats {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: stretch;
-    gap: 64px;
-    padding-left: 48px;
-    border-left: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .stat-number span { color: var(--gold); font-size: 28px; }
-
-  .stat-label {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .stat-desc {
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-    margin-top: 4px;
-    line-height: 1.5;
-  }
-
-  /* MARQUEE */
-  .marquee-bar {
-    background: var(--gold);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 32s linear infinite;
-    gap: 0;
-  }
-
-  .marquee-item {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--navy);
-    padding: 0 40px;
-  }
-
-  .marquee-item::after {
-    content: '\00b7';
-    margin-left: 40px;
-  }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* HOW IT WORKS */
-  .how {
-    padding: 120px 48px;
-    background: var(--white);
-  }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    margin-bottom: 72px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: end;
-  }
-
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-eyebrow::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 3vw, 44px);
-    font-weight: 400;
-    color: var(--navy);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .section-desc {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    align-self: end;
-  }
-
-  /* PROCESS STEPS */
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 64px;
-  }
-
-  .process-step {
-    background: var(--off-white);
-    padding: 48px 40px;
-    position: relative;
-    transition: transform 0.2s;
-  }
-
-  .process-step:hover { transform: translateY(-4px); }
-
-  .process-step::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 40px; right: 40px;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-
-  .process-step:hover::after { transform: scaleX(1); }
-
-  .step-phase {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px;
-    color: rgba(13, 31, 60, 0.08);
-    line-height: 1;
-    margin-bottom: 16px;
-    font-weight: 400;
-  }
-
-  .step-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  .step-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    margin-bottom: 28px;
-  }
-
-  .step-detail {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--navy);
-    padding: 10px 16px;
-    background: var(--white);
-    border-left: 2px solid var(--gold);
-    line-height: 1.5;
-  }
-
-  /* THE MODEL: linked-bubbles progression */
-  .flow {
-    margin-top: 72px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-
-  .flow-node {
-    position: relative;
-    padding: 0 28px;
-    text-align: center;
-  }
-
-  .flow-bubble {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 30px;
-    border-radius: 50%;
-    border: 2px solid var(--navy);
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    color: var(--gold);
-    position: relative;
-    z-index: 2;
-    line-height: 1;
-  }
-
-  .flow-digit {
-    display: block;
-    transform: translateY(-0.15em);
-  }
-
-  /* connector line flowing into the next bubble */
-  .flow-node:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 47px;
-    left: calc(50% + 52px);
-    width: calc(100% - 112px);
-    height: 2px;
-    background: linear-gradient(90deg, rgba(201, 168, 76, 0.3), var(--gold));
-    z-index: 1;
-  }
-
-  /* forward arrowhead at the next bubble */
-  .flow-node:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    top: 42px;
-    left: calc(150% - 56px);
-    width: 0;
-    height: 0;
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-left: 8px solid var(--gold);
-    z-index: 2;
-  }
-
-  .flow-phase {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .flow-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 14px;
-    line-height: 1.3;
-  }
-
-  .flow-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    margin-bottom: 22px;
-  }
-
-  .flow-chip {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--navy);
-    padding: 9px 16px;
-    border: 1px solid rgba(201, 168, 76, 0.45);
-    border-radius: 3px;
-    line-height: 1.4;
-  }
-
-  /* SERVICES */
-  .services {
-    padding: 120px 48px;
-    background: var(--off-white);
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .services-grid.cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .service-card {
-    background: var(--white);
-    padding: 48px 40px;
-    position: relative;
-    transition: transform 0.2s;
-  }
-
-  .service-card:hover { transform: translateY(-4px); }
-
-  .service-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 40px; right: 40px;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-
-  .service-card:hover::after { transform: scaleX(1); }
-
-  .service-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 28px;
-    color: var(--gold);
-  }
-
-  .service-tag {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
-  .service-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  .service-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    margin-bottom: 28px;
-  }
-
-  .service-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .service-bullets li {
-    font-size: 13px;
-    color: var(--gray-600);
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.5;
-  }
-
-  .service-bullets li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 5px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  /* WHY VANTAGE */
-  .why {
-    padding: 120px 48px;
-    background: var(--navy);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .why::before {
-    content: '';
-    position: absolute;
-    bottom: -300px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
-  }
-
-  .why .section-title { color: var(--white); }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    margin-top: 64px;
-  }
-
-  .why-item {
-    padding: 48px;
-    border: 1px solid rgba(255,255,255,0.06);
-    transition: border-color 0.2s;
-  }
-
-  .why-item:hover { border-color: rgba(201,168,76,0.3); }
-
-  .why-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 20px;
-    font-weight: 400;
-  }
-
-  .why-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 12px;
-    letter-spacing: 0.01em;
-  }
-
-  .why-desc {
-    font-size: 14px;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.5);
-    font-weight: 300;
-  }
-
-  .why-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-
-  /* WHY VANTAGE: stacked statement rows, light band */
-  .why-alt {
-    padding: 120px 48px;
-    background: var(--off-white);
-  }
-
-  .why-alt .section-title { color: var(--navy); }
-
-  .why-rows {
-    margin-top: 56px;
-    border-top: 1px solid var(--gray-100);
-  }
-
-  .why-row {
-    display: grid;
-    grid-template-columns: 96px 1fr;
-    gap: 40px;
-    padding: 40px 4px;
-    border-bottom: 1px solid var(--gray-100);
-    align-items: baseline;
-    transition: padding-left 0.2s;
-  }
-
-  .why-row:hover { padding-left: 12px; }
-
-  .why-row-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 46px;
-    color: var(--gold);
-    line-height: 1;
-    font-weight: 400;
-  }
-
-  .why-row-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 12px;
-    letter-spacing: 0.01em;
-  }
-
-  .why-row-desc {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    max-width: 720px;
-  }
-
-  /* VS ENTERPRISE */
-  .vs {
-    padding: 120px 48px;
-    background: var(--white);
-  }
-
-  .compare {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 56px;
-    border: 1px solid var(--gray-100);
-  }
-
-  .compare-col { padding: 44px 40px; background: var(--off-white); }
-  .compare-us { background: var(--navy); }
-
-  .compare-head {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 26px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-
-  .compare-them .compare-head { color: var(--gray-400); }
-  .compare-us .compare-head { color: var(--gold); border-bottom-color: rgba(201,168,76,0.25); }
-
-  .compare-col ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-
-  .compare-col li {
-    font-size: 14px;
-    line-height: 1.5;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  .compare-them li { color: var(--gray-600); }
-  .compare-us li { color: rgba(255,255,255,0.85); }
-  .compare-them li::before { content: '\00d7'; position: absolute; left: 0; color: var(--gray-400); font-weight: 600; }
-  .compare-us li::before { content: '\2713'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
-
-  .vs-body { margin-top: 48px; }
-
-  .vs-body p {
-    font-size: 16px;
-    line-height: 1.85;
-    color: var(--gray-600);
-    font-weight: 300;
-    max-width: 760px;
-  }
-
-  .vs-kicker {
-    margin-top: 28px;
-    font-family: 'Playfair Display', serif;
-    font-size: 22px !important;
-    line-height: 1.45 !important;
-    color: var(--navy) !important;
-    font-weight: 500 !important;
-  }
-
-  /* CONTACT */
-  .contact {
-    padding: 120px 48px;
-    background: var(--white);
-  }
-
-  .contact-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .contact-inner .section-eyebrow { justify-content: center; }
-
-  .contact-lead {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--gray-600);
-    font-weight: 300;
-    margin: 24px auto 36px;
-    max-width: 560px;
-  }
-
-  .contact-btn { margin-bottom: 64px; }
-
-  .contact-detail {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 48px;
-    padding-top: 40px;
-    border-top: 1px solid var(--gray-100);
-  }
-
-  .contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-  }
-
-  .contact-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .contact-value {
-    font-size: 15px;
-    color: var(--navy);
-    font-weight: 400;
-  }
-
-  .contact-value a {
-    color: var(--navy);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .contact-value a:hover { color: var(--gold); }
-
-  /* FORM */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .form-group label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gray-600);
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 13px 16px;
-    border: 1px solid var(--gray-100);
-    border-radius: 3px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--off-white);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    -webkit-appearance: none;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--gold);
-    background: var(--white);
-  }
-
-  .form-group textarea { resize: vertical; min-height: 120px; }
-
-  .form-submit {
-    background: var(--navy);
-    color: var(--white);
-    padding: 15px 36px;
-    border: none;
-    border-radius: 3px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    align-self: flex-start;
-  }
-
-  .form-submit:hover { background: var(--navy-light); transform: translateY(-1px); }
-
-  /* FOOTER */
-  footer {
-    background: var(--navy);
-    padding: 40px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(201,168,76,0.2);
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    color: var(--white);
-  }
-
-  .footer-logo span { color: var(--gold); }
-
-  .footer-copy {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.04em;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .hero-stats { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; flex-direction: row; flex-wrap: wrap; gap: 32px; }
-    .how { padding: 80px 24px; }
-    .services { padding: 80px 24px; }
-    .section-header { grid-template-columns: 1fr; gap: 24px; }
-    .process-steps { grid-template-columns: 1fr; }
-    .flow { grid-template-columns: 1fr; gap: 64px; }
-    .flow-node { padding: 0; }
-    .flow-node:not(:last-child)::after {
-      top: auto;
-      bottom: -47px;
-      left: 50%;
-      width: 2px;
-      height: 30px;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg, rgba(201, 168, 76, 0.3), var(--gold));
-    }
-    .flow-node:not(:last-child)::before {
-      top: auto;
-      bottom: -55px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-top: 8px solid var(--gold);
-      border-bottom: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-    }
-    .services-grid { grid-template-columns: 1fr; }
-    .services-grid.cols-2 { grid-template-columns: 1fr; }
-    .why { padding: 80px 24px; }
-    .why-grid { grid-template-columns: 1fr; }
-    .why-grid.cols-3 { grid-template-columns: 1fr; }
-    .why-alt { padding: 80px 24px; }
-    .why-row { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
-    .why-row:hover { padding-left: 0; }
-    .vs { padding: 80px 24px; }
-    .compare { grid-template-columns: 1fr; }
-    .contact { padding: 80px 24px; }
-    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><img src="vantage_lockup_dark.png" alt="Vantage FP&A" style="height:42px;width:auto;display:block;"></div>
+  <div class="nav-logo"><a href="index.html"><img src="vantage_lockup_dark.png" alt="Vantage FP&A" style="height:42px;width:auto;display:block;"></a></div>
   <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#diligence">Diligence</a></li>
-    <li><a href="#verification">Verification</a></li>
-    <li><a href="#why">Why Vantage</a></li>
+    <li><a href="index.html" class="is-current" aria-current="page">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html">Verification</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="nav-cta">Schedule a Call</a></li>
   </ul>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="index.html" class="is-current" aria-current="page">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html">Verification</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Schedule a Call</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Investor-Grade Finance Infrastructure</div>
-      <h1>We build the AI finance system. You <em>own the boardroom.</em></h1>
-      <p class="hero-sub">Vantage FP&A builds and runs the financial reporting infrastructure for PE-backed companies in the $50M to $500M revenue range. Enterprise-grade reporting that gives a lean finance team the output of a full FP&A department. One build, one monthly retainer, no six-figure software license. Founder-owned companies preparing for a sale or a raise engage us for the same reason: investor-grade reporting in place before the investors show up. Every figure is built by deterministic code and auditable to the cell.</p>
+      <div class="hero-eyebrow">Diligence Support &amp; Finance Infrastructure</div>
+      <h1>We prove the numbers. You <em>make the call.</em></h1>
+      <p class="hero-sub">Vantage FP&A delivers quality-of-earnings support and diligence-grade reporting for lower-middle-market deals. Proof of cash, red flags surfaced with the evidence attached, normalized EBITDA with every adjustment tied to the general ledger and auditable to the cell. The machine detects and proves, a person decides. After close, the same architecture can become the reporting infrastructure the company runs on, maintained on a monthly retainer.</p>
       <div class="hero-actions">
         <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Consultation</a>
-        <a href="#how" class="btn-ghost">See How It Works</a>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-number">30<span>days</span></div>
-        <div class="stat-label">Deployment Window</div>
-        <div class="stat-desc">From kickoff to a fully automated close cycle and board-ready reporting package</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">$50-500<span>M</span></div>
-        <div class="stat-label">Target Client Range</div>
-        <div class="stat-desc">PE-backed and founder-owned companies in the $50M to $500M revenue range that need real finance infrastructure</div>
+        <a href="verification.html" class="btn-ghost">See how verification works</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-bar">
-  <div class="marquee-track">
-    <span class="marquee-item">AI Close Automation</span>
-    <span class="marquee-item">Board & Investor Reporting</span>
-    <span class="marquee-item">Variance Commentary</span>
-    <span class="marquee-item">Quality of Earnings</span>
-    <span class="marquee-item">Sell-Side Readiness</span>
-    <span class="marquee-item">Three-Statement Models</span>
-    <span class="marquee-item">Market & Comps Analysis</span>
-    <span class="marquee-item">Rolling Forecasts</span>
-    <span class="marquee-item">Auditable to the Cell</span>
-    <span class="marquee-item">Maintenance Retainers</span>
-    <span class="marquee-item">AI Close Automation</span>
-    <span class="marquee-item">Board & Investor Reporting</span>
-    <span class="marquee-item">Variance Commentary</span>
-    <span class="marquee-item">Quality of Earnings</span>
-    <span class="marquee-item">Sell-Side Readiness</span>
-    <span class="marquee-item">Three-Statement Models</span>
-    <span class="marquee-item">Market & Comps Analysis</span>
-    <span class="marquee-item">Rolling Forecasts</span>
-    <span class="marquee-item">Auditable to the Cell</span>
-    <span class="marquee-item">Maintenance Retainers</span>
-  </div>
+<!-- CAPABILITY LINE -->
+<div class="cap-line">
+  <span>Quality of Earnings Support</span> &middot; <span>Proof of Cash</span> &middot; <span>Red Flag Analysis</span> &middot; <span>Normalized EBITDA</span> &middot; <span>Sell-Side Readiness</span> &middot; <span>Auditable to the Cell</span> &middot; <span>AI Close Automation</span> &middot; <span>Board &amp; Investor Reporting</span> &middot; <span>Rolling Forecasts</span>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
+<!-- THREE DOORS -->
+<section class="services" id="doors" style="background: var(--white);">
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <div class="section-eyebrow">The Model</div>
-        <h2 class="section-title">Built once. Maintained permanently.</h2>
+        <div class="section-eyebrow">Where to Start</div>
+        <h2 class="section-title">Three doors into the same engine</h2>
       </div>
-      <p class="section-desc">Most finance tools ask you to pay forever for something generic. We build a system specific to your company, your ERP, your investor reporting requirements, and your close schedule. Then we maintain it so it keeps running through every close.</p>
-    </div>
-    <div class="flow">
-      <div class="flow-node">
-        <div class="flow-bubble"><span class="flow-digit">1</span></div>
-        <div class="flow-phase">Phase One</div>
-        <div class="flow-name">Finance AI Audit</div>
-        <p class="flow-desc">We spend two to three weeks mapping your current close cycle, ERP setup, reporting stack, and board pack requirements. You get a prioritized roadmap and a clear picture of what automation can deliver in your specific environment.</p>
-        <div class="flow-chip">Fixed fee · Credited toward your build</div>
-      </div>
-      <div class="flow-node">
-        <div class="flow-bubble"><span class="flow-digit">2</span></div>
-        <div class="flow-phase">Phase Two</div>
-        <div class="flow-name">System Build</div>
-        <p class="flow-desc">We build your custom FP&A automation system. A pipeline from your ERP exports through to the board pack, variance analysis, rolling forecast refresh, and a board-ready reporting package your board and investors can rely on every close. Designed to deliver your first board pack within 30 days.</p>
-        <div class="flow-chip">Fixed-fee project</div>
-      </div>
-      <div class="flow-node">
-        <div class="flow-bubble"><span class="flow-digit">3</span></div>
-        <div class="flow-phase">Phase Three</div>
-        <div class="flow-name">Ongoing Maintenance</div>
-        <p class="flow-desc">The system runs. We keep it running. Monthly data refresh, error monitoring, quarterly model updates, and board cycle support. The board pack is designed to land at the start of close, not a week into it.</p>
-        <div class="flow-chip">Monthly maintenance retainer</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="section-inner">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">What We Build</div>
-        <h2 class="section-title">Finance infrastructure your board and investors will trust</h2>
-      </div>
-      <p class="section-desc">Every system is built on your chart of accounts, your ERP, the reporting template your investors expect, and your close schedule. Nothing off the shelf. Nothing that requires a software subscription to keep running.</p>
+      <p class="section-desc">One build, pointed at whichever problem is live right now. A buyer underwriting a target, a founder getting the numbers ready before a process starts, or a company that needs a close cycle and a board pack it can stand behind every month.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 40 L10 24 M20 40 L20 14 M30 40 L30 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="34" cy="16" r="9" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="40.5" y1="22.5" x2="44" y2="26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="service-tag">Buy-Side</div>
+        <div class="service-name">Quality of Earnings Support</div>
+        <p class="service-desc">A diligence package built so every EBITDA figure traces back to the general ledger, and so the trace is visible to whoever asks. Proof of cash, red flags with the evidence attached, and anything the engine cannot support with evidence ships flagged rather than filled.</p>
+        <a href="deal-diligence.html" class="card-link">See the buy-side work</a>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6 L40 14 L40 26 C40 34 32 40 24 43 C16 40 8 34 8 26 L8 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M18 24 L23 29 L33 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="service-tag">Sell-Side</div>
+        <div class="service-name">Sell-Side Readiness</div>
+        <p class="service-desc">For founders heading toward a sale who want the numbers clean before a buyer's diligence team shows up. Assess where the reporting will draw questions, fix it, then run alongside the process through the transaction window.</p>
+        <a href="deal-diligence.html#sell-side" class="card-link">See the sell-side work</a>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="6" y="8" width="36" height="32" rx="2" stroke="currentColor" stroke-width="1.5"/>
           <line x1="6" y1="18" x2="42" y2="18" stroke="currentColor" stroke-width="1.5"/>
           <line x1="18" y1="18" x2="18" y2="40" stroke="currentColor" stroke-width="1.5"/>
           <path d="M24 28 L28 24 L32 26 L38 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <div class="service-tag">Core Build</div>
-        <div class="service-name">Automated Close and Reporting</div>
-        <p class="service-desc">We automate the monthly close cycle from your ERP exports through board pack delivery. Your finance team stops spending dozens of hours on manual exports and formatting and starts spending that time on analysis.</p>
-        <ul class="service-bullets">
-          <li>Automated pipeline from your ERP exports</li>
-          <li>Variance analysis against budget and prior period</li>
-          <li>Rolling forecast refreshed every close</li>
-          <li>Board pack compiled and formatted automatically</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="14" y1="16" x2="34" y2="16" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="14" y1="22" x2="34" y2="22" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="14" y1="28" x2="26" y2="28" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="34" cy="36" r="6" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="34" y1="33" x2="34" y2="39" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="31" y1="36" x2="37" y2="36" stroke="currentColor" stroke-width="1.5"/>
-        </svg>
-        <div class="service-tag">PE Focused</div>
-        <div class="service-name">PE Board Reporting Systems</div>
-        <p class="service-desc">Built from direct experience sitting in PE-reported finance roles. Your board package lands in the format your GP expects, on the timeline they require, so your CFO walks into the quarterly review telling the story instead of defending the numbers.</p>
-        <ul class="service-bullets">
-          <li>EBITDA bridge and waterfall automation</li>
-          <li>KPI tracking tied to your value creation plan</li>
-          <li>Covenant schedule tracking within the board pack</li>
-          <li>Management presentation financial sections</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6 L40 14 L40 26 C40 34 32 40 24 43 C16 40 8 34 8 26 L8 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M16 24 L21 29 L32 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="service-tag">Retainer</div>
-        <div class="service-name">System Maintenance and Support</div>
-        <p class="service-desc">We build it, then we maintain it, designed to catch issues before they reach the board. Monthly monitoring, model updates as your business evolves, and on-call support through every close cycle.</p>
-        <ul class="service-bullets">
-          <li>Monthly system monitoring and data refresh</li>
-          <li>Quarterly model and forecast updates</li>
-          <li>Reporting template and format upkeep</li>
-          <li>Board cycle support and scenario requests</li>
-        </ul>
+        <div class="service-tag">After the Deal</div>
+        <div class="service-name">Reporting Infrastructure</div>
+        <p class="service-desc">The same verification-led build, pointed at the monthly close. An automated close cycle, a rolling forecast, and a board package built on your chart of accounts, your ERP, and the template your investors expect, maintained on a monthly retainer.</p>
+        <a href="reporting.html" class="card-link">See the build and the retainer</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRANSACTION SUPPORT -->
-<section class="services" id="diligence" style="background: var(--white);">
-  <div class="section-inner">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Transaction Support</div>
-        <h2 class="section-title">When a deal is on the table</h2>
-      </div>
-      <p class="section-desc">The same verification-led work, pointed at the moment a company is being bought, sold, or raised against. Built for sponsors underwriting a deal and for founders getting their numbers ready before a buyer arrives.</p>
-    </div>
-    <div class="services-grid cols-2">
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 40 L10 24 M20 40 L20 14 M30 40 L30 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="34" cy="16" r="9" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="40.5" y1="22.5" x2="44" y2="26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="service-tag">Buy-Side or Sell-Side</div>
-        <div class="service-name">Quality of Earnings</div>
-        <p class="service-desc">A QoE package that ties EBITDA back to the general ledger and holds up under the other side's scrutiny. Built deterministically and auditable to the cell, so every adjustment carries a number and a source behind it.</p>
-        <ul class="service-bullets">
-          <li>EBITDA bridge tied line by line to the GL</li>
-          <li>Quality and durability of earnings analysis</li>
-          <li>Net working capital and debt-like items</li>
-          <li>Databook a buyer's advisors can trace</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6 L40 14 L40 26 C40 34 32 40 24 43 C16 40 8 34 8 26 L8 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M18 24 L23 29 L33 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="service-tag">Founder-Owned</div>
-        <div class="service-name">Sell-Side Readiness</div>
-        <p class="service-desc">For founders heading toward a sale who want the numbers clean before a buyer's diligence team shows up. We assess where the reporting will draw questions, fix it, then support you through the transaction window on a monthly retainer.</p>
-        <ul class="service-bullets">
-          <li>Readiness assessment against buyer diligence standards</li>
-          <li>Reporting and add-back cleanup before the process starts</li>
-          <li>Transaction-window support retainer</li>
-          <li>Investor-grade package ready before the data room opens</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VERIFICATION -->
+<!-- VERIFICATION STRIP -->
 <section class="why" id="verification">
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <div class="section-eyebrow" style="color: var(--gold);">Verification</div>
+        <div class="section-eyebrow">Verification</div>
         <h2 class="section-title">Verification is the product</h2>
       </div>
-      <p class="section-desc" style="color: rgba(255,255,255,0.5);">Anyone can generate a board deck now. The hard part is trusting it in front of a sponsor or a buyer. Vantage is built so the output holds up when someone pushes on it, and so you can see for yourself that it does.</p>
+      <p class="section-desc" style="color: rgba(255,255,255,0.5);">Anyone can generate a databook or a board deck now. The hard part is standing behind it when the other side of the table pushes. Vantage is built so the output holds up under that push, and so you can see for yourself that it does.</p>
     </div>
     <div class="why-grid cols-3">
       <div class="why-item">
         <div class="why-number">01</div>
         <div class="why-title">Deterministic builds, auditable to the cell</div>
-        <p class="why-desc">Every figure is produced by code that returns the same answer on the same inputs. Open any workbook and trace a number back to its source. Nothing is a black box, and nothing depends on a model's judgment to be right.</p>
+        <p class="why-desc">Every figure is produced by code that returns the same answer on the same inputs. Open any workbook and trace a number back to its source.</p>
       </div>
       <div class="why-item">
         <div class="why-number">02</div>
-        <div class="why-title">Independently reviewed before it reaches you</div>
-        <p class="why-desc">Every package clears a separate review pass whose only job is to find what is wrong with it. You get the version that already survived that check, so what lands on your desk has been through an adversary before it reaches an investor.</p>
+        <div class="why-title">A deterministic gate first, an adversary second</div>
+        <p class="why-desc">The deterministic checks run automatically on every build. A separate review pass whose only job is to find what is wrong runs before anything is released.</p>
       </div>
       <div class="why-item">
         <div class="why-number">03</div>
         <div class="why-title">Your numbers never run through an AI model</div>
-        <p class="why-desc">The figures in your deliverables are computed entirely by deterministic code. AI built the system and helps draft narrative around numbers that are already final. It never computes or alters a number in your deliverables.</p>
+        <p class="why-desc">AI built the system. No model computes, alters, or writes a number in what you receive.</p>
       </div>
+    </div>
+    <div class="why-footer">
+      <a href="verification.html" class="btn-ghost">Read how verification works</a>
     </div>
   </div>
 </section>
 
-<!-- WHY VANTAGE -->
-<section class="why-alt" id="why">
-  <div class="section-inner">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Why Vantage</div>
-        <h2 class="section-title">The gap nobody else fills</h2>
-      </div>
-      <p class="section-desc">Big 4 firms often charge six figures to start. SaaS platforms cost tens of thousands a year and require your team to learn them. Most automation shops have never run a PE close cycle. Vantage is one of the few that combines all three in one place.</p>
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="section-inner cta-band-inner">
+    <div>
+      <div class="cta-band-title">Start with a conversation, not a proposal</div>
+      <p class="cta-band-desc">If a deal is in diligence, if a sale is coming, or if the close runs long every month, that is a short call. Pick a time and we will talk. No form, no funnel.</p>
     </div>
-    <div class="why-rows">
-      <div class="why-row">
-        <div class="why-row-num">01</div>
-        <div class="why-row-body">
-          <div class="why-row-title">PE-Backed Operator Background, Not Consultant Background</div>
-          <p class="why-row-desc">We have sat in the seat. Direct PE stakeholder reporting, live budget cycles under board scrutiny, and multi-entity consolidations for PE-backed operating companies. The systems we build reflect what actually matters in a GP review, not what looks good in a proposal.</p>
-        </div>
-      </div>
-      <div class="why-row">
-        <div class="why-row-num">02</div>
-        <div class="why-row-body">
-          <div class="why-row-title">Every Deliverable Is Yours to Keep</div>
-          <p class="why-row-desc">Every workbook, model, and board deck we produce is delivered formula-driven and self-contained. You can open it, audit every number down to the cell, and keep it. You pay a month-to-month retainer for the automation behind it, not a six-figure software license or a locked-in annual platform contract.</p>
-        </div>
-      </div>
-      <div class="why-row">
-        <div class="why-row-num">03</div>
-        <div class="why-row-body">
-          <div class="why-row-title">30-Day Deployment</div>
-          <p class="why-row-desc">We work from your existing ERP exports in Excel. There are no IT projects, no six-month implementations, and no change management programs. Designed to deliver your first board pack within 30 days of engagement start.</p>
-        </div>
-      </div>
-      <div class="why-row">
-        <div class="why-row-num">04</div>
-        <div class="why-row-body">
-          <div class="why-row-title">Built Around Your Operating Drivers</div>
-          <p class="why-row-desc">Every model is built around the operating drivers that actually move your business: multi-site P&Ls, utilization and capacity, unit economics, customer or contract concentration. The architecture reflects how your company runs from day one, not a generic template.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VS ENTERPRISE -->
-<section class="vs" id="compare">
-  <div class="section-inner">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Vantage vs. Enterprise Firms</div>
-        <h2 class="section-title">You don't need an enterprise transformation. You need this fixed.</h2>
-      </div>
-      <p class="section-desc">The large finance-transformation firms do real work, for companies with seven-figure budgets and twelve-month timelines. That model does not fit a $90M company. You would pay to implement a licensed platform you then pay for every year, on a timeline that outlasts the board's patience.</p>
-    </div>
-    <div class="compare">
-      <div class="compare-col compare-them">
-        <div class="compare-head">Enterprise Firms</div>
-        <ul>
-          <li>Six to twelve month implementation</li>
-          <li>License plus implementation, billed every year</li>
-          <li>Built for seven-figure enterprise budgets</li>
-          <li>Consultant delivers the project, then leaves</li>
-          <li>You rent their platform indefinitely</li>
-        </ul>
-      </div>
-      <div class="compare-col compare-us">
-        <div class="compare-head">Vantage FP&A</div>
-        <ul>
-          <li>Designed to go live within 30 days</li>
-          <li>One build, one retainer, no license</li>
-          <li>Built for PE-backed and founder-owned companies in the $50M to $500M range</li>
-          <li>We build it and keep it running</li>
-          <li>Every deliverable is yours to keep and audit</li>
-        </ul>
-      </div>
-    </div>
-    <div class="vs-body">
-      <p>Vantage is built for the company that sits below that line. We work from the ERP exports and Excel environment you already run, build a system specific to your chart of accounts and the reporting template your board or sponsor expects, and hand you every report formula-driven and yours to keep. Maintained on a retainer that costs less than the annual license alone on an enterprise platform, and a fraction of a full-time FP&A hire.</p>
-      <p class="vs-kicker">Enterprise firms implement software. We build and run your finance function's infrastructure. At your size, that is the difference that matters.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="section-eyebrow">Get in Touch</div>
-    <h2 class="section-title">Let's talk about your finance function</h2>
-    <p class="contact-lead">If your close is running long, the reporting package lands late every month, or a transaction is coming and the numbers need to hold up, that is a short conversation. Pick a time that works and we will talk. No form, no funnel.</p>
     <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Call</a>
-    <p class="contact-btn" style="margin-top:16px;font-size:14px;font-weight:300;color:var(--gray-600);">or email <a href="mailto:ngriebenow@vantagefpa.com?subject=Vantage%20FP%26A%20Consultation" style="color:var(--navy);">ngriebenow@vantagefpa.com</a></p>
-    <div class="contact-detail">
-      <div class="contact-item">
-        <div class="contact-label">Email</div>
-        <div class="contact-value"><a href="mailto:ngriebenow@vantagefpa.com">ngriebenow@vantagefpa.com</a></div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">Location</div>
-        <div class="contact-value">Austin, TX. Serving clients nationally.</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">Engagements</div>
-        <div class="contact-value">Audit · Build · Retainer · QoE & Sell-Side Readiness</div>
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Vantage <span>FP&A</span> LLC</div>
-  <div class="footer-copy">© 2026 Vantage FP&A LLC · Austin, Texas · ngriebenow@vantagefpa.com</div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html">Verification</a></li>
+    <li><a href="for-brokers.html">For Brokers</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Vantage FP&A LLC &middot; Austin, Texas &middot; ngriebenow@vantagefpa.com</div>
+  <div class="footer-legal">Vantage FP&A LLC is not a CPA firm. Our work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing on this site is investment, financial, legal, or tax advice.</div>
 </footer>
+
+<script src="nav.js"></script>
 
 </body>
 </html>

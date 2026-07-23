@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Verification Works | Vantage FP&A</title>
+<meta name="description" content="How Vantage proves a number. Deterministic builds that return the same answer on the same inputs, a deterministic gate on every build, an independent adversarial review before release, and workbooks you can audit down to the cell yourself.">
+<link rel="canonical" href="https://vantagefpa.com/verification.html">
+<link rel="icon" type="image/png" href="vantage_favicon_32.png">
+<link rel="apple-touch-icon" href="vantage_appletouch_180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vantage FP&A">
+<meta property="og:title" content="How Verification Works | Vantage FP&A">
+<meta property="og:description" content="Deterministic builds, a gate that runs on every build, an independent review pass before release, and a workbook you can trace to the cell yourself. Your numbers never run through an AI model.">
+<meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
+<meta property="og:url" content="https://vantagefpa.com/verification.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vantagefpa.com/#organization",
+      "name": "Vantage FP&A",
+      "url": "https://vantagefpa.com",
+      "logo": "https://vantagefpa.com/vantage_lockup_light.png",
+      "areaServed": "US",
+      "email": "ngriebenow@vantagefpa.com"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://vantagefpa.com/verification.html",
+      "url": "https://vantagefpa.com/verification.html",
+      "name": "How Verification Works",
+      "description": "The verification architecture behind every Vantage deliverable. Deterministic builds, an automatic deterministic gate, an independent review pass before release, and formula-driven workbooks the client can audit to the cell.",
+      "isPartOf": { "@id": "https://vantagefpa.com/#organization" },
+      "publisher": { "@id": "https://vantagefpa.com/#organization" }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="vantage_lockup_dark.png" alt="Vantage FP&A" style="height:42px;width:auto;display:block;"></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html" class="is-current" aria-current="page">Verification</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="nav-cta">Schedule a Call</a></li>
+  </ul>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+    <span class="nav-toggle-bar" aria-hidden="true"></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html" class="is-current" aria-current="page">Verification</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Schedule a Call</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">Verification</div>
+    <h1>Anyone can generate a deck now. <em>Verification is the product.</em></h1>
+    <p class="page-hero-sub">The hard part is standing behind a number when the other side of the table pushes. This page describes how a Vantage figure gets produced, what checks it clears before anyone sees it, and how you check the work yourself without taking a word of this on trust.</p>
+    <div class="page-hero-actions">
+      <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Call</a>
+      <a href="#check-it" class="btn-ghost">How you check it yourself</a>
+    </div>
+  </div>
+</section>
+
+<!-- THE ARCHITECTURE -->
+<section class="how" id="architecture">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">The Architecture</div>
+        <h2 class="section-title">Three things hold the output up</h2>
+      </div>
+      <p class="section-desc">Most finance work is verified by a person reading it again. Vantage automates the part of that loop a machine can do reliably and reserves a human for the part it cannot, which is judgment.</p>
+    </div>
+    <div class="why-rows">
+      <div class="why-row">
+        <div class="why-row-num">01</div>
+        <div class="why-row-body">
+          <div class="why-row-title">Deterministic Builds, Auditable to the Cell</div>
+          <p class="why-row-desc">Every figure is produced by code that returns the same answer on the same inputs. Run the same package twice and the numbers are identical, because nothing in the path depends on sampling, on temperature, or on a model's judgment. Open any workbook and trace a number back to its source. Nothing is a black box, and nothing depends on a model's judgment to be right.</p>
+        </div>
+      </div>
+      <div class="why-row">
+        <div class="why-row-num">02</div>
+        <div class="why-row-body">
+          <div class="why-row-title">A Deterministic Gate First, an Adversary Second</div>
+          <p class="why-row-desc">The deterministic checks run automatically on every build, and a build does not leave the shop until it clears them. They test structure rather than opinion, things like whether every tab that should exist exists, whether any cell carries an error value, whether the levers are wired to the schedules they claim to drive. On top of that, a separate review pass whose only job is to find what is wrong with the package runs before anything is released, handled by a reviewer that did not build it.</p>
+        </div>
+      </div>
+      <div class="why-row">
+        <div class="why-row-num">03</div>
+        <div class="why-row-body">
+          <div class="why-row-title">Your Numbers Never Run Through an AI Model</div>
+          <p class="why-row-desc">AI built the system. The figures and the commentary in your deliverables are both produced by deterministic code, and no model computes, alters, or writes a number in what you receive. The narrative in a board pack is templated off the same pipeline figures the tabs are built from, so the words and the numbers cannot drift apart.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECK IT YOURSELF -->
+<section class="services" id="check-it">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Check It Yourself</div>
+        <h2 class="section-title">What to do with the file when it lands</h2>
+      </div>
+      <p class="section-desc">Every deliverable arrives as a formula-driven, self-contained workbook. That is a deliberate design choice, because a package you cannot check is a package you have to believe. Three things to try in the first five minutes.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="9" width="34" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="7" y1="17" x2="41" y2="17" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="19" y1="17" x2="19" y2="39" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="30" y1="17" x2="30" y2="39" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="7" y1="28" x2="41" y2="28" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <div class="service-tag">Step One</div>
+        <div class="service-name">Click Any Number</div>
+        <p class="service-desc">Pick the figure you trust least and click it. The formula bar shows the equation that produced it and the cells it points at. There is no hardcoded value sitting where a calculation should be, and the QC gate fails a build that ships one.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12 L22 12 M10 24 L30 24 M10 36 L18 36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M28 30 L38 30 L38 40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M33 35 L38 40 L43 35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="service-tag">Step Two</div>
+        <div class="service-name">Follow It Down to Source</div>
+        <p class="service-desc">Keep going. The schedule points at the register, the register row points at the account it came from, and the account points at the trial balance line exactly as you exported it. The trace ends where your own export begins, and nothing sits underneath it.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="8" y1="15" x2="40" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="33" x2="40" y2="33" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="19" cy="15" r="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="31" cy="33" r="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="service-tag">Step Three</div>
+        <div class="service-name">Change an Input</div>
+        <p class="service-desc">Reject an add-back, move an assumption, and watch the schedules move with it. The input cells are wired to the outputs, which the gate verifies on every build, so the package behaves like a model you own rather than a picture of one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITS -->
+<section class="why" id="limits">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">The Limits</div>
+        <h2 class="section-title">What the engine refuses to do</h2>
+      </div>
+      <p class="section-desc" style="color: rgba(255,255,255,0.5);">A verification story is only credible if it includes the part where the machine stops. These two behaviors are designed in, and they are the reason the rest of the package can be taken at face value.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-number">01</div>
+        <div class="why-title">It will not size what it cannot prove</div>
+        <p class="why-desc">Adjustments that need a market input a machine has no business inventing are identified, evidenced, and handed over unsized, with the basis written in words. Owner compensation is the standing example. The machine finds it and refuses to price it, because pricing it is a judgment call and judgment calls belong to a person who will answer for them.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">02</div>
+        <div class="why-title">It will not approximate around missing data</div>
+        <p class="why-desc">When a check depends on data that did not arrive, the workbook renders that check as pending and says which input is missing. Nothing is silently skipped and nothing is filled with an estimate that later reads as a fact. A month that cannot be reconciled shows up as a month that cannot be reconciled.</p>
+      </div>
+    </div>
+    <div class="why-footer">
+      <a href="deal-diligence.html" class="btn-ghost">See this applied to a deal</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="section-inner cta-band-inner">
+    <div>
+      <div class="cta-band-title">The fastest way to test this is to make us prove a number</div>
+      <p class="cta-band-desc">Bring a figure you already know the answer to and we will walk the trace on a call. It is also worth reading how the same architecture runs on <a href="deal-diligence.html">a live deal</a> or on <a href="reporting.html">a monthly close</a>.</p>
+    </div>
+    <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Call</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vantage <span>FP&A</span> LLC</div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html">Verification</a></li>
+    <li><a href="for-brokers.html">For Brokers</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Vantage FP&A LLC &middot; Austin, Texas &middot; ngriebenow@vantagefpa.com</div>
+  <div class="footer-legal">Vantage FP&A LLC is not a CPA firm. Our work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing on this site is investment, financial, legal, or tax advice.</div>
+</footer>
+
+<script src="nav.js"></script>
+
+</body>
+</html>
