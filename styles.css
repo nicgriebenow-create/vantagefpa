@@ -197,12 +197,12 @@ nav {
 .mobile-menu .mobile-menu-cta:hover, .mobile-menu .mobile-menu-cta:focus { background: var(--gold-light); color: var(--navy); }
 
 /* HERO, home only */
+/* No 100vh lock. The hero is sized by its content so the capability tape peeks
+   above the fold and acts as the scroll affordance, instead of the block being
+   vertically centred in a viewport-tall box with dead navy above and below. */
 .hero {
-  min-height: 100vh;
   background: var(--navy);
-  display: flex;
-  align-items: center;
-  padding: 120px 48px 80px;
+  padding: 132px 48px 84px;
   position: relative;
   overflow: hidden;
 }
@@ -323,57 +323,116 @@ nav {
 .btn-ghost:hover { color: var(--white); }
 .btn-ghost::after { content: '\2192'; }
 
-/* HERO TRACE CHAIN, right column of the home hero. Typographic only, no data. */
-.hero-right { padding-top: 4px; }
+/* HERO TRACE CHAIN, right column of the home hero.
+   A stepped elbow chain. Each connector spans exactly one node to the next, so
+   nothing can overshoot. Indentation carries the descent, the gold terminal
+   carries the arrival. Typographic only, zero data, zero numerals. */
+.hero-right { padding-top: 2px; }
 
-.trace {
-  position: relative;
-  list-style: none;
-  padding-left: 24px;
-  border-top: 1px solid rgba(255,255,255,0.10);
+/* The box hugs its widest row, so the bounding rules terminate on real content
+   instead of running out into empty navy. It is then pushed to the right edge of
+   the column, which is the same 1100px edge every section below it respects. */
+.trace-figure {
+  --trace-step: 26px;   /* horizontal indent per level */
+  --trace-arm: 14px;    /* gold arm arriving at each label */
+  --trace-row: 34px;    /* one full row, drives the elbow height */
+  width: fit-content;
+  max-width: 320px;
+  margin-left: auto;
 }
 
-.trace::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--gold);
+.trace-head {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(201,168,76,0.45);
+}
+
+.trace {
+  list-style: none;
+  margin-top: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 
 .trace-row {
   position: relative;
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-  font-size: 11px;
+  height: var(--trace-row);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.4;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.2;
 }
 
-.trace-row::before {
+/* Staircase. Level n sits n steps in, plus the arm. */
+.trace-row:nth-child(1) { padding-left: var(--trace-arm); }
+.trace-row:nth-child(2) { padding-left: calc(var(--trace-step) + var(--trace-arm)); }
+.trace-row:nth-child(3) { padding-left: calc(var(--trace-step) * 2 + var(--trace-arm)); }
+.trace-row:nth-child(4) { padding-left: calc(var(--trace-step) * 3 + var(--trace-arm)); }
+.trace-row:nth-child(5) { padding-left: calc(var(--trace-step) * 4 + var(--trace-arm)); }
+
+/* Head node. A stub arm only, because nothing sits above it to connect to. */
+.trace-row:first-child::before {
   content: '';
   position: absolute;
-  left: -24px;
+  left: 0;
   top: 50%;
-  width: 13px;
+  width: calc(var(--trace-arm) - 4px);
   height: 1px;
-  background: var(--gold);
+  background: rgba(201,168,76,0.55);
 }
 
-.trace-caption {
-  margin-top: 22px;
-  padding-left: 24px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1.7;
-  color: var(--gold);
+/* Every other node. An elbow that starts at the previous node's centre line and
+   turns into this label. Both ends terminate on a node, so there is no float. */
+.trace-row:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--trace-row) / -2);
+  height: var(--trace-row);
+  width: calc(var(--trace-arm) - 4px);
+  border-left: 1px solid rgba(201,168,76,0.55);
+  border-bottom: 1px solid rgba(201,168,76,0.55);
+  border-bottom-left-radius: 3px;
 }
+
+.trace-row:nth-child(2)::before { left: var(--trace-step); }
+.trace-row:nth-child(3)::before { left: calc(var(--trace-step) * 2); }
+.trace-row:nth-child(4)::before { left: calc(var(--trace-step) * 3); }
+.trace-row:nth-child(5)::before { left: calc(var(--trace-step) * 4); }
+
+/* Descent ramp. Each step down the chain brightens, so the eye is pulled toward
+   the source rather than reading five rows of equal weight as a menu. */
+.trace-row:nth-child(1) { color: rgba(255,255,255,0.52); }
+.trace-row:nth-child(2) { color: rgba(255,255,255,0.62); }
+.trace-row:nth-child(3) { color: rgba(255,255,255,0.72); }
+.trace-row:nth-child(4) { color: rgba(255,255,255,0.84); }
+
+.trace-row:nth-child(2)::before { border-color: rgba(201,168,76,0.42); }
+.trace-row:nth-child(3)::before { border-color: rgba(201,168,76,0.56); }
+.trace-row:nth-child(4)::before { border-color: rgba(201,168,76,0.72); }
+
+/* The terminal. The chain ends in gold, the same way the headline does. */
+.trace-row:last-child { color: var(--gold); }
+.trace-row:last-child::before { border-color: var(--gold); }
+
+.trace-caption {
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  color: rgba(201,168,76,0.9);
+}
+
+/* Fixed break, so the couplet never rags differently at a different width. */
+.trace-caption span { display: block; }
 
 /* PAGE HERO, interior pages */
 .page-hero {
@@ -1199,11 +1258,17 @@ footer {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .mobile-menu { display: block; }
-  .hero { padding: 100px 24px 60px; min-height: 0; }
+  .hero { padding: 104px 24px 64px; }
   .hero-head { margin-bottom: 32px; }
-  .hero-body { grid-template-columns: 1fr; gap: 48px; }
+  .hero-body { grid-template-columns: 1fr; gap: 40px; }
   .hero-left { max-width: none; }
-  .hero-right { max-width: 380px; padding-top: 0; }
+  /* The chain STACKS below the hero copy, it is never hidden. It is the only
+     demonstration of the core claim on the page and a large share of cold
+     traffic arrives from email and LinkedIn on a phone. It is pure type, so it
+     costs nothing to render. Left-aligned here because there is no second
+     column for its right edge to answer to. */
+  .hero-right { padding-top: 0; }
+  .trace-figure { margin-left: 0; }
   .page-hero { padding: 116px 24px 64px; }
   .cap-tape {
     mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
@@ -1211,6 +1276,7 @@ footer {
   }
   .cap-tape-list li { font-size: 10px; }
   .cap-tape-list li::after { margin: 0 16px; }
+  .trace-figure { --trace-step: 22px; }
   /* One copy measures 1341px at this scale, so 1341 / 45 = 29.8s holds the same 45px per second. */
   .cap-tape-track { animation-duration: 29.8s; }
   .how { padding: 80px 24px; }
@@ -1256,6 +1322,21 @@ footer {
   footer { padding: 32px 24px; }
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; text-align: left; }
   .footer-nav { justify-content: flex-start; gap: 18px; }
+}
+
+/* TABLET HERO. The nav collapses to the hamburger at 900px, but the hero has
+   room for two columns well below that. Left stacked, a 270px chain sits alone
+   in a 720px column and reads as stranded, so the two-column composition and
+   its right-hand edge are held down to 700px. Below that the column is narrow
+   enough that the stacked chain fills it. */
+@media (min-width: 700px) and (max-width: 900px) {
+  .hero-body {
+    grid-template-columns: minmax(0, 1fr) 288px;
+    gap: 40px;
+    align-items: start;
+  }
+  .hero-right { padding-top: 2px; }
+  .trace-figure { --trace-step: 24px; margin-left: auto; }
 }
 
 /* REDUCED MOTION, mandatory fallback for the capability tape */
