@@ -19,6 +19,13 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* DESIGN TOKENS
+   Three locked scales, type, space, and measure. Nothing in this file may use a
+   font-size, a margin, a padding, or a gap that is not drawn from them. That
+   rule is the whole point. A one-off value is invisible on its own and it is
+   most of the difference between a site that reads designed and a site that
+   reads assembled. If a new value seems necessary, the correct move is almost
+   always the nearest step on the scale. */
 :root {
   --navy: #0D1F3C;
   --navy-mid: #1A3358;
@@ -31,6 +38,72 @@
   --gray-400: #8A95A3;
   --gray-600: #4A5568;
   --text: #1A202C;
+
+  /* TYPE SCALE. Fifteen steps, named by size so an off-scale value is obvious
+     on sight. Steps 11 through 20 carry the interface, 22 through 64 carry the
+     serif display. */
+  --t-11: 11px;
+  --t-12: 12px;
+  --t-13: 13px;
+  --t-14: 14px;
+  --t-16: 16px;
+  --t-18: 18px;
+  --t-20: 20px;
+  --t-22: 22px;
+  --t-28: 28px;
+  --t-32: 32px;
+  --t-36: 36px;
+  --t-44: 44px;
+  --t-48: 48px;
+  --t-56: 56px;
+  --t-64: 64px;
+
+  /* Fluid display sizes. Both endpoints are steps on the same scale, so the
+     type never lands on a value the system does not own. */
+  --t-h1: clamp(var(--t-36), 4.5vw, var(--t-64));
+  --t-h1-page: clamp(var(--t-32), 3.6vw, var(--t-48));
+  --t-h2: clamp(var(--t-28), 3vw, var(--t-44));
+
+  /* LINE HEIGHT LADDER, five values, no others. */
+  --lh-tight: 1.15;
+  --lh-display: 1.2;
+  --lh-snug: 1.35;
+  --lh-normal: 1.6;
+  --lh-loose: 1.8;
+
+  /* SPACE SCALE, one vertical and horizontal rhythm for the whole site. */
+  --s-4: 4px;
+  --s-8: 8px;
+  --s-12: 12px;
+  --s-16: 16px;
+  --s-24: 24px;
+  --s-32: 32px;
+  --s-40: 40px;
+  --s-48: 48px;
+  --s-64: 64px;
+  --s-80: 80px;
+  --s-96: 96px;
+  --s-120: 120px;
+  --s-144: 144px;
+
+  /* MEASURE. Line length holds at every viewport instead of being right at one
+     width, which is what the old mix of 480, 560, 620, 640, 720 and 760 pixel
+     caps produced. */
+  --measure: 62ch;
+  --measure-wide: 72ch;
+
+  /* LAYOUT RAILS */
+  --rail: 1100px;
+  --rail-head: 900px;
+  --rail-narrow: 720px;
+  --nav-h: 68px;
+  --hair: 2px;
+
+  /* Mono is declared and deliberately unused. Jurisdiction is evidence, cell
+     references, formulas, account codes and file paths, none of which exist on
+     the site today. It resolves to faces already on the machine, so it costs
+     nothing until the trace component arrives and needs it. */
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Menlo, Consolas, monospace;
 }
 
 html { scroll-behavior: smooth; }
@@ -40,20 +113,57 @@ body {
   color: var(--text);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
+  /* Finance readers register column alignment before they register anything
+     else, so every digit on the site is the same width. */
+  font-variant-numeric: tabular-nums;
   overflow-x: hidden;
 }
 
-section[id] { scroll-margin-top: 88px; }
+section[id] { scroll-margin-top: calc(var(--nav-h) + var(--s-24)); }
 
-/* NAV */
+/* FOCUS, one visible ring on every interactive element.
+   Gold on the navy surfaces at 7.1 to 1, navy on the light surfaces at 18 to 1.
+   The gold buttons take a navy ring on a white halo, because a gold ring on a
+   gold button is invisible on navy and a white ring is invisible on the light
+   band, and one of those two grounds is always underneath. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+nav a:focus-visible,
+.mobile-menu a:focus-visible,
+.hero a:focus-visible,
+.page-hero a:focus-visible,
+.why a:focus-visible,
+.compare-us a:focus-visible,
+footer a:focus-visible,
+.nav-toggle:focus-visible {
+  outline-color: var(--gold);
+}
+
+/* Element qualifier keeps this at the same specificity as the surface rules
+   above, and it sits later, so a gold button always takes the navy ring rather
+   than a gold ring it would disappear into. */
+a.btn-primary:focus-visible,
+a.nav-cta:focus-visible,
+a.mobile-menu-cta:focus-visible {
+  outline-color: var(--navy);
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.9);
+}
+
+/* NAV. Solid navy, no backdrop blur. Solid is more confident and it is one
+   less surface for the compositor to redraw on every scroll frame. */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(13, 31, 60, 0.97);
-  backdrop-filter: blur(8px);
-  padding: 0 48px;
-  height: 68px;
+  background: var(--navy);
+  padding: 0 var(--s-48);
+  height: var(--nav-h);
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(201, 168, 76, 0.2);
@@ -62,7 +172,7 @@ nav {
 /* Nav content rides the same 1100px centered grid as every section */
 .nav-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--rail);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -71,7 +181,7 @@ nav {
 
 .nav-logo {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: var(--t-20);
   color: var(--white);
   letter-spacing: 0.02em;
 }
@@ -82,14 +192,14 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: var(--s-32);
   list-style: none;
 }
 
 .nav-links a {
   color: rgba(255,255,255,0.75);
   text-decoration: none;
-  font-size: 13px;
+  font-size: var(--t-13);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -100,14 +210,14 @@ nav {
 
 .nav-links a.is-current {
   color: var(--white);
-  padding-bottom: 5px;
+  padding-bottom: var(--s-4);
   border-bottom: 1px solid var(--gold);
 }
 
 .nav-cta {
   background: var(--gold);
   color: var(--navy) !important;
-  padding: 10px 22px;
+  padding: var(--s-12) var(--s-24);
   border-radius: 3px;
   font-weight: 600 !important;
   letter-spacing: 0.06em !important;
@@ -119,9 +229,9 @@ nav {
 /* MOBILE NAV */
 .nav-toggle {
   display: none;
-  width: 40px;
-  height: 40px;
-  margin-right: -8px;
+  width: var(--s-40);
+  height: var(--s-40);
+  margin-right: calc(var(--s-8) * -1);
   padding: 0;
   background: none;
   border: 0;
@@ -129,10 +239,11 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Drawn-glyph geometry, not layout rhythm. The bar width, the hairline
+     thickness and this gap describe an icon, so they are the one place in the
+     file that is deliberately off the space scale. */
   gap: 5px;
 }
-
-.nav-toggle:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
 
 .nav-toggle-bar {
   display: block;
@@ -149,11 +260,10 @@ nav {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 68px;
+  top: var(--nav-h);
   left: 0; right: 0;
   z-index: 99;
-  background: rgba(13, 31, 60, 0.98);
-  backdrop-filter: blur(8px);
+  background: var(--navy);
   border-bottom: 1px solid rgba(201, 168, 76, 0.2);
   overflow: hidden;
   max-height: 0;
@@ -163,14 +273,14 @@ nav {
 
 .mobile-menu.open { max-height: 520px; visibility: visible; }
 
-.mobile-menu ul { list-style: none; padding: 8px 24px 24px; }
+.mobile-menu ul { list-style: none; padding: var(--s-8) var(--s-24) var(--s-24); }
 
 .mobile-menu a {
   display: block;
-  padding: 16px 0;
+  padding: var(--s-16) 0;
   color: rgba(255,255,255,0.75);
   text-decoration: none;
-  font-size: 13px;
+  font-size: var(--t-13);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -182,8 +292,8 @@ nav {
 .mobile-menu a.is-current { color: var(--gold); }
 
 .mobile-menu .mobile-menu-cta {
-  margin-top: 20px;
-  padding: 14px 0;
+  margin-top: var(--s-24);
+  padding: var(--s-16) 0;
   text-align: center;
   background: var(--gold);
   color: var(--navy);
@@ -202,26 +312,17 @@ nav {
    vertically centred in a viewport-tall box with dead navy above and below.
    Composition is a single left-aligned stack on the same 1100px rail every
    section below uses, which is also the composition the five interior page
-   heroes already use. One vertical left edge runs the whole page. There is no
-   second column, so there is no empty column to explain. */
+   heroes already use. One vertical left edge runs the whole page.
+   The radial gold wash that used to sit in the upper right is gone. An ambient
+   gradient field is the visual signature of the category this site is trying
+   not to be in, and a firm that sells composure does not decorate. What is left
+   is flat navy, the gold eyebrow rule, the gold italic clause, the gold rule on
+   the hero line, and the hairline at the foot of the section. */
 .hero {
   background: var(--navy);
-  padding: 144px 48px 104px;
+  padding: var(--s-144) var(--s-48) var(--s-96);
   position: relative;
   overflow: hidden;
-}
-
-/* The upper right carries a broad, low gold wash rather than a component. With
-   the copy set left on a measure, this is what keeps the right of the rail
-   reading as composed atmosphere instead of unused navy. Kept wide and low so it
-   is a field, not a blob, and it never sits under type. */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -300px; right: -260px;
-  width: 1000px; height: 1000px;
-  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.05) 45%, transparent 72%);
-  pointer-events: none;
 }
 
 .hero::after {
@@ -233,44 +334,43 @@ nav {
 }
 
 .hero-inner {
-  max-width: 1100px;
+  max-width: var(--rail);
   margin: 0 auto;
   width: 100%;
 }
 
 .hero-eyebrow {
-  font-size: 11px;
+  font-size: var(--t-11);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 24px;
+  margin-bottom: var(--s-24);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--s-12);
 }
 
 .hero-eyebrow::before {
   content: '';
   display: block;
-  width: 32px;
+  width: var(--s-32);
   height: 1px;
   background: var(--gold);
 }
 
-/* max-width stays at 900px. The balance keyword only evens the two lines out so
-   the break lands on the clause boundary, prove the numbers over make the call,
-   instead of stranding a two-word second line and leaving a wedge of empty navy
-   in the top right. Browsers without it fall back to the previous ragged break,
-   which is still inside the same max-width. */
+/* The balance keyword evens the two lines out so the break lands on the clause
+   boundary, prove the numbers over make the call, instead of stranding a
+   two-word second line. Browsers without it fall back to a ragged break inside
+   the same max-width. */
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(38px, 4.5vw, 66px);
+  font-size: var(--t-h1);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.15;
+  line-height: var(--lh-tight);
   letter-spacing: -0.01em;
-  max-width: 900px;
+  max-width: var(--rail-head);
   text-wrap: balance;
 }
 
@@ -279,65 +379,62 @@ nav {
   color: var(--gold);
 }
 
-/* The measure widens from 620px to 720px, matching .page-hero-sub. At 1100px of
-   rail that is a two-thirds line, which reads as a set measure rather than a
-   column that stops early because something used to sit beside it. */
 .hero-sub {
-  font-size: 17px;
-  line-height: 1.75;
+  font-size: var(--t-18);
+  line-height: var(--lh-loose);
   color: rgba(255,255,255,0.65);
-  margin-top: 28px;
+  margin-top: var(--s-32);
   font-weight: 300;
-  max-width: 720px;
+  max-width: var(--measure-wide);
 }
 
 /* The couplet that used to caption the removed figure, promoted into the hero
    stack. It closes the paragraph and gives the block a gold beat below the
    headline, so the composition is headline, argument, claim, action. */
 .hero-line {
-  margin-top: 26px;
-  font-size: 14px;
+  margin-top: var(--s-24);
+  font-size: var(--t-14);
   font-weight: 500;
   letter-spacing: 0.05em;
   color: rgba(201,168,76,0.92);
-  padding-left: 16px;
+  padding-left: var(--s-16);
   border-left: 1px solid rgba(201,168,76,0.5);
-  max-width: 720px;
+  max-width: var(--measure-wide);
 }
 
 .hero-actions {
   display: flex;
-  gap: 16px;
+  gap: var(--s-16);
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 44px;
+  margin-top: var(--s-40);
 }
 
 .btn-primary {
   background: var(--gold);
   color: var(--navy);
-  padding: 14px 32px;
+  padding: var(--s-16) var(--s-32);
   border-radius: 3px;
-  font-size: 13px;
+  font-size: var(--t-13);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s;
   display: inline-block;
 }
 
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-primary:hover { background: var(--gold-light); }
 
 .btn-ghost {
   color: rgba(255,255,255,0.6);
-  font-size: 13px;
+  font-size: var(--t-13);
   font-weight: 500;
   letter-spacing: 0.06em;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--s-8);
   transition: color 0.2s;
 }
 
@@ -347,7 +444,7 @@ nav {
 /* PAGE HERO, interior pages */
 .page-hero {
   background: var(--navy);
-  padding: 148px 48px 92px;
+  padding: var(--s-144) var(--s-48) var(--s-96);
   position: relative;
   overflow: hidden;
 }
@@ -361,38 +458,38 @@ nav {
 }
 
 .page-hero-inner {
-  max-width: 1100px;
+  max-width: var(--rail);
   margin: 0 auto;
   width: 100%;
 }
 
 .page-hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 3.6vw, 48px);
+  font-size: var(--t-h1-page);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.18;
-  margin-bottom: 24px;
+  line-height: var(--lh-display);
+  margin-bottom: var(--s-24);
   letter-spacing: -0.01em;
-  max-width: 900px;
+  max-width: var(--rail-head);
 }
 
 .page-hero h1 em { font-style: italic; color: var(--gold); }
 
 .page-hero-sub {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: rgba(255,255,255,0.65);
   font-weight: 300;
-  max-width: 720px;
+  max-width: var(--measure-wide);
 }
 
 .page-hero-actions {
   display: flex;
-  gap: 16px;
+  gap: var(--s-16);
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: var(--s-40);
 }
 
 /* CAPABILITY TAPE, full-bleed dulled gold ground, navy type, 45px per second,
@@ -407,7 +504,7 @@ nav {
   background: var(--gold);
   border-top: 1px solid rgba(13, 31, 60, 0.22);
   border-bottom: 1px solid rgba(13, 31, 60, 0.22);
-  padding: 17px 0;
+  padding: var(--s-16) 0;
   white-space: nowrap;
 }
 
@@ -419,9 +516,11 @@ nav {
 
 .cap-tape-track {
   display: inline-flex;
-  /* 45px per second. One copy of the seven-item track measures 1558px, so 1558 / 45 = 34.6s.
-     If the item list changes, remeasure one copy and reset duration to width / 45. */
-  animation: cap-tape 34.6s linear infinite;
+  /* 45px per second, held. Measured with Inter loaded, one copy of the
+     seven-item track is 1569.5px at this spacing, so 1569.5 / 45 = 34.9s.
+     If the item list or the item spacing changes, remeasure one copy with the
+     webfont applied and reset duration to width / 45. */
+  animation: cap-tape 34.9s linear infinite;
   will-change: transform;
 }
 
@@ -440,12 +539,12 @@ nav {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  font-size: 11px;
+  font-size: var(--t-11);
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--navy);
-  line-height: 1.4;
+  line-height: var(--lh-snug);
 }
 
 .cap-tape-list li::after {
@@ -453,7 +552,7 @@ nav {
   color: rgba(13, 31, 60, 0.45);
   font-weight: 700;
   letter-spacing: 0;
-  margin: 0 22px;
+  margin: 0 var(--s-24);
 }
 
 @keyframes cap-tape {
@@ -463,82 +562,84 @@ nav {
 
 /* SECTIONS */
 .how {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--white);
 }
 
 .section-inner {
-  max-width: 1100px;
+  max-width: var(--rail);
   margin: 0 auto;
 }
 
 .section-header {
-  margin-bottom: 72px;
+  margin-bottom: var(--s-64);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: var(--s-48);
   align-items: end;
 }
 
 .section-eyebrow {
-  font-size: 11px;
+  font-size: var(--t-11);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: var(--s-16);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--s-12);
 }
 
 .section-eyebrow::before {
   content: '';
   display: block;
-  width: 24px;
+  width: var(--s-24);
   height: 1px;
   background: var(--gold);
 }
 
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 3vw, 44px);
+  font-size: var(--t-h2);
   font-weight: 400;
   color: var(--navy);
-  line-height: 1.2;
+  line-height: var(--lh-display);
   letter-spacing: -0.01em;
 }
 
 .section-desc {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
   align-self: end;
+  max-width: var(--measure);
 }
 
 /* PROCESS STEPS */
 .process-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-top: 64px;
+  gap: var(--hair);
+  margin-top: var(--s-64);
 }
 
+/* The card no longer lifts on hover. A card that jumps is a template gesture
+   and it is the opposite of the composure this site is selling. The one motion
+   idea on the site is the gold rule drawing left to right, and it does all the
+   hover work everywhere. */
 .process-step {
   background: var(--off-white);
-  padding: 48px 40px;
+  padding: var(--s-48) var(--s-40);
   position: relative;
-  transition: transform 0.2s;
 }
-
-.process-step:hover { transform: translateY(-4px); }
 
 .process-step::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 40px; right: 40px;
-  height: 2px;
+  bottom: 0; left: var(--s-40); right: var(--s-40);
+  height: var(--hair);
   background: var(--gold);
   transform: scaleX(0);
   transition: transform 0.3s;
@@ -548,55 +649,56 @@ nav {
 .process-step:hover::after { transform: scaleX(1); }
 
 .step-phase {
-  font-size: 10px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 14px;
+  margin-bottom: var(--s-12);
 }
 
 .step-num {
   font-family: 'Playfair Display', serif;
-  font-size: 56px;
+  font-size: var(--t-56);
   color: rgba(13, 31, 60, 0.08);
   line-height: 1;
-  margin-bottom: 16px;
+  margin-bottom: var(--s-16);
   font-weight: 400;
 }
 
 .step-name {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: var(--t-22);
   font-weight: 500;
   color: var(--navy);
-  margin-bottom: 16px;
-  line-height: 1.3;
+  margin-bottom: var(--s-16);
+  line-height: var(--lh-snug);
 }
 
 .step-desc {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: var(--t-14);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  margin-bottom: 28px;
+  margin-bottom: var(--s-24);
+  max-width: var(--measure);
 }
 
 .step-detail {
-  font-size: 12px;
+  font-size: var(--t-12);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--navy);
-  padding: 10px 16px;
+  padding: var(--s-12) var(--s-16);
   background: var(--white);
-  border-left: 2px solid var(--gold);
-  line-height: 1.5;
+  border-left: var(--hair) solid var(--gold);
+  line-height: var(--lh-normal);
 }
 
 /* THE MODEL, linked-bubbles progression */
 .flow {
-  margin-top: 72px;
+  margin-top: var(--s-64);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
@@ -604,22 +706,22 @@ nav {
 
 .flow-node {
   position: relative;
-  padding: 0 28px;
+  padding: 0 var(--s-24);
   text-align: center;
 }
 
 .flow-bubble {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 30px;
+  width: var(--s-96);
+  height: var(--s-96);
+  margin: 0 auto var(--s-32);
   border-radius: 50%;
-  border: 2px solid var(--navy);
+  border: var(--hair) solid var(--navy);
   background: var(--navy);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Playfair Display', serif;
-  font-size: 38px;
+  font-size: var(--t-36);
   color: var(--gold);
   position: relative;
   z-index: 2;
@@ -637,7 +739,7 @@ nav {
   top: 47px;
   left: calc(50% + 52px);
   width: calc(100% - 112px);
-  height: 2px;
+  height: var(--hair);
   background: linear-gradient(90deg, rgba(201, 168, 76, 0.3), var(--gold));
   z-index: 1;
 }
@@ -656,54 +758,55 @@ nav {
 }
 
 .flow-phase {
-  font-size: 10px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 12px;
+  margin-bottom: var(--s-12);
 }
 
 .flow-name {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: var(--t-22);
   font-weight: 500;
   color: var(--navy);
-  margin-bottom: 14px;
-  line-height: 1.3;
+  margin-bottom: var(--s-16);
+  line-height: var(--lh-snug);
 }
 
 .flow-desc {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: var(--t-14);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  margin-bottom: 22px;
+  margin-bottom: var(--s-24);
+  max-width: var(--measure);
 }
 
 .flow-chip {
   display: inline-block;
-  font-size: 11px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--navy);
-  padding: 9px 16px;
+  padding: var(--s-8) var(--s-16);
   border: 1px solid rgba(201, 168, 76, 0.45);
   border-radius: 3px;
-  line-height: 1.4;
+  line-height: var(--lh-snug);
 }
 
 /* SERVICES */
 .services {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--off-white);
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: var(--hair);
 }
 
 .services-grid.cols-2 {
@@ -712,20 +815,17 @@ nav {
 
 .service-card {
   background: var(--white);
-  padding: 48px 40px;
+  padding: var(--s-48) var(--s-40);
   position: relative;
-  transition: transform 0.2s;
   display: flex;
   flex-direction: column;
 }
 
-.service-card:hover { transform: translateY(-4px); }
-
 .service-card::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 40px; right: 40px;
-  height: 2px;
+  bottom: 0; left: var(--s-40); right: var(--s-40);
+  height: var(--hair);
   background: var(--gold);
   transform: scaleX(0);
   transition: transform 0.3s;
@@ -735,58 +835,60 @@ nav {
 .service-card:hover::after { transform: scaleX(1); }
 
 .service-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 28px;
+  width: var(--s-48);
+  height: var(--s-48);
+  margin-bottom: var(--s-24);
   color: var(--gold);
 }
 
 .service-tag {
-  font-size: 10px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 14px;
+  margin-bottom: var(--s-12);
 }
 
 .service-name {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: var(--t-22);
   font-weight: 500;
   color: var(--navy);
-  margin-bottom: 16px;
-  line-height: 1.3;
+  margin-bottom: var(--s-16);
+  line-height: var(--lh-snug);
 }
 
 .service-desc {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: var(--t-14);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  margin-bottom: 28px;
+  margin-bottom: var(--s-24);
+  max-width: var(--measure);
 }
 
 .service-bullets {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--s-12);
 }
 
 .service-bullets li {
-  font-size: 13px;
+  font-size: var(--t-13);
   color: var(--gray-600);
-  padding-left: 16px;
+  padding-left: var(--s-16);
   position: relative;
-  line-height: 1.5;
+  line-height: var(--lh-normal);
+  max-width: var(--measure);
 }
 
 .service-bullets li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 8px;
+  top: 10px;
   width: 5px;
   height: 1px;
   background: var(--gold);
@@ -795,8 +897,8 @@ nav {
 /* CARD LINK, routes a card into its page */
 .card-link {
   margin-top: auto;
-  padding-top: 28px;
-  font-size: 12px;
+  padding-top: var(--s-24);
+  font-size: var(--t-12);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -804,27 +906,20 @@ nav {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--s-8);
   transition: color 0.2s;
 }
 
 .card-link::after { content: '\2192'; }
 .card-link:hover { color: var(--gold); }
 
-/* WHY VANTAGE, navy band */
+/* WHY VANTAGE, navy band. The radial gold glow that used to sit in the lower
+   right is gone, for the same reason the hero glow is gone. */
 .why {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--navy);
   position: relative;
   overflow: hidden;
-}
-
-.why::before {
-  content: '';
-  position: absolute;
-  bottom: -300px; right: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
 }
 
 .why .section-title { color: var(--white); }
@@ -832,12 +927,12 @@ nav {
 .why-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  margin-top: 64px;
+  gap: var(--hair);
+  margin-top: var(--s-64);
 }
 
 .why-item {
-  padding: 48px;
+  padding: var(--s-48);
   border: 1px solid rgba(255,255,255,0.06);
   transition: border-color 0.2s;
 }
@@ -846,122 +941,140 @@ nav {
 
 .why-number {
   font-family: 'Playfair Display', serif;
-  font-size: 56px;
+  font-size: var(--t-56);
   color: var(--gold);
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: var(--s-24);
   font-weight: 400;
 }
 
 .why-title {
-  font-size: 16px;
+  font-size: var(--t-16);
   font-weight: 600;
   color: var(--white);
-  margin-bottom: 12px;
+  margin-bottom: var(--s-12);
   letter-spacing: 0.01em;
+  line-height: var(--lh-snug);
 }
 
 .why-desc {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: var(--t-14);
+  line-height: var(--lh-loose);
   color: rgba(255,255,255,0.5);
   font-weight: 300;
+  max-width: var(--measure);
 }
 
 .why-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
 .why-footer {
-  margin-top: 56px;
+  margin-top: var(--s-48);
   position: relative;
   z-index: 2;
 }
 
 /* WHY VANTAGE, stacked statement rows on a light band */
 .why-alt {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--off-white);
 }
 
 .why-alt .section-title { color: var(--navy); }
 
 .why-rows {
-  margin-top: 56px;
+  margin-top: var(--s-48);
   border-top: 1px solid var(--gray-100);
 }
 
+/* The row used to shove itself 12px to the right on hover. Same house gesture
+   as the cards now, the gold rule draws left to right along the bottom of the
+   row and nothing moves. */
 .why-row {
   display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 40px;
-  padding: 40px 4px;
+  grid-template-columns: var(--s-96) 1fr;
+  gap: var(--s-40);
+  padding: var(--s-40) var(--s-4);
   border-bottom: 1px solid var(--gray-100);
   align-items: baseline;
-  transition: padding-left 0.2s;
+  position: relative;
 }
 
-.why-row:hover { padding-left: 12px; }
+.why-row::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+
+.why-row:hover::after { transform: scaleX(1); }
 
 .why-row-num {
   font-family: 'Playfair Display', serif;
-  font-size: 46px;
+  font-size: var(--t-48);
   color: var(--gold);
   line-height: 1;
   font-weight: 400;
 }
 
 .why-row-title {
-  font-size: 18px;
+  font-size: var(--t-18);
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 12px;
+  margin-bottom: var(--s-12);
   letter-spacing: 0.01em;
+  line-height: var(--lh-snug);
 }
 
 .why-row-desc {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  max-width: 720px;
+  max-width: var(--measure);
 }
 
 /* VS ENTERPRISE, and the two-column exhibit it is reused for */
 .vs {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--white);
 }
 
 .compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin-top: 56px;
+  gap: var(--hair);
+  margin-top: var(--s-48);
   border: 1px solid var(--gray-100);
 }
 
-.compare-col { padding: 44px 40px; background: var(--off-white); }
+.compare-col { padding: var(--s-48) var(--s-40); background: var(--off-white); }
 .compare-us { background: var(--navy); }
 
 .compare-head {
-  font-size: 11px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 26px;
-  padding-bottom: 16px;
+  margin-bottom: var(--s-24);
+  padding-bottom: var(--s-16);
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .compare-them .compare-head { color: var(--gray-400); }
 .compare-us .compare-head { color: var(--gold); border-bottom-color: rgba(201,168,76,0.25); }
 
-.compare-col ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.compare-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--s-16); }
 
 .compare-col li {
-  font-size: 14px;
-  line-height: 1.5;
-  padding-left: 24px;
+  font-size: var(--t-14);
+  line-height: var(--lh-normal);
+  padding-left: var(--s-24);
   position: relative;
+  max-width: var(--measure);
 }
 
 .compare-them li { color: var(--gray-600); }
@@ -973,41 +1086,42 @@ nav {
 .compare.compare-neutral .compare-us li::before { content: '\2013'; }
 
 .compare-note {
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 1.7;
+  margin-top: var(--s-24);
+  font-size: var(--t-12);
+  line-height: var(--lh-normal);
   color: var(--gray-400);
   font-weight: 300;
+  max-width: var(--measure);
 }
 
-.vs-body { margin-top: 48px; }
+.vs-body { margin-top: var(--s-48); }
 
 .vs-body p {
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  max-width: 760px;
+  max-width: var(--measure);
 }
 
 .vs-kicker {
-  margin-top: 28px;
+  margin-top: var(--s-24);
   font-family: 'Playfair Display', serif;
-  font-size: 22px !important;
-  line-height: 1.45 !important;
+  font-size: var(--t-22) !important;
+  line-height: var(--lh-snug) !important;
   color: var(--navy) !important;
   font-weight: 500 !important;
 }
 
 /* PROSE BLOCK */
-.prose { max-width: 760px; margin-top: 40px; }
+.prose { max-width: var(--measure); margin-top: var(--s-40); }
 
 .prose p {
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  margin-bottom: 22px;
+  margin-bottom: var(--s-24);
 }
 
 .prose p:last-child { margin-bottom: 0; }
@@ -1016,12 +1130,12 @@ nav {
 
 /* CONTACT */
 .contact {
-  padding: 120px 48px;
+  padding: var(--s-120) var(--s-48);
   background: var(--white);
 }
 
 .contact-inner {
-  max-width: 720px;
+  max-width: var(--rail-narrow);
   margin: 0 auto;
   text-align: center;
 }
@@ -1029,34 +1143,34 @@ nav {
 .contact-inner .section-eyebrow { justify-content: center; }
 
 .contact-lead {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  margin: 24px auto 36px;
-  max-width: 560px;
+  margin: var(--s-24) auto var(--s-32);
+  max-width: var(--measure);
 }
 
-.contact-btn { margin-bottom: 64px; }
+.contact-btn { margin-bottom: var(--s-64); }
 
 .contact-detail {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 48px;
-  padding-top: 40px;
+  gap: var(--s-48);
+  padding-top: var(--s-40);
   border-top: 1px solid var(--gray-100);
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--s-4);
   text-align: center;
 }
 
 .contact-label {
-  font-size: 10px;
+  font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1064,7 +1178,7 @@ nav {
 }
 
 .contact-value {
-  font-size: 15px;
+  font-size: var(--t-16);
   color: var(--navy);
   font-weight: 400;
 }
@@ -1081,31 +1195,31 @@ nav {
 .cta-band {
   background: var(--off-white);
   border-top: 1px solid var(--gray-100);
-  padding: 72px 48px;
+  padding: var(--s-80) var(--s-48);
 }
 
 .cta-band-inner {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 48px;
+  gap: var(--s-48);
   align-items: center;
 }
 
 .cta-band-title {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-size: var(--t-28);
   font-weight: 500;
   color: var(--navy);
-  line-height: 1.3;
-  margin-bottom: 12px;
+  line-height: var(--lh-snug);
+  margin-bottom: var(--s-12);
 }
 
 .cta-band-desc {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: var(--t-16);
+  line-height: var(--lh-loose);
   color: var(--gray-600);
   font-weight: 300;
-  max-width: 640px;
+  max-width: var(--measure);
 }
 
 .cta-band-desc a { color: var(--navy); }
@@ -1113,24 +1227,24 @@ nav {
 /* FOOTER */
 footer {
   background: var(--navy);
-  padding: 40px 48px;
+  padding: var(--s-40) var(--s-48);
   border-top: 1px solid rgba(201,168,76,0.2);
 }
 
 /* Footer content rides the same 1100px centered grid as every section */
 .footer-inner {
-  max-width: 1100px;
+  max-width: var(--rail);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: var(--s-24);
 }
 
 .footer-logo {
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
+  font-size: var(--t-16);
   color: var(--white);
 }
 
@@ -1140,12 +1254,12 @@ footer {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: var(--s-24);
   justify-content: flex-end;
 }
 
 .footer-nav a {
-  font-size: 12px;
+  font-size: var(--t-12);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1158,50 +1272,84 @@ footer {
 
 .footer-copy {
   flex-basis: 100%;
-  font-size: 12px;
+  font-size: var(--t-12);
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.04em;
 }
 
 .footer-legal {
   flex-basis: 100%;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: var(--t-12);
+  line-height: var(--lh-normal);
   font-weight: 300;
   color: rgba(255,255,255,0.55);
-  max-width: 900px;
+  max-width: var(--rail-head);
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE
+   Four tiers rather than one. The old stylesheet jumped straight from the full
+   desktop grid to a 900px phone layout, which left every three-column grid
+   running at three columns on a 1024 laptop and an iPad in landscape, at
+   roughly 27 characters of measure. */
+
+/* Tier 1, below the point where the 1100px rail meets its 48px gutters. Pull
+   the gutters in so the rail keeps its air instead of the content crowding the
+   viewport edge. */
+@media (max-width: 1196px) {
+  nav, footer,
+  .hero, .page-hero, .how, .services, .why, .why-alt, .vs, .contact, .cta-band {
+    padding-left: var(--s-32);
+    padding-right: var(--s-32);
+  }
+}
+
+/* Tier 2, tablet landscape and small laptops. Three-column grids drop to two.
+   A three-item grid then leaves one card on the second row, so that card takes
+   the full width deliberately rather than sitting half-wide next to a hole. */
+@media (max-width: 1024px) {
+  .services-grid,
+  .process-steps,
+  .why-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+
+  .services-grid > :last-child:nth-child(odd),
+  .process-steps > :last-child:nth-child(odd),
+  .why-grid.cols-3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+  .how, .services, .why, .why-alt, .vs, .contact { padding-top: var(--s-96); padding-bottom: var(--s-96); }
+  .hero { padding-top: var(--s-120); padding-bottom: var(--s-80); }
+  .page-hero { padding-top: var(--s-120); padding-bottom: var(--s-80); }
+  .flow-node { padding: 0 var(--s-16); }
+}
+
+/* Tier 3, phone and small tablet. Everything single column. */
 @media (max-width: 900px) {
-  nav { padding: 0 24px; }
+  nav { padding-left: var(--s-24); padding-right: var(--s-24); }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .mobile-menu { display: block; }
-  .hero { padding: 112px 24px 72px; }
-  .hero-sub { margin-top: 22px; }
-  .hero-line { margin-top: 22px; }
-  .hero-actions { margin-top: 36px; }
-  .page-hero { padding: 116px 24px 64px; }
+  .hero { padding: var(--s-120) var(--s-24) var(--s-64); }
+  .hero-sub { margin-top: var(--s-24); }
+  .hero-line { margin-top: var(--s-24); }
+  .hero-actions { margin-top: var(--s-32); }
+  .page-hero { padding: var(--s-120) var(--s-24) var(--s-64); }
   .cap-tape-viewport {
     mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
   }
-  .cap-tape-list li { font-size: 10px; }
-  .cap-tape-list li::after { margin: 0 17px; }
-  /* Remeasured at this scale. One copy measures 1375px, so 1375 / 45 = 30.6s. */
-  .cap-tape-track { animation-duration: 30.6s; }
-  .how { padding: 80px 24px; }
-  .services { padding: 80px 24px; }
-  .section-header { grid-template-columns: 1fr; gap: 24px; }
+  .cap-tape-list li::after { margin: 0 var(--s-16); }
+  /* Remeasured at this spacing. One copy is 1457.5px, so 1457.5 / 45 = 32.4s. */
+  .cap-tape-track { animation-duration: 32.4s; }
+  .how { padding: var(--s-80) var(--s-24); }
+  .services { padding: var(--s-80) var(--s-24); }
+  .section-header { grid-template-columns: 1fr; gap: var(--s-24); }
   .process-steps { grid-template-columns: 1fr; }
-  .flow { grid-template-columns: 1fr; gap: 64px; }
+  .flow { grid-template-columns: 1fr; gap: var(--s-64); }
   .flow-node { padding: 0; }
   .flow-node:not(:last-child)::after {
     top: auto;
     bottom: -47px;
     left: 50%;
-    width: 2px;
+    width: var(--hair);
     height: 30px;
     transform: translateX(-50%);
     background: linear-gradient(180deg, rgba(201, 168, 76, 0.3), var(--gold));
@@ -1218,26 +1366,47 @@ footer {
   }
   .services-grid { grid-template-columns: 1fr; }
   .services-grid.cols-2 { grid-template-columns: 1fr; }
-  .why { padding: 80px 24px; }
+  .services-grid > :last-child:nth-child(odd),
+  .process-steps > :last-child:nth-child(odd),
+  .why-grid.cols-3 > :last-child:nth-child(odd) { grid-column: auto; }
+  .why { padding: var(--s-80) var(--s-24); }
   .why-grid { grid-template-columns: 1fr; }
   .why-grid.cols-3 { grid-template-columns: 1fr; }
-  .why-item { padding: 40px 32px; }
-  .why-alt { padding: 80px 24px; }
-  .why-row { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
-  .why-row:hover { padding-left: 0; }
-  .vs { padding: 80px 24px; }
+  .why-item { padding: var(--s-40) var(--s-32); }
+  .why-alt { padding: var(--s-80) var(--s-24); }
+  .why-row { grid-template-columns: 1fr; gap: var(--s-12); padding: var(--s-32) 0; }
+  .vs { padding: var(--s-80) var(--s-24); }
   .compare { grid-template-columns: 1fr; }
-  .contact { padding: 80px 24px; }
-  .contact-inner { grid-template-columns: 1fr; gap: 60px; }
-  .cta-band { padding: 56px 24px; }
-  .cta-band-inner { grid-template-columns: 1fr; gap: 28px; }
-  footer { padding: 32px 24px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; text-align: left; }
-  .footer-nav { justify-content: flex-start; gap: 18px; }
+  .contact { padding: var(--s-80) var(--s-24); }
+  .contact-inner { grid-template-columns: 1fr; gap: var(--s-64); }
+  .cta-band { padding: var(--s-64) var(--s-24); }
+  .cta-band-inner { grid-template-columns: 1fr; gap: var(--s-24); }
+  footer { padding: var(--s-32) var(--s-24); }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: var(--s-16); text-align: left; }
+  .footer-nav { justify-content: flex-start; gap: var(--s-16); }
 }
 
-/* REDUCED MOTION, mandatory fallback for the capability tape */
+/* Tier 4, small phones. Card and panel padding comes in so the measure inside a
+   card does not collapse to a column of two-word lines. */
+@media (max-width: 560px) {
+  .service-card, .process-step { padding: var(--s-40) var(--s-24); }
+  .service-card::after, .process-step::after { left: var(--s-24); right: var(--s-24); }
+  .why-item { padding: var(--s-32) var(--s-24); }
+  .compare-col { padding: var(--s-32) var(--s-24); }
+  .contact-detail { gap: var(--s-32); }
+  .hero-actions, .page-hero-actions { gap: var(--s-12); }
+}
+
+/* REDUCED MOTION. Nothing on this site animates for a visitor who has asked the
+   operating system for less of it, and the capability tape becomes a single
+   swipeable row rather than reflowing into a multi-line block. */
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
   html { scroll-behavior: auto; }
   .cap-tape-track { animation: none; transform: none; }
   .cap-tape-track [aria-hidden="true"] { display: none; }
@@ -1247,20 +1416,19 @@ footer {
     -ms-overflow-style: none;
   }
   .cap-tape-viewport::-webkit-scrollbar { display: none; }
-  .service-card:hover, .process-step:hover { transform: none; }
-  .btn-primary:hover { transform: none; }
+  .service-card::after, .process-step::after, .why-row::after { transition: none; }
 }
 
 /* PRINT */
 @media print {
-  nav, .mobile-menu, .nav-toggle, .cta-band { display: none !important; }
+  nav, .mobile-menu, .nav-toggle, .cta-band, .cap-tape { display: none !important; }
   body { background: #FFFFFF; color: #000000; }
   .hero, .page-hero, .why, footer { background: #FFFFFF !important; color: #000000; }
   .hero h1, .page-hero h1, .why .section-title, .why-title, .footer-logo { color: #000000 !important; }
   .hero-sub, .page-hero-sub, .why-desc, .footer-legal { color: #333333 !important; }
-  .hero { min-height: 0; padding: 24px 0; }
-  .page-hero { padding: 24px 0; }
-  .services-grid, .why-grid, .why-grid.cols-3, .compare, .flow { grid-template-columns: 1fr !important; }
+  .hero { min-height: 0; padding: var(--s-24) 0; }
+  .page-hero { padding: var(--s-24) 0; }
+  .services-grid, .why-grid, .why-grid.cols-3, .compare, .flow, .process-steps { grid-template-columns: 1fr !important; }
   .compare-us { background: #FFFFFF !important; }
   .compare-us li { color: #000000 !important; }
   a { text-decoration: none; color: #000000; }

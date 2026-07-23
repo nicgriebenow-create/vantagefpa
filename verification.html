@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How Verification Works | Vantage FP&A</title>
-<meta name="description" content="How Vantage proves a number. Deterministic builds that return the same answer on the same inputs, a deterministic gate on every build, an independent adversarial review before release, and workbooks you can audit down to the cell yourself.">
+<meta name="description" content="How Vantage proves a number. Deterministic builds that return the same answer on the same inputs, a deterministic gate that runs automatically on every build, an independent adversarial review dispatched separately by a reviewer who did not build the package, and workbooks you can audit down to the cell yourself.">
 <link rel="canonical" href="https://vantagefpa.com/verification.html">
 <link rel="icon" type="image/png" href="vantage_favicon_32.png">
 <link rel="apple-touch-icon" href="vantage_appletouch_180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vantage FP&A">
 <meta property="og:title" content="How Verification Works | Vantage FP&A">
-<meta property="og:description" content="Deterministic builds, a gate that runs on every build, an independent review pass before release, and a workbook you can trace to the cell yourself. Your numbers never run through an AI model.">
+<meta property="og:description" content="Deterministic builds, a gate that runs automatically on every build, an independent review pass dispatched separately by a reviewer who did not build it, and a workbook you can trace to the cell yourself. Your numbers never run through an AI model.">
 <meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
 <meta property="og:url" content="https://vantagefpa.com/verification.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
       "@id": "https://vantagefpa.com/verification.html",
       "url": "https://vantagefpa.com/verification.html",
       "name": "How Verification Works",
-      "description": "The verification architecture behind every Vantage deliverable. Deterministic builds, an automatic deterministic gate, an independent review pass before release, and formula-driven workbooks the client can audit to the cell.",
+      "description": "The verification architecture behind every Vantage deliverable. Deterministic builds, an automatic deterministic gate on every build, an independent review pass dispatched separately by a reviewer who did not build it, and formula-driven workbooks the client can audit to the cell.",
       "isPartOf": { "@id": "https://vantagefpa.com/#organization" },
       "publisher": { "@id": "https://vantagefpa.com/#organization" }
     }
@@ -111,7 +111,7 @@
         <div class="why-row-num">02</div>
         <div class="why-row-body">
           <div class="why-row-title">A Deterministic Gate First, an Adversary Second</div>
-          <p class="why-row-desc">The deterministic checks run automatically on every build, and a build does not leave the shop until it clears them. They test structure rather than opinion, things like whether every tab that should exist exists, whether any cell carries an error value, whether the levers are wired to the schedules they claim to drive. On top of that, a separate review pass whose only job is to find what is wrong with the package runs before anything is released, handled by a reviewer that did not build it.</p>
+          <p class="why-row-desc">The deterministic checks run automatically on every build, and a build does not leave the shop until it clears them. They test structure rather than opinion, things like whether every tab that should exist exists, whether any cell carries an error value, whether the levers are wired to the schedules they claim to drive. On top of that, a separate review pass whose only job is to find what is wrong with the package runs independently, handled by a reviewer that did not build it. Today that adversarial review is dispatched rather than fired by the build, and closing that loop is on the roadmap.</p>
         </div>
       </div>
       <div class="why-row">
