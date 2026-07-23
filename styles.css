@@ -56,8 +56,17 @@ nav {
   height: 68px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Nav content rides the same 1100px centered grid as every section */
+.nav-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-logo {
@@ -221,7 +230,16 @@ nav {
   width: 100%;
 }
 
-.hero-left { max-width: 780px; }
+.hero-head { margin-bottom: 44px; }
+
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 72px;
+  align-items: start;
+}
+
+.hero-left { max-width: 640px; }
 
 .hero-eyebrow {
   font-size: 11px;
@@ -249,8 +267,8 @@ nav {
   font-weight: 400;
   color: var(--white);
   line-height: 1.15;
-  margin-bottom: 28px;
   letter-spacing: -0.01em;
+  max-width: 900px;
 }
 
 .hero h1 em {
@@ -305,6 +323,58 @@ nav {
 .btn-ghost:hover { color: var(--white); }
 .btn-ghost::after { content: '\2192'; }
 
+/* HERO TRACE CHAIN, right column of the home hero. Typographic only, no data. */
+.hero-right { padding-top: 4px; }
+
+.trace {
+  position: relative;
+  list-style: none;
+  padding-left: 24px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.trace::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gold);
+}
+
+.trace-row {
+  position: relative;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+
+.trace-row::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  width: 13px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.trace-caption {
+  margin-top: 22px;
+  padding-left: 24px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  color: var(--gold);
+}
+
 /* PAGE HERO, interior pages */
 .page-hero {
   background: var(--navy);
@@ -356,22 +426,61 @@ nav {
   margin-top: 40px;
 }
 
-/* CAPABILITY LINE, static replacement for the retired marquee */
-.cap-line {
+/* CAPABILITY TAPE, white ground, gold hairlines, 45px per second, one row at every width */
+.cap-tape {
   background: var(--white);
   border-top: 1px solid rgba(201, 168, 76, 0.55);
   border-bottom: 1px solid rgba(201, 168, 76, 0.55);
-  padding: 18px 24px;
-  text-align: center;
+  padding: 18px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
+}
+
+.cap-tape-track {
+  display: inline-flex;
+  /* 45px per second. One copy of the seven-item track measures 1508px, so 1508 / 45 = 33.5s.
+     If the item list changes, remeasure one copy and reset duration to width / 45. */
+  animation: cap-tape 33.5s linear infinite;
+  will-change: transform;
+}
+
+.cap-tape:hover .cap-tape-track,
+.cap-tape:focus-within .cap-tape-track { animation-play-state: paused; }
+
+.cap-tape:focus-visible { outline: 1px solid var(--gold); outline-offset: -3px; }
+
+.cap-tape-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.cap-tape-list li {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--navy);
-  line-height: 2;
+  line-height: 1.4;
 }
 
-.cap-line span { white-space: nowrap; }
+.cap-tape-list li::after {
+  content: '\00B7';
+  color: rgba(201, 168, 76, 0.5);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 20px;
+}
+
+@keyframes cap-tape {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 /* SECTIONS */
 .how {
@@ -1026,10 +1135,16 @@ nav {
 footer {
   background: var(--navy);
   padding: 40px 48px;
+  border-top: 1px solid rgba(201,168,76,0.2);
+}
+
+/* Footer content rides the same 1100px centered grid as every section */
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid rgba(201,168,76,0.2);
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -1085,8 +1200,19 @@ footer {
   .nav-toggle { display: flex; }
   .mobile-menu { display: block; }
   .hero { padding: 100px 24px 60px; min-height: 0; }
+  .hero-head { margin-bottom: 32px; }
+  .hero-body { grid-template-columns: 1fr; gap: 48px; }
+  .hero-left { max-width: none; }
+  .hero-right { max-width: 380px; padding-top: 0; }
   .page-hero { padding: 116px 24px 64px; }
-  .cap-line { padding: 16px 20px; letter-spacing: 0.14em; }
+  .cap-tape {
+    mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  }
+  .cap-tape-list li { font-size: 10px; }
+  .cap-tape-list li::after { margin: 0 16px; }
+  /* One copy measures 1341px at this scale, so 1341 / 45 = 29.8s holds the same 45px per second. */
+  .cap-tape-track { animation-duration: 29.8s; }
   .how { padding: 80px 24px; }
   .services { padding: 80px 24px; }
   .section-header { grid-template-columns: 1fr; gap: 24px; }
@@ -1127,8 +1253,24 @@ footer {
   .contact-inner { grid-template-columns: 1fr; gap: 60px; }
   .cta-band { padding: 56px 24px; }
   .cta-band-inner { grid-template-columns: 1fr; gap: 28px; }
-  footer { flex-direction: column; align-items: flex-start; gap: 16px; text-align: left; padding: 32px 24px; }
+  footer { padding: 32px 24px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; text-align: left; }
   .footer-nav { justify-content: flex-start; gap: 18px; }
+}
+
+/* REDUCED MOTION, mandatory fallback for the capability tape */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cap-tape-track { animation: none; transform: none; }
+  .cap-tape-track [aria-hidden="true"] { display: none; }
+  .cap-tape {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .cap-tape::-webkit-scrollbar { display: none; }
+  .service-card:hover, .process-step:hover { transform: none; }
+  .btn-primary:hover { transform: none; }
 }
 
 /* PRINT */
