@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Verification Works | Vantage FP&A</title>
-<meta name="description" content="How Vantage proves a number. Deterministic builds that return the same answer on the same inputs, a deterministic gate that runs automatically on every build, an independent adversarial review dispatched separately by a reviewer who did not build the package, and workbooks you can audit down to the cell yourself.">
+<title>How Vantage Verifies Every Number | Vantage FP&A</title>
+<meta name="description" content="Deterministic builds, an automatic QC gate on every build, an independent adversarial review dispatched separately, and workbooks you can audit down to the cell.">
 <link rel="canonical" href="https://vantagefpa.com/verification.html">
 <link rel="icon" type="image/png" href="vantage_favicon_32.png">
 <link rel="apple-touch-icon" href="vantage_appletouch_180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vantage FP&A">
 <meta property="og:title" content="How Verification Works | Vantage FP&A">
-<meta property="og:description" content="Deterministic builds, a gate that runs automatically on every build, an independent review pass dispatched separately by a reviewer who did not build it, and a workbook you can trace to the cell yourself. Your numbers never run through an AI model.">
+<meta property="og:description" content="Deterministic builds, a gate that runs automatically on every build, an independent review pass dispatched separately by a reviewer who did not build it, and a workbook you can trace to the cell yourself. No language model computes a number in your deliverables.">
 <meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
 <meta property="og:url" content="https://vantagefpa.com/verification.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,13 +29,30 @@
       "email": "ngriebenow@vantagefpa.com"
     },
     {
-      "@type": "WebPage",
+      "@type": "FAQPage",
       "@id": "https://vantagefpa.com/verification.html",
-      "url": "https://vantagefpa.com/verification.html",
-      "name": "How Verification Works",
-      "description": "The verification architecture behind every Vantage deliverable. Deterministic builds, an automatic deterministic gate on every build, an independent review pass dispatched separately by a reviewer who did not build it, and formula-driven workbooks the client can audit to the cell.",
-      "isPartOf": { "@id": "https://vantagefpa.com/#organization" },
-      "publisher": { "@id": "https://vantagefpa.com/#organization" }
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does a language model produce the numbers?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No. The engine is deterministic and no language model writes or alters a number anywhere in the pipeline. The same inputs return the same workbook every time."}
+        },
+        {
+          "@type": "Question",
+          "name": "How is a package checked before it ships?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Two layers. A deterministic QC gate runs automatically on every build and the build does not ship until it clears; every check reports pass, fail, or skip with a reason. Separately, an independent adversarial review is dispatched to a reviewer who did not build the package."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can I trace a figure back to its source?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Yes. Deliverables are formula-driven workbooks, so any figure can be clicked into and traced to the source data it computes from. The written memo carries a tab and cell reference on every figure."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a CPA firm engagement?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No. Vantage FP&A LLC is not a CPA firm and performs no attest services. Deliverables are not an audit, review, examination, or compilation, and carry no opinion or assurance."}
+        }
+      ]
     }
   ]
 }
@@ -53,6 +70,7 @@
       <li><a href="deal-diligence.html">Deal Diligence</a></li>
       <li><a href="reporting.html">Reporting</a></li>
       <li><a href="verification.html" class="is-current" aria-current="page">Verification</a></li>
+      <li><a href="for-brokers.html">For Brokers</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="nav-cta">Schedule a Call</a></li>
     </ul>
@@ -71,17 +89,19 @@
     <li><a href="deal-diligence.html">Deal Diligence</a></li>
     <li><a href="reporting.html">Reporting</a></li>
     <li><a href="verification.html" class="is-current" aria-current="page">Verification</a></li>
+    <li><a href="for-brokers.html">For Brokers</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Schedule a Call</a></li>
   </ul>
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-inner">
+<section class="page-hero" style="position: relative; overflow: hidden;">
+  <canvas id="node-field" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <div class="page-hero-inner" style="position: relative; z-index: 1;">
     <div class="hero-eyebrow">Verification</div>
     <h1>Anyone can generate a deck now. <em>Verification is the product.</em></h1>
-    <p class="page-hero-sub">The hard part is standing behind a number when the other side of the table pushes. This page describes how a Vantage figure gets produced, what checks it clears before anyone sees it, and how you check the work yourself without taking a word of this on trust.</p>
+    <p class="page-hero-sub">The hard part is standing behind a number when the other side of the table pushes. This page describes how a Vantage figure gets produced, which checks run automatically on every build, and how you check the work yourself without taking a word of this on trust.</p>
     <div class="page-hero-actions">
       <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Call</a>
       <a href="#check-it" class="btn-ghost">How you check it yourself</a>
@@ -117,16 +137,49 @@
       <div class="why-row">
         <div class="why-row-num">03</div>
         <div class="why-row-body">
-          <div class="why-row-title">Your Numbers Never Run Through an AI Model</div>
-          <p class="why-row-desc">AI built the system. The figures and the commentary in your deliverables are both produced by deterministic code, and no model computes, alters, or writes a number in what you receive. The narrative in a board pack is templated off the same pipeline figures the tabs are built from, so the words and the numbers cannot drift apart.</p>
+          <div class="why-row-title">Your Numbers Never Run Through a Language Model</div>
+          <p class="why-row-desc">Agentic AI built the system and maintains it. The figures and the commentary in your deliverables are both produced by deterministic code, and no model computes, alters, or writes a number in what you receive. The narrative in a board pack is templated off the same pipeline figures the tabs are built from, so the words and the numbers cannot drift apart.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- EVIDENCE -->
+<section class="services" id="evidence">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Evidence</div>
+        <h2 class="section-title">The package testifies against itself</h2>
+      </div>
+      <p class="section-desc">Architecture claims are cheap, so here is the deliverable itself. Two regions cropped from the published sample-data specimen, exactly as a client receives them.</p>
+    </div>
+    <div class="services-grid cols-2">
+      <div class="service-card">
+        <div class="service-tag">From the Specimen</div>
+        <div class="service-name">The EBITDA walk, as it lands</div>
+        <figure style="margin: 0 0 20px 0;">
+          <img src="specimen_ebitda_walk_SAMPLE_DATA.png" alt="EBITDA walk by fiscal year from the sample-data specimen, showing revenue, gross profit, EBITDA, add-backs, and margin by year" style="max-width: 100%; height: auto; display: block; border: 1px solid var(--gray-100); border-radius: 3px;">
+          <figcaption style="font-size: 12px; color: var(--gray-400); margin-top: 8px;">Sample data. No client, no engagement, no real company.</figcaption>
+        </figure>
+        <p class="service-desc">The walk lands on the page by fiscal year, headline EBITDA down to EBITDA before add-backs, with a partial year labeled with the count of periods it actually holds rather than passed off as a full one.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">From the Specimen</div>
+        <div class="service-name">The scope table a buyer opens first</div>
+        <figure style="margin: 0 0 20px 0;">
+          <img src="specimen_scope_table_SAMPLE_DATA.png" alt="Scope table from the sample-data specimen listing workstreams not performed, their status, and what would close each one" style="max-width: 100%; height: auto; display: block; border: 1px solid var(--gray-100); border-radius: 3px;">
+          <figcaption style="font-size: 12px; color: var(--gray-400); margin-top: 8px;">Sample data. No client, no engagement, no real company.</figcaption>
+        </figure>
+        <p class="service-desc">Every draft names the diligence workstreams it did not perform, why, and what would close each one, on the summary page. The table cannot quietly go missing, because the build fails without it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CHECK IT YOURSELF -->
-<section class="services" id="check-it">
+<section class="services" id="check-it" style="background: var(--white);">
   <div class="section-inner">
     <div class="section-header">
       <div>
@@ -136,7 +189,7 @@
       <p class="section-desc">Every deliverable arrives as a formula-driven, self-contained workbook. That is a deliberate design choice, because a package you cannot check is a package you have to believe. Three things to try in the first five minutes.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card" style="background: var(--off-white);">
         <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="7" y="9" width="34" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
           <line x1="7" y1="17" x2="41" y2="17" stroke="currentColor" stroke-width="1.5"/>
@@ -148,7 +201,7 @@
         <div class="service-name">Click Any Number</div>
         <p class="service-desc">Pick the figure you trust least and click it. The formula bar shows the equation that produced it and the cells it points at. There is no hardcoded value sitting where a calculation should be, and the QC gate fails a build that ships one.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" style="background: var(--off-white);">
         <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 12 L22 12 M10 24 L30 24 M10 36 L18 36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <path d="M28 30 L38 30 L38 40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -158,7 +211,7 @@
         <div class="service-name">Follow It Down to Source</div>
         <p class="service-desc">Keep going. The schedule points at the register, the register row points at the account it came from, and the account points at the trial balance line exactly as you exported it. The trace ends where your own export begins, and nothing sits underneath it.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" style="background: var(--off-white);">
         <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="8" y1="15" x2="40" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="8" y1="33" x2="40" y2="33" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -181,9 +234,9 @@
         <div class="section-eyebrow">The Limits</div>
         <h2 class="section-title">What the engine refuses to do</h2>
       </div>
-      <p class="section-desc" style="color: rgba(255,255,255,0.5);">A verification story is only credible if it includes the part where the machine stops. These two behaviors are designed in, and they are the reason the rest of the package can be taken at face value.</p>
+      <p class="section-desc" style="color: rgba(255,255,255,0.5);">A verification story is only credible if it includes the part where the machine stops. These behaviors are designed in, and they are the reason the rest of the package can be taken at face value.</p>
     </div>
-    <div class="why-grid">
+    <div class="why-grid cols-3">
       <div class="why-item">
         <div class="why-number">01</div>
         <div class="why-title">It will not size what it cannot prove</div>
@@ -193,6 +246,11 @@
         <div class="why-number">02</div>
         <div class="why-title">It will not approximate around missing data</div>
         <p class="why-desc">When a check depends on data that did not arrive, the workbook renders that check as pending and says which input is missing. Nothing is silently skipped and nothing is filled with an estimate that later reads as a fact. A month that cannot be reconciled shows up as a month that cannot be reconciled.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-number">03</div>
+        <div class="why-title">It will not carry an accuracy claim</div>
+        <p class="why-desc">You will not find an accuracy percentage anywhere in a Vantage package, and the generator that writes the findings memo treats one as a build failure rather than a style choice. What you get instead is the trace, and the trace is checkable. A number you can verify beats a number someone vouched for.</p>
       </div>
     </div>
     <div class="why-footer">
@@ -230,6 +288,87 @@
 </footer>
 
 <script src="nav.js"></script>
+<script>
+/* Ambient node field, decorative only. Sparse, slow, low-contrast by design.
+   Degrades to the plain navy hero if anything here fails. */
+(function () {
+  var booted = false;
+  function boot() {
+  if (booted || window.innerWidth < 900) return; /* no animation on mobile; re-armed on resize */
+  booted = true;
+  try {
+    var canvas = document.getElementById('node-field');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var GOLD = '201, 168, 76';
+    var N = 18, LINK = 170, nodes = [], w = 0, h = 0, dpr = 1;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var running = false, raf = 0, visible = true, onscreen = true;
+
+    function size() {
+      var host = canvas.parentElement.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = host.width; h = host.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function seed() {
+      nodes = [];
+      for (var i = 0; i < N; i++) {
+        nodes.push({ x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
+          r: 1.2 + Math.random() * 1.6 });
+      }
+    }
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < N; i++) {
+        for (var j = i + 1; j < N; j++) {
+          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK) {
+            ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.10 * (1 - d / LINK)).toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (var k = 0; k < N; k++) {
+        ctx.fillStyle = 'rgba(' + GOLD + ',0.32)';
+        ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, 6.2832); ctx.fill();
+      }
+    }
+    function step() {
+      for (var i = 0; i < N; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < -10) n.x = w + 10; if (n.x > w + 10) n.x = -10;
+        if (n.y < -10) n.y = h + 10; if (n.y > h + 10) n.y = -10;
+      }
+      draw();
+      raf = requestAnimationFrame(step);
+    }
+    function setRunning(want) {
+      want = want && !reduced && visible && onscreen;
+      if (want && !running) { running = true; raf = requestAnimationFrame(step); }
+      if (!want && running) { running = false; cancelAnimationFrame(raf); }
+    }
+    size(); seed(); draw(); /* one static frame always, which is the whole reduced-motion state */
+    if (!reduced) {
+      document.addEventListener('visibilitychange', function () { visible = !document.hidden; setRunning(true); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { onscreen = es[0].isIntersecting; setRunning(true); }, { threshold: 0 }).observe(canvas);
+      }
+      window.addEventListener('resize', function () { size(); seed(); draw(); });
+      setRunning(true);
+    }
+  } catch (e) { /* decorative only, fail to the plain hero */ }
+  }
+  boot();
+  window.addEventListener('resize', boot);
+})();
+</script>
 
 </body>
 </html>

@@ -1301,6 +1301,14 @@ footer {
     padding-left: var(--s-32);
     padding-right: var(--s-32);
   }
+  /* The nav collapses HERE, not at 900. Measured 2026-07-24: with seven items
+     the full link row needs roughly 1150px plus gutters, so between 901 and
+     1196 the old rule wrapped "DEAL DILIGENCE" and spilled the gold CTA text
+     out of its own box, exactly the band of a non-maximized laptop window or
+     an iPad in landscape. The hamburger takes the whole band instead. */
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-menu { display: block; }
 }
 
 /* Tier 2, tablet landscape and small laptops. Three-column grids drop to two.
@@ -1324,9 +1332,6 @@ footer {
 /* Tier 3, phone and small tablet. Everything single column. */
 @media (max-width: 900px) {
   nav { padding-left: var(--s-24); padding-right: var(--s-24); }
-  .nav-links { display: none; }
-  .nav-toggle { display: flex; }
-  .mobile-menu { display: block; }
   .hero { padding: var(--s-120) var(--s-24) var(--s-64); }
   .hero-sub { margin-top: var(--s-24); }
   .hero-line { margin-top: var(--s-24); }

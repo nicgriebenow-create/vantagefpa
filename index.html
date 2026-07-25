@@ -3,29 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vantage FP&A | Verified Finance Work, Proven to the Cell</title>
-<meta name="description" content="Vantage FP&A builds a deterministic engine and AI that do the finance work and prove every number they produce. One verified engine behind board packs, forecasts, covenant checks, sell-side readiness, and quality-of-earnings support for PE-backed and founder-owned companies. The machine detects and proves, a person decides.">
+<title>Vantage FP&A | Agentic AI Diligence and Reporting</title>
+<meta name="description" content="Agentic AI diligence and reporting for PE-backed and founder-owned companies. A deterministic engine, no LLM in any numeric path, every figure traceable to its source.">
 <link rel="canonical" href="https://vantagefpa.com/">
 <link rel="icon" type="image/png" href="vantage_favicon_32.png">
 <link rel="apple-touch-icon" href="vantage_appletouch_180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vantage FP&A">
-<meta property="og:title" content="Vantage FP&A | Verified Finance Work, Proven to the Cell">
-<meta property="og:description" content="A deterministic engine and AI that do the finance work and prove every number they produce. One verified engine behind board packs, forecasts, covenant checks, sell-side readiness, and quality-of-earnings support. The machine detects and proves, a person decides.">
+<meta property="og:title" content="Vantage FP&A | Agentic AI Diligence and Reporting">
+<meta property="og:description" content="Agentic AI diligence and reporting for PE-backed and founder-owned companies. A deterministic engine, no LLM in any numeric path, every figure traceable to its source.">
 <meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
 <meta property="og:url" content="https://vantagefpa.com/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://vantagefpa.com/#organization",
-  "name": "Vantage FP&A",
-  "url": "https://vantagefpa.com",
-  "logo": "https://vantagefpa.com/vantage_lockup_light.png",
-  "description": "A deterministic engine and AI that do the finance work and prove every number they produce, behind board packs, forecasts, covenant checks, sell-side readiness, and quality-of-earnings support for PE-backed and founder-owned companies. Infrastructure engagements begin with a Finance Automation Assessment. Vantage FP&A LLC is not a CPA firm and does not perform audit, review, compilation, or attest engagements.",
-  "areaServed": "US",
-  "email": "ngriebenow@vantagefpa.com"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vantagefpa.com/#org",
+      "name": "Vantage FP&A LLC",
+      "url": "https://vantagefpa.com/",
+      "logo": "https://vantagefpa.com/vantage_lockup_light.png",
+      "founder": {"@id": "https://vantagefpa.com/about.html#nic"},
+      "areaServed": "United States",
+      "address": {"@type": "PostalAddress", "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US"}
+    },
+    {
+      "@type": "FinancialService",
+      "@id": "https://vantagefpa.com/#service",
+      "name": "Vantage FP&A",
+      "url": "https://vantagefpa.com/",
+      "parentOrganization": {"@id": "https://vantagefpa.com/#org"},
+      "areaServed": "United States",
+      "description": "Agentic AI diligence and reporting for PE-backed and founder-owned companies. A deterministic engine with no LLM in any numeric path, an automatic QC gate on every build, and click-to-trace provenance on every figure.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Quality of earnings support", "url": "https://vantagefpa.com/deal-diligence.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Board reporting and monthly close", "url": "https://vantagefpa.com/reporting.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sell-side readiness", "url": "https://vantagefpa.com/deal-diligence.html"}}
+        ]
+      }
+    }
+  ]
 }
 </script>
 <link rel="stylesheet" href="styles.css">
@@ -41,6 +63,7 @@
       <li><a href="deal-diligence.html">Deal Diligence</a></li>
       <li><a href="reporting.html">Reporting</a></li>
       <li><a href="verification.html">Verification</a></li>
+      <li><a href="for-brokers.html">For Brokers</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="nav-cta">Schedule a Call</a></li>
     </ul>
@@ -59,6 +82,7 @@
     <li><a href="deal-diligence.html">Deal Diligence</a></li>
     <li><a href="reporting.html">Reporting</a></li>
     <li><a href="verification.html">Verification</a></li>
+    <li><a href="for-brokers.html">For Brokers</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Schedule a Call</a></li>
   </ul>
@@ -67,9 +91,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Verified Financial Work for PE-Backed &amp; Founder-Owned Companies</div>
+    <div class="hero-eyebrow">Agentic AI Diligence &amp; Reporting for PE-Backed and Founder-Owned Companies</div>
     <h1>We prove the numbers. You <em>make the call.</em></h1>
-    <p class="hero-sub">A deterministic engine and AI that do the finance work and prove every number they produce, so you are never deciding on figures you did not build and cannot fully check. The same verified engine stands behind a monthly board pack, a rolling forecast, a covenant check, a sell-side readiness review, and a quality-of-earnings package.</p>
+    <p class="hero-sub">Every number is computed by a deterministic engine and traces back to its source, with no language model anywhere in a numeric path. Agentic AI does the finance work around that engine, the same inputs return the same outputs on every run, and one intake feeds every deliverable. The same verified engine stands behind a monthly board pack, a rolling forecast, a covenant check, a sell-side readiness review, and a quality-of-earnings package.</p>
     <p class="hero-line">The machine detects and proves. A person decides.</p>
     <div class="hero-actions">
       <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Consultation</a>
@@ -87,8 +111,9 @@
       <li>Quality of Earnings Support</li>
       <li>Rolling Forecast</li>
       <li>Sell-Side Readiness</li>
-      <li>Proof of Cash</li>
+      <li>Proof of Cash from Bank Statements</li>
       <li>Normalized EBITDA</li>
+      <li>SIC-Code Peer Benchmarking</li>
       <li>Auditable to the Cell</li>
     </ul>
     <ul class="cap-tape-list" aria-hidden="true">
@@ -96,8 +121,9 @@
       <li>Quality of Earnings Support</li>
       <li>Rolling Forecast</li>
       <li>Sell-Side Readiness</li>
-      <li>Proof of Cash</li>
+      <li>Proof of Cash from Bank Statements</li>
       <li>Normalized EBITDA</li>
+      <li>SIC-Code Peer Benchmarking</li>
       <li>Auditable to the Cell</li>
     </ul>
     </div>
@@ -123,7 +149,7 @@
         </svg>
         <div class="service-tag">Buy-Side</div>
         <div class="service-name">Quality of Earnings Support</div>
-        <p class="service-desc">A diligence package built so every EBITDA figure traces back to the general ledger, and so the trace is visible to whoever asks. Proof of cash, red flags with the evidence attached, and anything the engine cannot support with evidence ships flagged rather than filled.</p>
+        <p class="service-desc">A diligence package built so every EBITDA figure traces back to the general ledger, and so the trace is visible to whoever asks. Proof of cash when bank statements are supplied, red flags with the evidence attached, and anything the engine cannot support with evidence ships flagged rather than filled.</p>
         <a href="deal-diligence.html" class="card-link">See the buy-side work</a>
       </div>
       <div class="service-card">
@@ -145,10 +171,11 @@
         </svg>
         <div class="service-tag">Every Month</div>
         <div class="service-name">Reporting Infrastructure</div>
-        <p class="service-desc">The same verification-led build, pointed at the monthly close. An automated close cycle, a rolling forecast, and a board package built on your chart of accounts, your ERP, and the template your investors expect, maintained on a monthly retainer.</p>
+        <p class="service-desc">The same verification-led build, pointed at the monthly close. An automated close cycle, a rolling forecast, a board package on the template your investors expect, and a KPI and peer-benchmark view for your vertical, maintained on a monthly retainer.</p>
         <a href="reporting.html" class="card-link">See the build and the retainer</a>
       </div>
     </div>
+    <p class="section-desc" style="margin-top: 40px;">Working a listing or financing a deal? Brokers, M&amp;A advisors, and lenders have <a href="for-brokers.html" class="card-link">their own lane</a>.</p>
   </div>
 </section>
 
@@ -171,12 +198,12 @@
       <div class="why-item">
         <div class="why-number">02</div>
         <div class="why-title">A deterministic gate first, an adversary second</div>
-        <p class="why-desc">The deterministic checks run automatically on every build. A separate adversarial review, by a reviewer who did not build the package, runs independently on top of that.</p>
+        <p class="why-desc">The deterministic checks run automatically on every build. A separate adversarial review is dispatched to a reviewer who did not build the package, independent by construction rather than part of the machine.</p>
       </div>
       <div class="why-item">
         <div class="why-number">03</div>
-        <div class="why-title">Your numbers never run through an AI model</div>
-        <p class="why-desc">AI built the system. No model computes, alters, or writes a number in what you receive.</p>
+        <div class="why-title">No language model in any numeric path</div>
+        <p class="why-desc">Agentic AI built the system and maintains it. No model computes, alters, or writes a number in what you receive.</p>
       </div>
     </div>
     <div class="why-footer">
