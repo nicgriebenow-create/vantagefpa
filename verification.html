@@ -96,8 +96,7 @@
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero" style="position: relative; overflow: hidden;">
-  <canvas id="node-field" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+<section class="page-hero" style="position: relative; overflow: hidden;" data-node-field>
   <div class="page-hero-inner" style="position: relative; z-index: 1;">
     <div class="hero-eyebrow">Verification</div>
     <h1>Anyone can generate a deck now. <em>Verification is the product.</em></h1>
@@ -289,87 +288,7 @@
 </footer>
 
 <script src="nav.js"></script>
-<script>
-/* Ambient node field, decorative only. Sparse, slow, low-contrast by design.
-   Degrades to the plain navy hero if anything here fails. */
-(function () {
-  var booted = false;
-  function boot() {
-  if (booted || window.innerWidth < 900) return; /* no animation on mobile; re-armed on resize */
-  booted = true;
-  try {
-    var canvas = document.getElementById('node-field');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    var GOLD = '201, 168, 76';
-    var N = 18, LINK = 170, nodes = [], w = 0, h = 0, dpr = 1;
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var running = false, raf = 0, visible = true, onscreen = true;
-
-    function size() {
-      var host = canvas.parentElement.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = host.width; h = host.height;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function seed() {
-      nodes = [];
-      for (var i = 0; i < N; i++) {
-        nodes.push({ x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
-          r: 1.2 + Math.random() * 1.6 });
-      }
-    }
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      for (var i = 0; i < N; i++) {
-        for (var j = i + 1; j < N; j++) {
-          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d < LINK) {
-            ctx.strokeStyle = 'rgba(' + GOLD + ',' + (0.10 * (1 - d / LINK)).toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
-          }
-        }
-      }
-      for (var k = 0; k < N; k++) {
-        ctx.fillStyle = 'rgba(' + GOLD + ',0.32)';
-        ctx.beginPath(); ctx.arc(nodes[k].x, nodes[k].y, nodes[k].r, 0, 6.2832); ctx.fill();
-      }
-    }
-    function step() {
-      for (var i = 0; i < N; i++) {
-        var n = nodes[i];
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < -10) n.x = w + 10; if (n.x > w + 10) n.x = -10;
-        if (n.y < -10) n.y = h + 10; if (n.y > h + 10) n.y = -10;
-      }
-      draw();
-      raf = requestAnimationFrame(step);
-    }
-    function setRunning(want) {
-      want = want && !reduced && visible && onscreen;
-      if (want && !running) { running = true; raf = requestAnimationFrame(step); }
-      if (!want && running) { running = false; cancelAnimationFrame(raf); }
-    }
-    size(); seed(); draw(); /* one static frame always, which is the whole reduced-motion state */
-    if (!reduced) {
-      document.addEventListener('visibilitychange', function () { visible = !document.hidden; setRunning(true); });
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) { onscreen = es[0].isIntersecting; setRunning(true); }, { threshold: 0 }).observe(canvas);
-      }
-      window.addEventListener('resize', function () { size(); seed(); draw(); });
-      setRunning(true);
-    }
-  } catch (e) { /* decorative only, fail to the plain hero */ }
-  }
-  boot();
-  window.addEventListener('resize', boot);
-})();
-</script>
+<script src="node-field.js" defer></script>
 
 </body>
 </html>

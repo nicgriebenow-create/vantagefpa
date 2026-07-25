@@ -31,21 +31,28 @@
   /* Tuning. The field is meant to read as a quiet system running underneath
      the page, never a screensaver. Life comes from links forming, easing in,
      dissolving, and the occasional pulse traveling an active link. Drift
-     speed stays close to the original restrained build on purpose. */
+     speed stays close to the original restrained build on purpose.
+     Retuned 2026-07-25 per Nic: more CONNECTION ACTIVITY, not more speed.
+     The knobs that moved are heading wander (TURN_RATE, curves the paths so
+     pair distances churn and links form and break more often at the same
+     drift speed), link ease (events resolve visibly instead of cross-fading
+     below notice), link reach (a few more pairs in play), and pulse cadence
+     (the clearest work-is-happening cue). Drift speed and both alpha
+     ceilings are untouched, which is where the restraint lives. */
   var MIN_VIEWPORT = 900;      /* px, below this nothing runs at all */
   var GOLD = '201, 168, 76';
   var DENSITY = 26000;         /* px^2 of hero per node */
   var N_MIN = 16, N_MAX = 28;
-  var LINK_DIST = 170;         /* px, link forms inside this distance */
+  var LINK_DIST = 185;         /* px, link forms inside this distance */
   var LINK_ALPHA = 0.12;       /* peak link alpha at zero distance */
-  var LINK_EASE = 0.004;       /* per-ms approach rate, so links fade in and out */
+  var LINK_EASE = 0.006;       /* per-ms approach rate, so links fade in and out */
   var NODE_ALPHA = 0.32;
   var SPEED_MIN = 4, SPEED_MAX = 9;   /* px per second */
-  var TURN_RATE = 1.1;         /* rad per second of heading wander, curved paths */
+  var TURN_RATE = 1.8;         /* rad per second of heading wander, curved paths */
   var PULSE_ALPHA = 0.42;      /* peak alpha of a traveling pulse dot */
-  var PULSE_MIN_GAP = 1900;    /* ms between pulse launches, plus jitter */
-  var PULSE_JITTER = 2400;
-  var PULSE_MAX = 2;           /* concurrent pulses per field */
+  var PULSE_MIN_GAP = 1100;    /* ms between pulse launches, plus jitter */
+  var PULSE_JITTER = 1600;
+  var PULSE_MAX = 3;           /* concurrent pulses per field */
   var PULSE_DUR_MIN = 1500, PULSE_DUR_JITTER = 700; /* ms of travel time */
   var DPR_CAP = 2;
 
