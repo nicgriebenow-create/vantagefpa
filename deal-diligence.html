@@ -40,7 +40,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -476,7 +476,7 @@
   function render() {
     var broken = [];
     MONTHS.forEach(function (m, i) {
-      var fails = identities(i).filter(function (x) { return Math.abs(x.residual) > TOL; });
+      var fails = identities(i).filter(function (x) { return !(Math.abs(x.residual) <= TOL); });
       var cell = document.getElementById('pc-verdict-' + i);
       if (fails.length === 0) {
         cell.innerHTML = '<span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.1em; padding:6px 12px; border-radius:3px; background: rgba(201,168,76,0.15); color: #7a6320;">RECONCILED</span>';
@@ -496,9 +496,14 @@
         html += '<div style="background: var(--white); border: 1px solid var(--gray-100); border-left: 2px solid #a03030; padding: 24px 28px; margin-bottom: 16px;">' +
           '<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #a03030; margin-bottom: 10px;">Review register &middot; ' + bk.month + '</div>';
         bk.fails.forEach(function (f) {
-          html += '<p style="font-size: 14px; color: var(--gray-600); line-height: 1.7; margin: 0 0 8px 0;">' + f.name + ' fails by ' + fmt(Math.abs(f.residual)) + '.</p>';
+          var mag = Math.abs(f.residual);
+          if (isFinite(mag)) {
+            html += '<p style="font-size: 14px; color: var(--gray-600); line-height: 1.7; margin: 0 0 8px 0;">' + f.name + ' fails by ' + fmt(mag) + '.</p>';
+          } else {
+            html += '<p style="font-size: 14px; color: var(--gray-600); line-height: 1.7; margin: 0 0 8px 0;">' + f.name + ' could not be checked. The entered figures do not produce a number the engine can evaluate.</p>';
+          }
         });
-        var allNine = bk.fails.every(function (f) { return Math.abs(Math.round(f.residual)) % 9 === 0; });
+        var allNine = bk.fails.every(function (f) { return isFinite(f.residual) && Math.abs(Math.round(f.residual)) % 9 === 0; });
         if (allNine) {
           html += '<p style="font-size: 13px; color: var(--gray-400); line-height: 1.7; margin: 8px 0 0 0;">The residual divides evenly by nine, which is the classic signature of two digits swapped in keying. The engine surfaces that hint with the finding. Look at the February closing figures above and try swapping two digits back.</p>';
         }
@@ -530,6 +535,6 @@
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
 </script>
-
+
 </body>
 </html>
