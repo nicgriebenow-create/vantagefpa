@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Vantage Verifies Every Number | Vantage FP&A</title>
-<meta name="description" content="Deterministic builds, an automatic QC gate on every build, an independent adversarial review dispatched separately, and workbooks you can audit down to the cell.">
+<title>How Verification Works | Vantage FP&A</title>
+<meta name="description" content="Deterministic builds and a QC gate that runs automatically on every build. Adversarial review is dispatched separately, and you can trace a figure to the cell.">
 <link rel="canonical" href="https://vantagefpa.com/verification.html">
 <link rel="icon" type="image/png" href="vantage_favicon_32.png">
 <link rel="apple-touch-icon" href="vantage_appletouch_180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vantage FP&A">
 <meta property="og:title" content="How Verification Works | Vantage FP&A">
-<meta property="og:description" content="Deterministic builds, a gate that runs automatically on every build, an independent review pass dispatched separately by a reviewer who did not build it, and a workbook you can trace to the cell yourself. No language model computes a number in your deliverables today.">
+<meta property="og:description" content="Deterministic builds, a gate that runs automatically on every build, a review pass dispatched separately to a reviewer who did not build it, and a workbook you can trace to the cell yourself. No language model computes a number in your deliverables today.">
 <meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
 <meta property="og:url" content="https://vantagefpa.com/verification.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,14 +50,14 @@
         {
           "@type": "Question",
           "name": "Is this a CPA firm engagement?",
-          "acceptedAnswer": {"@type": "Answer", "text": "No. Vantage FP&A LLC is not a CPA firm and performs no attest services. Deliverables are not an audit, review, examination, or compilation, and carry no opinion or assurance."}
+          "acceptedAnswer": {"@type": "Answer", "text": "No. Vantage FP&A LLC is not a CPA firm and performs no attest services. Deliverables are not an audit, review, examination, compilation, or attest engagement, and carry no opinion or assurance."}
         }
       ]
     }
   ]
 }
 </script>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -122,7 +122,7 @@
       <div class="why-row">
         <div class="why-row-num">01</div>
         <div class="why-row-body">
-          <div class="why-row-title">Deterministic Builds, Auditable to the Cell</div>
+          <div class="why-row-title">Deterministic Builds, Traceable to the Cell</div>
           <p class="why-row-desc">Every figure is produced by code that returns the same answer on the same inputs. Run the same package twice and the numbers are identical, because nothing in the path depends on sampling, on temperature, or on a model's judgment. Open any workbook and trace a number back to its source. Nothing is a black box, and nothing depends on a model's judgment to be right.</p>
         </div>
       </div>
@@ -130,14 +130,14 @@
         <div class="why-row-num">02</div>
         <div class="why-row-body">
           <div class="why-row-title">A Deterministic Gate First, an Adversary Second</div>
-          <p class="why-row-desc">The deterministic checks run automatically on every build, and a build does not leave the shop until it clears them. They test structure rather than opinion, things like whether every tab that should exist exists, whether any cell carries an error value, whether the levers are wired to the schedules they claim to drive. On top of that, a separate review pass whose only job is to find what is wrong with the package runs independently, handled by a reviewer that did not build it. Today that adversarial review is dispatched rather than fired by the build, and closing that loop is on the roadmap.</p>
+          <p class="why-row-desc">The deterministic checks run automatically on every build, and the gate fails a build that does not clear them. They test structure rather than opinion, things like whether every tab that should exist exists, whether any cell carries an error value, whether the levers are wired to the schedules they claim to drive. On top of that, a separate review pass whose only job is to find what is wrong with the package is handled by a reviewer that did not build it, independent of the build rather than an independent third party. Today that adversarial review is dispatched rather than fired by the build, and closing that loop is on the roadmap.</p>
         </div>
       </div>
       <div class="why-row">
         <div class="why-row-num">03</div>
         <div class="why-row-body">
           <div class="why-row-title">No Language Model Touches Your Numbers Today</div>
-          <p class="why-row-desc">Agentic AI built the system and maintains it. The figures and the commentary in your deliverables are both produced by deterministic code, and no model computes, alters, or writes a number in what you receive. The narrative in a board pack is templated off the same pipeline figures the tabs are built from, so the words and the numbers cannot drift apart.</p>
+          <p class="why-row-desc">Agentic AI built the system and maintains it. The figures and the commentary in your deliverables are both produced by deterministic code, and no model computes, alters, or writes a number in what you receive. The narrative in a board pack is templated off the same pipeline figures the tabs are built from.</p>
         </div>
       </div>
     </div>
@@ -152,7 +152,7 @@
         <div class="section-eyebrow">Evidence</div>
         <h2 class="section-title">The package testifies against itself</h2>
       </div>
-      <p class="section-desc">Architecture claims are cheap, so here is the deliverable itself. Two regions cropped from the published sample-data specimen, exactly as a client receives them.</p>
+      <p class="section-desc">Architecture claims are cheap, so here is the deliverable itself. Two regions cropped from the published sample-data specimen, exactly as it is delivered.</p>
     </div>
     <div class="services-grid cols-2">
       <div class="service-card">
@@ -171,10 +171,10 @@
           <img src="specimen_scope_table_SAMPLE_DATA.png" alt="Scope table from the sample-data specimen listing workstreams not performed, their status, and what would close each one" style="max-width: 100%; height: auto; display: block; border: 1px solid var(--gray-100); border-radius: 3px;">
           <figcaption style="font-size: 12px; color: var(--gray-400); margin-top: 8px;">Sample data. No client, no engagement, no real company.</figcaption>
         </figure>
-        <p class="service-desc">Every draft names the diligence workstreams it did not perform, why, and what would close each one, on the summary page. The table cannot quietly go missing, because the build fails without it.</p>
+        <p class="service-desc">Every draft names the diligence workstreams it did not perform, why, and what would close each one, on the summary page. The build fails without that table.</p>
       </div>
     </div>
-    <p class="section-desc" style="margin-top: 40px;">The third proof is one you run yourself. <a href="deal-diligence.html#walkthrough" class="card-link">Walk the four proof-of-cash checks on sample figures</a>, break one, and watch the register catch it.</p>
+    <p class="section-desc" style="margin-top: 40px;">The third proof is one you run yourself. <a href="deal-diligence.html#walkthrough" class="card-link">Walk the proof-of-cash checks on sample figures</a>, break one, and read what the register says.</p>
   </div>
 </section>
 
@@ -186,7 +186,7 @@
         <div class="section-eyebrow">Check It Yourself</div>
         <h2 class="section-title">What to do with the file when it lands</h2>
       </div>
-      <p class="section-desc">Every deliverable arrives as a formula-driven, self-contained workbook. That is a deliberate design choice, because a package you cannot check is a package you have to believe. Three things to try in the first five minutes.</p>
+      <p class="section-desc">Deliverables arrive as formula-driven, self-contained workbooks. That is a deliberate design choice, because a package you cannot check is a package you have to believe. Three things to try in the first five minutes.</p>
     </div>
     <div class="services-grid">
       <div class="service-card" style="background: var(--off-white);">
@@ -199,7 +199,7 @@
         </svg>
         <div class="service-tag">Step One</div>
         <div class="service-name">Click Any Number</div>
-        <p class="service-desc">Pick the figure you trust least and click it. The formula bar shows the equation that produced it and the cells it points at. There is no hardcoded value sitting where a calculation should be, and the QC gate fails a build that ships one.</p>
+        <p class="service-desc">Pick the figure you trust least and click it. The formula bar shows the equation that produced it and the cells it points at. The QC gate fails a build that ships a hardcoded value where a calculation belongs.</p>
       </div>
       <div class="service-card" style="background: var(--off-white);">
         <svg class="service-icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -263,7 +263,7 @@
 <section class="cta-band">
   <div class="section-inner cta-band-inner">
     <div>
-      <div class="cta-band-title">The fastest way to test this is to make us prove a number</div>
+      <div class="cta-band-title">The fastest way to test this is to make us walk a number</div>
       <p class="cta-band-desc">Bring a figure you already know the answer to and we will walk the trace on a call. It is also worth reading how the same architecture runs on <a href="deal-diligence.html">a live deal</a> or on <a href="reporting.html">a monthly close</a>.</p>
     </div>
     <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Call</a>
@@ -289,6 +289,6 @@
 
 <script src="nav.js"></script>
 <script src="node-field.js" defer></script>
-
+
 </body>
 </html>
