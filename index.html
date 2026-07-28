@@ -82,22 +82,26 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* LAUNCHER. The ground is navy rather than the solid gold it shipped as,
-   because the avatar carries a gold ring and a gold ring on a gold pill does
-   not read as a ring at all. The 3px radius, the shadow and the type scale
-   are the site's own and are left alone, so the ground and the label are the
-   only things about this element that move. */
+/* LAUNCHER. Navy ground, not the solid gold it shipped as, because the
+   avatar carries a gold ring and a gold ring on a gold pill does not read
+   as a ring at all; navy over gold was checked on a rendered comparison and
+   is closed. The pill was built to carry two lines under the mark; the
+   identifying sub-line now lives only in the panel header
+   (.vfpa-assist-idline), so this button carries her name alone on one line,
+   and the radius and padding are re-cut for that: 9px rather than 3px, and
+   padding that centers a single line against the mark instead of stacking
+   two under it. */
 .vfpa-assist-toggle {
   display: inline-flex;
   align-items: center;
   gap: var(--s-12);
-  background: var(--navy-mid);
+  background: var(--navy);
   color: var(--off-white);
   /* --gold at 35 percent. See the alpha note in the file header. */
   border: 1px solid rgba(201, 168, 76, 0.35);
-  border-radius: 3px;
-  padding: var(--s-4) var(--s-24) var(--s-4) var(--s-4);
-  font-size: var(--t-13);
+  border-radius: 9px;
+  padding: var(--s-12) 20px var(--s-12) 14px;
+  font-size: var(--t-14);
   font-weight: 600;
   letter-spacing: 0.01em;
   cursor: pointer;
@@ -122,17 +126,6 @@
   line-height: var(--lh-snug);
 }
 
-/* The identifying line sits on the button itself, so what she is arrives
-   before the click rather than after it. */
-.vfpa-assist-toggle-sub {
-  display: block;
-  font-weight: 400;
-  font-size: var(--t-11);
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  line-height: var(--lh-tight);
-}
-
 /* THE PANEL IS A THREE PART COLUMN, not a scrolling block with padding. The
    header and the input row are fixed; only the thread between them scrolls,
    which is what keeps her name and the identification line on screen while a
@@ -144,7 +137,34 @@
   right: 0;
   bottom: calc(100% + var(--s-12));
   width: min(360px, calc(100vw - var(--s-48)));
-  max-height: min(520px, calc(100vh - 140px));
+  /* THE 140px RESERVE, MEASURED, NOT GUESSED. This budget exists so the
+     panel's own overflow:hidden below never has to clip a child: it has to
+     leave enough room, below the panel, for the launcher pill this panel
+     sits above (`bottom: calc(100% + var(--s-12))` puts the panel's own
+     bottom edge var(--s-12) above the pill's top edge, so the pill's full
+     box height is part of what has to be reserved, not an incidental
+     detail).
+
+     The pill's rendered height, measured live off the current
+     .vfpa-assist-toggle (42px avatar, the tallest of its two flex
+     children, plus var(--s-12) top and bottom padding, plus its 1px top
+     and bottom border): 42px + (var(--s-12) * 2) + 2px = 68px. That is
+     the number that changed when the pill went from a two-line label to
+     the one-line mark-plus-name it is today; the reserve below is written
+     as a calc against the real box so the next time that pill's height
+     moves, this reserve moves with it instead of quietly going stale
+     again.
+
+     Reserve = pill height (68px, the calc above) + the var(--s-12) gap the
+     panel keeps above the pill + the var(--s-24) this widget sits off the
+     viewport bottom at (`.vfpa-assist { bottom: var(--s-24) }`) + 36px of
+     top breathing room above the panel itself, so the panel never renders
+     flush against the very top of a short viewport. 68 + 12 + 24 + 36 =
+     140px, the same number this replaces; measured against the live
+     render at 320px, 375px and desktop width, nothing in the panel clips
+     at any of the three, so the prior flat 140px was not currently wrong,
+     only fragile. This is the same value, self-updating. */
+  max-height: min(520px, calc(100vh - (42px + (var(--s-12) * 2) + 2px) - var(--s-12) - var(--s-24) - 36px));
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -182,10 +202,11 @@
   font-size: var(--t-11);
   font-weight: 700;
   letter-spacing: 0.16em;
-  color: var(--gold);
+  color: var(--gold-light);
   line-height: 1;
   padding: var(--s-4) var(--s-8);
   border-radius: 2px;
+  background: var(--navy);
   /* --gold at 45 percent. See the alpha note in the file header. */
   border: 1px solid rgba(201, 168, 76, 0.45);
 }
@@ -281,9 +302,39 @@
   color: var(--gray-400);
 }
 
+/* AUTO-GROWING TEXTAREA, not an <input>. widget.js owns the inline height
+   (collapse to auto, then measure scrollHeight on every "input" event) and
+   the Enter-to-send / Shift+Enter-for-newline keydown handling; this rule
+   owns everything that makes that JS behave: resize:none so a visitor can
+   never drag-resize the box and break the row's layout, overflow-y:auto so
+   text keeps scrolling internally once growth hits the cap below, and an
+   explicit line-height so the cap has a fixed number to be computed from
+   rather than whatever the browser's UA default happens to be.
+
+   line-height IS WRITTEN AS A WHOLE PIXEL, 16px, NOT the raw --lh-tight
+   (1.15) * --t-14 (14px) product, which is 16.1px. That fractional value
+   shipped first and was wrong in a way computed style alone did not show:
+   getComputedStyle reported it faithfully as "16.1px", but 90.4px (4
+   lines of 16.1px, see the cap below) is not representable in Chromium's
+   internal 1/64px layout units (90.4 * 64 = 5785.6, not an integer), so
+   the rendered box came out 90.390625px, not 90.4px, confirmed on a live
+   render, 2026-07-28. On its own that's a hairline. Grown past the cap at
+   2x device pixel ratio it was NOT a hairline: two independent captures
+   (wCap/shots/final/input_long_question@2x.png,
+   input_fourline_cap@2x.png) show a fifth line sliced through the
+   glyphs, not merely hidden past the edge. 16px removes the fractional
+   input outright: 16, 4, 12 (--s-12) and the 1px border are all whole
+   numbers already, so every term of the cap below is an exact integer at
+   1x, 2x or 3x device pixel ratio, with nothing left for a layout engine
+   to round. Resting height also comes out cleaner for it: padding
+   (--s-12 top and bottom, 12px each) + border (1px top, 1px bottom) + one
+   16px line = 42px exactly, not 42.1px, matching the old single-line
+   <input>'s rendered height (42px) on the nose rather than within a
+   rounding hair of it. */
 .vfpa-assist-input {
   font-family: 'Inter', sans-serif;
   font-size: var(--t-14);
+  line-height: 16px;
   color: var(--text);
   background: var(--off-white);
   border: 1px solid var(--gray-100);
@@ -291,6 +342,38 @@
   padding: var(--s-12);
   flex: 1 1 auto;
   min-width: 0;
+  resize: none;
+  overflow-y: auto;
+  /* THE FOUR-LINE CAP. widget.js sets the inline height from scrollHeight
+     on every keystroke with nothing capping it on the JS side; this
+     max-height is the only thing that stops a long question from growing
+     the textarea, and through it the whole panel, without bound.
+
+     CSS clips scrollable overflow AT THE PADDING EDGE, not the content
+     edge. That is the whole reason the first version of this cap (4
+     lines + BOTH the top and bottom padding + the border) still sliced a
+     fifth line through its glyphs even after the fractional-line-height
+     bug above was fixed with clean integers: padding-bottom is INSIDE the
+     visible, scrollable region, not a safety margin sitting below it, so
+     text scrolls straight through it rather than stopping at the content
+     box's own bottom edge. Only two things are ever truly outside the
+     text-visible area: padding-top (text starts flush at the content
+     box's top-left, which sits padding-top below the scrollport's own
+     top edge, so nothing ever renders there) and the border (fully
+     outside the padding box on both sides). padding-bottom is not one of
+     them, and must not be added a second time here.
+
+     So the cap is 4 line-boxes (the only thing that should be visible)
+     plus ONE var(--s-12) (padding-top, the one genuinely dead strip)
+     plus the 2px border (1px top + 1px bottom, also genuinely dead):
+     4 * 16px + var(--s-12) + 2px = 64 + 12 + 2 = 78px. Confirmed against
+     a live render past the cap: content-box height 52px + the 12px
+     padding-bottom that is actually visible = 64px = exactly 4 line
+     boxes, zero remainder, so no partial line can render at the
+     boundary. padding stays symmetric (--s-12 on all four sides, not
+     zeroed on the bottom) because an asymmetric bottom padding reads
+     worse at rest than a slightly shorter cap does. */
+  max-height: calc(4 * 16px + var(--s-12) + 2px);
 }
 
 .vfpa-assist-input:focus-visible {
@@ -522,10 +605,28 @@
   display: block;
   border-radius: 50%;
   flex: none;
+  /* Ring weight, one number for every place the ring is drawn: the
+     box-shadow fallback below, both mask stops on .vfpa-av-ring, and both
+     mask stops on .vfpa-av-spec. Raised from the 2px the ring shipped at
+     because a navy disc on the navy launcher pill has no separation from
+     the ground behind it except the ring; this is the compensation, not
+     the fill choice, which is why it lives here as a single lever rather
+     than four hand-matched numbers. */
+  --av-ring-w: 3px;
 }
 
-.vfpa-av-46 { width: 46px; height: 46px; }
+.vfpa-av-46 { width: 46px; height: 46px; --av-ring-w: 2.76px; }
 .vfpa-av-96 { width: 96px; height: 96px; }
+/* The launcher mark, 42px. Its own size class rather than a repurposed
+   vfpa-av-46: widget.js still creates a vfpa-av-46 avatar for each message
+   bubble in the thread, so that class stays 46px and untouched, and the
+   launcher gets a class whose number means what it says.
+   --av-ring-w overridden here, not to draw a CSS ring (the launcher drops
+   that span; see .vfpa-av-mono below) but so .vfpa-av-spec's mask, which
+   is still shared with the panel, lands on the true ring band the SVG
+   stroke draws at this size: r=44 to r=50 of a 100-unit viewBox scaled to
+   a 42px frame is 6/50 of a 21px radius, 2.52px. */
+.vfpa-av-42 { width: 42px; height: 42px; --av-ring-w: 2.52px; }
 
 /* The ground is the deepest layer and it is never empty, which is what keeps
    any state of this component from showing a hole where a face should be. */
@@ -555,21 +656,29 @@
   border-radius: 50%;
 }
 
-/* THE MONOGRAM, INVERTED. A gold disc with the V in navy on top, rather
-   than gold strokes on a navy ground. Same path, same stroke weight, same
-   pip; only the fills swapped, so this is an inversion and not a redraw.
-   The reason it had to change: the ring, the ground and the strokes were
-   three gold-on-navy elements stacked inside each other, and thin gold
-   lines on dark inside a gold ring read as an empty ring rather than as a
-   mark.
+/* THE MONOGRAM, RIGHT WAY ROUND, WITH THE RING BUILT IN. A navy disc with
+   the V in gold on top, matching the ground and the ring instead of
+   inverting them. The pip that used to sit beneath the V is gone from the
+   markup entirely, not hidden: it was a presence dot on a widget that is
+   never present.
 
-   ONE TREATMENT, BOTH GROUNDS, CHECKED. It appears on the navy launcher
-   pill and on the light bubble ground in the thread. The disc is inset to
-   64 percent of the circle, so the navy ground stays visible as a gap
-   between the disc and the ring in both places: on navy the gap is
-   invisible and the disc reads against the pill, on the light bubble the
-   navy ring of ground is what separates the gold disc from the light
-   background. Neither placement needs its own rule. */
+   THE RING IS AN SVG STROKE ON THE DISC NOW, not a CSS layer floating
+   above it at a computed distance. r=47 with a 6-wide stroke centred on
+   that radius spans r=44 to r=50, exactly filling the 100-unit viewBox,
+   and .vfpa-av-mono-svg is sized to 100 percent of the frame so the SVG
+   edge IS the frame edge. That is what "sits against the ring" means now:
+   the ring is drawn as part of the disc, not inset from one.
+
+   THIS RETIRES THE CSS RING ON THE LAUNCHER ONLY. The launcher avatar has
+   no photo layer, so the SVG stroke was always going to be its only ring;
+   its markup drops the .vfpa-av-ring span so the CSS ring below does not
+   draw a second one on top of the SVG's. .vfpa-av-spec stays on the
+   launcher so the hover shine still plays, with --av-ring-w overridden on
+   .vfpa-av-42 (above) so its mask lands on the true 44-50 band instead of
+   the panel's ring width. THE PANEL KEEPS .vfpa-av-ring AND .vfpa-av-spec
+   exactly as they were: there the ring wraps a real photograph, which the
+   SVG stroke does not reach, and the CSS ring is still the one doing that
+   job at that layer. */
 .vfpa-av-mono {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
@@ -578,20 +687,24 @@
   justify-content: center;
 }
 
-.vfpa-av-mono-svg { display: block; width: 64%; height: 64%; }
-.vfpa-av-mono-disc { fill: var(--gold); }
-.vfpa-av-mono-v { stroke: var(--navy); }
-.vfpa-av-mono-pip { fill: var(--navy); }
+.vfpa-av-mono-svg { display: block; width: 100%; height: 100%; }
+.vfpa-av-mono-disc { fill: var(--navy); stroke: var(--gold); }
+.vfpa-av-mono-v { stroke: var(--gold); }
 
 /* The ring. A plain bordered circle by default, so a browser without mask
    support gets a correct gold ring rather than a gold disc over the face,
    and the conic version with the specular segment is layered on only where
-   the mask that keeps it a ring is actually supported. */
+   the mask that keeps it a ring is actually supported. Thickness comes
+   from --av-ring-w (declared on .vfpa-av above) everywhere below, so one
+   number moves the fallback border and both masked versions together.
+   PANEL ONLY as of the SVG-embedded ring above: the launcher's markup no
+   longer includes the .vfpa-av-ring span at all, because the monogram's
+   own stroke is its ring now. */
 .vfpa-av-ring {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   border-radius: 50%;
-  box-shadow: inset 0 0 0 2px var(--gold);
+  box-shadow: inset 0 0 0 var(--av-ring-w) var(--gold);
 }
 
 .vfpa-av-spec { display: none; }
@@ -601,8 +714,8 @@
     box-shadow: none;
     background: conic-gradient(from 240deg,
       var(--gold) 0deg, var(--gold-light) 40deg, var(--gold) 110deg, var(--gold) 360deg);
-    -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 2.4px), #000 calc(100% - 2px));
-    mask: radial-gradient(closest-side, transparent calc(100% - 2.4px), #000 calc(100% - 2px));
+    -webkit-mask: radial-gradient(closest-side, transparent calc(100% - var(--av-ring-w) - 0.4px), #000 calc(100% - var(--av-ring-w)));
+    mask: radial-gradient(closest-side, transparent calc(100% - var(--av-ring-w) - 0.4px), #000 calc(100% - var(--av-ring-w)));
   }
 
   .vfpa-av-spec {
@@ -614,8 +727,8 @@
     /* --gold-light at 95 percent. See the alpha note in the file header. */
     background: conic-gradient(from 0deg,
       transparent 0deg 20deg, rgba(232, 201, 122, 0.95) 42deg, transparent 64deg 360deg);
-    -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 2.6px), #000 calc(100% - 2.2px));
-    mask: radial-gradient(closest-side, transparent calc(100% - 2.6px), #000 calc(100% - 2.2px));
+    -webkit-mask: radial-gradient(closest-side, transparent calc(100% - var(--av-ring-w) - 0.6px), #000 calc(100% - var(--av-ring-w) - 0.2px));
+    mask: radial-gradient(closest-side, transparent calc(100% - var(--av-ring-w) - 0.6px), #000 calc(100% - var(--av-ring-w) - 0.2px));
     animation: vfpa-av-specdrift 14s linear infinite;
   }
 }
@@ -708,10 +821,9 @@
 <!-- HERO -->
 <section class="hero" data-node-field>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Agentic AI Diligence &amp; Reporting</div>
-    <h1>We prove the numbers. You <em>make the call.</em></h1>
-    <p class="hero-sub">Every number is computed by a deterministic engine and traces back to its source. No language model touches a numeric path today. Agentic AI does the finance work around that engine, the same inputs return the same outputs on every run, and one intake feeds every deliverable. The same verified engine stands behind a monthly board pack, a rolling forecast, a covenant check, a sell-side readiness review, and a quality-of-earnings package.</p>
-    <p class="hero-line">The machine detects and proves. A person decides.</p>
+    <h1>Board reporting and quality-of-earnings support.</h1>
+    <p class="hero-sub">Every figure traces back to the source it came from.</p>
+    <p class="hero-line">One engine behind every deliverable, and an independent pass checks the output before it goes out the door.</p>
     <div class="hero-actions">
       <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="btn-primary">Schedule a Consultation</a>
       <a href="verification.html" class="btn-ghost">See how verification works</a>
@@ -755,7 +867,10 @@
         <div class="section-eyebrow">Where to Start</div>
         <h2 class="section-title">Three doors into the same engine</h2>
       </div>
-      <p class="section-desc">One build, pointed at whichever problem is live right now. A buyer underwriting a target, a founder getting the numbers ready before a process starts, or a company that needs a close cycle and a board pack it can stand behind every month.</p>
+      <div>
+        <p class="section-desc">One build, pointed at whichever problem is live right now. A buyer underwriting a target, a founder getting the numbers ready before a process starts, or a company that needs a close cycle and a board pack it can stand behind every month.</p>
+        <p class="section-desc" style="margin-top: var(--s-24);">Every number is computed by a deterministic engine and traces back to its source. No language model touches a numeric path today. Agentic AI does the finance work around that engine, the same inputs return the same outputs on every run, and one intake feeds every deliverable. The same verified engine stands behind a monthly board pack, a rolling forecast, a covenant check, a sell-side readiness review, and a quality-of-earnings package.</p>
+      </div>
     </div>
     <div class="services-grid">
       <div class="service-card">
@@ -863,13 +978,12 @@
 <!-- VFPA-SITE-ASSIST WIDGET START, generated by widget/build_widget.py, do not hand edit -->
 <div class="vfpa-assist" id="vfpa-assist">
   <button type="button" class="vfpa-assist-toggle" aria-expanded="false" aria-controls="vfpa-assist-panel">
-    <span class="vfpa-av vfpa-av-46" aria-hidden="true">
+    <span class="vfpa-av vfpa-av-42" aria-hidden="true">
       <span class="vfpa-av-ground"></span>
-      <span class="vfpa-av-mono"><svg class="vfpa-av-mono-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="vfpa-av-mono-disc" cx="50" cy="50" r="50"></circle><path class="vfpa-av-mono-v" d="M28,32 L50,74 L72,32" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path><circle class="vfpa-av-mono-pip" cx="50" cy="84" r="3.4"></circle></svg></span>
-      <span class="vfpa-av-ring"></span>
+      <span class="vfpa-av-mono"><svg class="vfpa-av-mono-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="vfpa-av-mono-disc" cx="50" cy="50" r="47" stroke-width="6"></circle><path class="vfpa-av-mono-v" d="M28,32 L50,74 L72,32" fill="none" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
       <span class="vfpa-av-spec"></span>
     </span>
-    <span class="vfpa-assist-toggle-label">Ask Vannessa<small class="vfpa-assist-toggle-sub">VANTAGE ASSISTANT</small></span>
+    <span class="vfpa-assist-toggle-label">Ask Vannessa</span>
   </button>
   <div class="vfpa-assist-panel" id="vfpa-assist-panel" hidden>
     <div class="vfpa-assist-panel-head">
@@ -882,7 +996,7 @@
       <div class="vfpa-assist-head-main">
         <span class="vfpa-av vfpa-av-96 vfpa-av--loading" id="vfpa-assist-avatar" aria-hidden="true">
           <span class="vfpa-av-ground"></span>
-          <span class="vfpa-av-mono"><svg class="vfpa-av-mono-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="vfpa-av-mono-disc" cx="50" cy="50" r="50"></circle><path class="vfpa-av-mono-v" d="M28,32 L50,74 L72,32" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path><circle class="vfpa-av-mono-pip" cx="50" cy="84" r="3.4"></circle></svg></span>
+          <span class="vfpa-av-mono"><svg class="vfpa-av-mono-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="vfpa-av-mono-disc" cx="50" cy="50" r="47" stroke-width="6"></circle><path class="vfpa-av-mono-v" d="M28,32 L50,74 L72,32" fill="none" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
           <span class="vfpa-av-photo"><img class="vfpa-av-img" id="vfpa-assist-photo" src="vannessa_s96@2x.png" srcset="vannessa_s64@2x.png 128w, vannessa_s96@2x.png 192w, vannessa_panel@2x.png 384w" sizes="(max-width: 560px) 64px, 96px" width="96" height="96" alt="" decoding="async" loading="lazy"></span>
           <span class="vfpa-av-ring"></span>
           <span class="vfpa-av-spec"></span>
@@ -895,7 +1009,7 @@
     <form class="vfpa-assist-form">
       <label class="vfpa-assist-label" for="vfpa-assist-input">Your question</label>
       <div class="vfpa-assist-inputrow">
-        <input type="text" class="vfpa-assist-input" id="vfpa-assist-input" autocomplete="off" maxlength="240" placeholder="Ask about scope, timeline, or how a deliverable works">
+        <textarea class="vfpa-assist-input" id="vfpa-assist-input" rows="1" maxlength="240" placeholder="Ask about scope"></textarea>
         <button type="submit" class="vfpa-assist-submit">Ask</button>
       </div>
     </form>
@@ -998,7 +1112,7 @@
   var CAPTURE_MIN_ASK_INTERVAL_MS = 1500;
 
   // Hard client-side cap on the question text that leaves the page. The
-  // input carries maxlength 240, so this only ever bites a value set by
+  // textarea carries maxlength 240, so this only ever bites a value set by
   // something other than typing. The Apps Script caps again on its side.
   var CAPTURE_MAX_QUESTION_CHARS = 500;
 
@@ -2306,24 +2420,18 @@
     disc.setAttribute("class", "vfpa-av-mono-disc");
     disc.setAttribute("cx", "50");
     disc.setAttribute("cy", "50");
-    disc.setAttribute("r", "50");
+    disc.setAttribute("r", "47");
+    disc.setAttribute("stroke-width", "6");
     svg.appendChild(disc);
 
     var v = document.createElementNS(SVG_NS, "path");
     v.setAttribute("class", "vfpa-av-mono-v");
     v.setAttribute("d", "M28,32 L50,74 L72,32");
     v.setAttribute("fill", "none");
-    v.setAttribute("stroke-width", "8");
+    v.setAttribute("stroke-width", "8.5");
     v.setAttribute("stroke-linecap", "round");
     v.setAttribute("stroke-linejoin", "round");
     svg.appendChild(v);
-
-    var pip = document.createElementNS(SVG_NS, "circle");
-    pip.setAttribute("class", "vfpa-av-mono-pip");
-    pip.setAttribute("cx", "50");
-    pip.setAttribute("cy", "84");
-    pip.setAttribute("r", "3.4");
-    svg.appendChild(pip);
 
     var wrap = el("span", "vfpa-av vfpa-av-46 vfpa-assist-msg-av");
     wrap.setAttribute("aria-hidden", "true");
@@ -2331,7 +2439,6 @@
     var mono = el("span", "vfpa-av-mono");
     mono.appendChild(svg);
     wrap.appendChild(mono);
-    wrap.appendChild(el("span", "vfpa-av-ring"));
     wrap.appendChild(el("span", "vfpa-av-spec"));
     return wrap;
   }
@@ -2894,6 +3001,49 @@
       }
     });
 
+    // AUTO-GROW. The textarea starts at one row; CSS owns the base height,
+    // line-height, padding, resize:none, overflow-y:auto and the max-height
+    // that caps growth at roughly four lines. This listener owns only the
+    // inline height, and the whole algorithm is these two lines: collapse
+    // first so a shrinking value can shrink the box, then measure. CSS
+    // max-height clamps whatever height results, so no line count is
+    // computed or hardcoded here. Growth must push the thread up rather than
+    // overlay it, and the newest message must stay in view, so the thread is
+    // re-pinned to newest after every resize.
+    input.addEventListener("input", function () {
+      input.style.height = "auto";
+      input.style.height = input.scrollHeight + "px";
+      scrollThread(threadNode);
+    });
+
+    // ENTER SENDS, SHIFT+ENTER INSERTS A NEWLINE. Routed through the same
+    // submit path a click on Ask uses (requestSubmit where available, a real
+    // bubbling cancelable submit event as the fallback) so the existing
+    // submit listener runs exactly once and the empty-submit guard inside it
+    // still applies; nothing here duplicates that check. IME composition
+    // must never be intercepted: e.isComposing is the modern signal and
+    // keyCode 229 is the legacy one some browsers still fire on the Enter
+    // that closes a composition, so both are checked before treating Enter
+    // as a send.
+    input.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" || e.shiftKey || e.isComposing || e.keyCode === 229) {
+        return;
+      }
+      e.preventDefault();
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit();
+        return;
+      }
+      var submitEvent;
+      try {
+        submitEvent = new Event("submit", { bubbles: true, cancelable: true });
+      } catch (eventError) {
+        submitEvent = document.createEvent("Event");
+        submitEvent.initEvent("submit", true, true);
+      }
+      form.dispatchEvent(submitEvent);
+    });
+
     // THE PENDING REPLY. At most one is ever outstanding. If a second
     // question arrives while the dots are up, the first is FLUSHED, not
     // abandoned: its answer renders immediately and in order, and only then
@@ -2935,6 +3085,7 @@
       // this line, the question is on screen.
       appendVisitor(threadNode, question);
       input.value = "";
+      input.style.height = "";
       scrollThread(threadNode);
 
       var settled = false;
