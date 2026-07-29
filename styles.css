@@ -492,6 +492,14 @@ nav {
   margin-top: var(--s-40);
 }
 
+/* CATALOG STRIP, additive per Nic's 2026-07-29 homepage rework. The section
+   wrapper is the only new rule; the list reuses .service-bullets as-is. */
+.catalog-strip {
+  padding: var(--s-64) var(--s-48);
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+}
+
 /* CAPABILITY TAPE, full-bleed dulled gold ground, navy type, 45px per second,
    one row at every width. The ground is the house gold #C9A84C at full strength,
    which is the muted antique gold the bar carried before the six-page split, not
