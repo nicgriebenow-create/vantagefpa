@@ -2577,6 +2577,16 @@
   // frame as the question.
   var TYPING_MS = 500;
 
+  // How long each head-turn frame is held on screen before the next one.
+  var TURN_FRAME_MS = 70;
+
+  var TURN_IDLE_MS = 5000; // how long with no typing or sending before she turns back away
+
+  // The head-turn frames in play order: turn01 is her resting pose (angled
+  // away), turn12 is facing camera. Served from the same directory as the
+  // static avatar photograph the markup ships with.
+  var TURN_FRAMES = ["turn01_s96@2x.png", "turn05_s96@2x.png", "turn09_s96@2x.png", "turn12_s96@2x.png"];
+
   function toggleClassName(current, className, on) {
     var value = String(current || "");
     var padded = " " + value + " ";
@@ -2639,6 +2649,12 @@
   // this attribute, so this is the single line of presentation the machine
   // owns, and it stays a single line no matter how elaborate the visual
   // gets on the other side of it.
+  // Registered by initWidget once the head-turn controller exists. This is
+  // the seam the block comment above promises: returning to idle is decided
+  // here and only here, so the frame reset that accompanies it hangs off
+  // this one function rather than being wired into the machine's timers.
+  var attnIdleHook = null;
+
   function applyAttentionState(rootNode, state) {
     try {
       if (rootNode && typeof rootNode.setAttribute === "function") {
@@ -2648,6 +2664,14 @@
       // A root that will not carry an attribute is a page where the widget
       // is not really present. Attention is chrome; nothing above it fails
       // because of this, exactly like the photograph itself.
+    }
+    try {
+      if (state === ATTN_IDLE && typeof attnIdleHook === "function") {
+        attnIdleHook();
+      }
+    } catch (attnHookError) {
+      // A broken frame reset must never block the state attribute or an
+      // answer; she simply stays on whatever frame she was showing.
     }
   }
 
@@ -2793,6 +2817,212 @@
       // state this widget shipped in before any of it existed.
     }
     return attention;
+  }
+
+  // -----------------------------------------------------------------
+  // THE HEAD TURN
+  // -----------------------------------------------------------------
+  //
+  // The real frames the attention machine's block comment promised. She
+  // rests angled away (turn01), turns to face the camera when the visitor
+  // starts typing, holds there for the whole conversation, and after
+  // TURN_IDLE_MS with no typing or sending turns back to rest by playing
+  // the frames in reverse. Everything here is chrome: every entry
+  // point is a guarded no-op unless all four frames preloaded cleanly, so a
+  // missing file, a blocked request or a browser with no Image constructor
+  // leaves the static photograph exactly as it shipped and never touches an
+  // answer. The markup keeps vannessa_s96@2x.png as its src so a no-JS or
+  // failed-load visitor still sees a photo; only a successful preload of
+  // ALL four frames swaps her onto the animation set, and that swap also
+  // clears srcset/sizes ONCE, because a srcset left in place would let the
+  // browser re-pick a source and fight every src assignment after it.
+  function createHeadTurn(photoNode) {
+    var ready = false;
+    var disabled = false;
+    var warming = false;
+    var urls = [];
+    var keepWarm = []; // holds the preloaded Image objects so they stay cached
+    var timer = null;
+    var idleTimer = null; // pending turn-back-to-rest, armed by noteActivity
+    var index = 0; // the frame currently showing, so a turn can resume from anywhere
+
+    function cancelPlayback() {
+      if (timer === null) {
+        return;
+      }
+      try {
+        window.clearTimeout(timer);
+      } catch (clearError) {
+        // clearing a timer that already fired is harmless
+      }
+      timer = null;
+    }
+
+    function activate() {
+      try {
+        photoNode.removeAttribute("srcset");
+        photoNode.removeAttribute("sizes");
+        photoNode.src = urls[0];
+        ready = true;
+      } catch (activateError) {
+        disabled = true;
+      }
+    }
+
+    // Called on first panel open. Preloads all four frames; only when every
+    // one has arrived does the avatar move onto the animation set. Any
+    // failure disables the feature outright and permanently for this page
+    // view, leaving the original static image untouched.
+    function warm() {
+      if (ready || disabled || warming || !photoNode) {
+        return;
+      }
+      // REDUCED MOTION MEANS NO FRAMES AT ALL. She never turns for this
+      // visitor, and a resting pose that exists only to set up the turn
+      // would leave her angled away forever, which is a worse still image
+      // than the facing photograph the markup already ships. So the swap
+      // never happens: no preload, srcset and sizes stay, and animation is
+      // disabled for the page view exactly like the preload-failure path.
+      if (prefersReducedMotion()) {
+        disabled = true;
+        return;
+      }
+      warming = true;
+      try {
+        // The frames sit next to the static photograph, so the directory of
+        // the markup src (empty for the bare relative name it ships with) is
+        // the directory of every frame.
+        var raw = photoNode.getAttribute("src") || "";
+        var base = raw.slice(0, raw.lastIndexOf("/") + 1);
+        var remaining = TURN_FRAMES.length;
+        for (var i = 0; i < TURN_FRAMES.length; i += 1) {
+          urls.push(base + TURN_FRAMES[i]);
+        }
+        for (var j = 0; j < urls.length; j += 1) {
+          var img = new Image();
+          img.onload = function () {
+            if (disabled) {
+              return;
+            }
+            remaining -= 1;
+            if (remaining === 0) {
+              activate();
+            }
+          };
+          img.onerror = function () {
+            disabled = true;
+          };
+          img.src = urls[j];
+          keepWarm.push(img);
+        }
+      } catch (warmError) {
+        disabled = true;
+      }
+    }
+
+    // The turn itself, in either direction: step from wherever she is
+    // toward the target frame (turn12 forward, turn01 in reverse) and STAY
+    // there. One stepping loop, parameterised by direction; a new play
+    // always cancels any in-flight frame timer first, so animations never
+    // overlap and she is never left stranded mid-sequence.
+    function playTo(dir) {
+      if (!ready || disabled) {
+        return;
+      }
+      cancelPlayback();
+      var target = dir > 0 ? urls.length - 1 : 0;
+      if (index === target) {
+        return;
+      }
+      function step() {
+        timer = null;
+        var next = index + dir;
+        try {
+          photoNode.src = urls[next];
+          index = next;
+        } catch (frameError) {
+          return;
+        }
+        if (index === target) {
+          return;
+        }
+        try {
+          timer = window.setTimeout(step, TURN_FRAME_MS);
+        } catch (timerError) {
+          // No timer mid-turn: land on the target frame rather than freeze
+          // partway through a movement.
+          try {
+            photoNode.src = urls[target];
+            index = target;
+          } catch (finalError) {
+            // the static frame she is on is still a photograph
+          }
+        }
+      }
+      try {
+        timer = window.setTimeout(step, TURN_FRAME_MS);
+      } catch (playError) {
+        // No timer at all: jump straight to the target frame.
+        try {
+          photoNode.src = urls[target];
+          index = target;
+        } catch (fallbackError) {
+          // leave whatever frame is showing
+        }
+      }
+    }
+
+    function clearIdleTimer() {
+      if (idleTimer === null) {
+        return;
+      }
+      try {
+        window.clearTimeout(idleTimer);
+      } catch (clearError) {
+        // clearing a timer that already fired is harmless
+      }
+      idleTimer = null;
+    }
+
+    // ACTIVITY. A keystroke in the question box or a send lands here. She
+    // turns to face the reader if she is not already (including recovering
+    // from a mid-reverse turn), and every call resets the idle timer that
+    // eventually turns her back to rest by playing the frames in reverse.
+    // Cheap, idempotent, and a guarded no-op when animation is disabled.
+    function noteActivity() {
+      if (!ready || disabled) {
+        return;
+      }
+      clearIdleTimer();
+      if (index !== urls.length - 1) {
+        playTo(1);
+      }
+      try {
+        idleTimer = window.setTimeout(function () {
+          idleTimer = null;
+          playTo(-1);
+        }, TURN_IDLE_MS);
+      } catch (idleError) {
+        // No timer: she stays facing, which is still a photograph.
+      }
+    }
+
+    // Back to rest, instantly. No reverse animation.
+    function rest() {
+      if (!ready || disabled) {
+        return;
+      }
+      cancelPlayback();
+      clearIdleTimer();
+      try {
+        photoNode.src = urls[0];
+        index = 0;
+      } catch (restError) {
+        // leave whatever frame is showing
+      }
+    }
+
+    return { warm: warm, rest: rest, noteActivity: noteActivity };
   }
 
   // -----------------------------------------------------------------
@@ -3382,6 +3612,15 @@
     // three below are the only places the state is ever moved.
     var attention = bindAttention(root, input);
 
+    // THE HEAD TURN, wired to the same photograph node the loading logic
+    // above already found. Registering the idle hook here is what makes the
+    // attention machine's return-to-idle also return her to the resting
+    // frame; both calls are guarded no-ops until the frames have preloaded.
+    var headTurn = createHeadTurn(photoNode);
+    attnIdleHook = function () {
+      headTurn.rest();
+    };
+
     // HER OPENING MESSAGE IS IN THE THREAD BEFORE THE PANEL IS EVER OPENED,
     // which is what makes it a message rather than a header. Rendered once,
     // here, with no animation and no stagger.
@@ -3407,6 +3646,14 @@
         } else {
           scrollThread(threadNode);
         }
+        // First open preloads the head-turn frames; warm() is a one-shot
+        // no-op after the first call, and a failed preload leaves the
+        // static photograph alone for the life of the page view.
+        try {
+          headTurn.warm();
+        } catch (warmError) {
+          // animation is chrome; the panel opens regardless
+        }
       } else {
         // The panel is shut, so there is nobody at the box to be attentive
         // to and no exchange left to hold through. This is also the one
@@ -3414,7 +3661,16 @@
         // closed panel, and reset cancels it rather than letting it land.
         // Opening the panel deliberately does NOT make her attentive: a
         // visitor who has not touched the field has not engaged yet.
+        // reset() lands on idle, which routes through the idle hook and
+        // puts her back on the resting frame; the direct rest() below
+        // covers the one path where she was already idle and no state
+        // transition fires.
         attention.reset();
+        try {
+          headTurn.rest();
+        } catch (restError) {
+          // animation is chrome; the panel closes regardless
+        }
       }
     }
 
@@ -3449,6 +3705,17 @@
       input.style.height = "auto";
       input.style.height = input.scrollHeight + "px";
       scrollThread(threadNode);
+    });
+
+    // TYPING IS WHAT TURNS HER. "input" rather than "keydown" so it fires
+    // on real text entry. Guarded so a broken animation can never touch the
+    // question box.
+    input.addEventListener("input", function () {
+      try {
+        headTurn.noteActivity();
+      } catch (turnError) {
+        // animation is chrome; typing keeps working regardless
+      }
     });
 
     // ENTER SENDS, SHIFT+ENTER INSERTS A NEWLINE. Routed through the same
@@ -3587,11 +3854,24 @@
         }
       }
 
-      // UNDER REDUCED MOTION THERE ARE NO DOTS AND NO WAIT. Same
-      // information, less time, which is the point of the preference.
+      // UNDER REDUCED MOTION THERE ARE NO DOTS, NO WAIT, NO TURN AND NO
+      // HOLD. Same information, less time, which is the point of the
+      // preference; the head turn is motion by definition and the answer
+      // settles immediately, before the turn code below is ever reached.
       if (prefersReducedMotion()) {
         settle(null);
         return;
+      }
+
+      // A SEND IS ACTIVITY. She turns to face the reader if she is not
+      // already, and the idle timer that eventually turns her back resets.
+      // Sits after the empty-question guard (an empty submit does not
+      // animate) and is a guarded no-op unless the frames preloaded; a
+      // throw here can never cost the visitor their answer.
+      try {
+        headTurn.noteActivity();
+      } catch (turnError) {
+        // a broken animation degrades to a static avatar plus an answer
       }
 
       var typingRow = showTyping(threadNode);
@@ -3604,7 +3884,6 @@
       try {
         timer = window.setTimeout(run, TYPING_MS);
       } catch (setTimeoutError) {
-        // No timer available. The dots must not stay up, so settle now.
         run();
         return;
       }
