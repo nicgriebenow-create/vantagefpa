@@ -748,8 +748,10 @@
   .vfpa-assist { right: var(--s-16); bottom: var(--s-16); }
   .vfpa-assist-panel { width: calc(100vw - var(--s-32)); }
   /* 64px, still at or above the floor below which the photograph is not
-     used at all. The srcset serves a source sized for this, never an
-     upscale of a smaller one. */
+     used at all. One 192px source now covers both this slot and the 96px
+     one above (3x and 2x respectively), so there is no srcset ladder to
+     reason about any more; either way this is downscaling a single larger
+     source, never upscaling a smaller one. */
   .vfpa-av-96 { width: 64px; height: 64px; }
 }
 
@@ -999,6 +1001,7 @@
     </ul>
     <div class="footer-copy">&copy; 2026 Vantage FP&A LLC &middot; Austin, Texas &middot; ngriebenow@vantagefpa.com</div>
     <div class="footer-legal">Vantage FP&A LLC is not a CPA firm. Our work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing on this site is investment, financial, legal, or tax advice.</div>
+    <div class="footer-legal">Questions asked of the site assistant are logged so we can improve what it can answer. Nothing else is collected and nothing is shared.</div>
   </div>
 </footer>
 
@@ -1027,7 +1030,7 @@
         <span class="vfpa-av vfpa-av-96 vfpa-av--loading" id="vfpa-assist-avatar" aria-hidden="true">
           <span class="vfpa-av-ground"></span>
           <span class="vfpa-av-mono"><svg class="vfpa-av-mono-svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="vfpa-av-mono-disc" cx="50" cy="50" r="47" stroke-width="6"></circle><path class="vfpa-av-mono-v" d="M28,32 L50,74 L72,32" fill="none" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-          <span class="vfpa-av-photo"><img class="vfpa-av-img" id="vfpa-assist-photo" src="vannessa_s96@2x.png" srcset="vannessa_s64@2x.png 128w, vannessa_s96@2x.png 192w, vannessa_panel@2x.png 384w" sizes="(max-width: 560px) 64px, 96px" width="96" height="96" alt="" decoding="async" loading="lazy"></span>
+          <span class="vfpa-av-photo"><img class="vfpa-av-img" id="vfpa-assist-photo" src="vannessa_turn4@2x.png" width="96" height="96" alt="" decoding="async" loading="lazy"></span>
           <span class="vfpa-av-ring"></span>
           <span class="vfpa-av-spec"></span>
         </span>
@@ -1046,7 +1049,7 @@
   </div>
 </div>
 <script type="application/json" id="vfpa-assist-bank-data">
-{"version":"1","meeting_minutes":20,"cta":{"label":"SCHEDULE A CALL","href":"https://calendar.app.google/tAysdXyan6rFuXEZ6"},"refusal":{"text":"That one deserves a real conversation instead of a guess from a website. Pick a time and talk to Nic directly for twenty minutes. No form, no funnel. I take each question on its own and do not carry over the last one, so if you were pointing back at something earlier, ask it in full."},"opening":{"text":"Nice to meet you. I am Vannessa, the Vantage assistant. Ask me how the work gets done, what a monthly package includes, or how a diligence engagement runs. I answer from what Vantage has already put in writing. When I do not know something I will not guess at it. I will tell you, and point you to Nic, who can answer it directly in about twenty minutes."},"capture":{"endpoint":""},"entries":[{"id":"greeting","triggers":["hello","hi","hey","good morning","good afternoon","good evening","howdy"],"must_include":["hello","hi","hey","good morning","good afternoon","good evening","howdy"],"answer":"Hello. Ask me anything about how Vantage works, what is in a monthly package, or how a quality of earnings engagement runs. If I do not have it, I will tell you."},{"id":"what-vantage-does","triggers":["what do you do","what is vantage fp&a","what does vantage do","tell me about vantage","what is this company","what is vantage"],"must_include":["what do you do","what is vantage","tell me about vantage","what does vantage"],"answer":"Vantage FP&A builds the finance work that stands behind a number when someone with money at stake examines it. That covers quality of earnings support on the buy side, getting a company's numbers ready before a sale, and the monthly board package and forecast a company runs on after. One system, three doors, and the same deterministic method underneath all three."},{"id":"what-is-qoe","triggers":["what is qoe","what is a qoe","what is quality of earnings","quality of earnings","quality of earnings support","what does qoe mean","qoe meaning","what is included in a qoe report"],"must_include":["what is qoe","what is a qoe","quality of earnings","what does qoe mean","a qoe report"],"answer":"Quality of earnings support means a diligence package where every EBITDA figure ties back to the trial balance it was folded from, and to the general ledger itself when journal detail is supplied, with the trace visible to whoever asks. Vantage builds normalized EBITDA with each identified add-back carrying its basis, proof of cash when bank statements are supplied, and red flags with the evidence attached. Everything the engine identifies and cannot size ships flagged with the input that would close it, rather than estimated, and what it means for price is your call. This is not an audit, a review, a compilation, or an attest engagement, Vantage FP&A is not a CPA firm, and it carries no opinion."},{"id":"not-a-cpa-firm","triggers":["are you a cpa","are you a cpa firm","is this a cpa firm","is this an accounting engagement","cpa firm","are you a fiduciary","are you an investment adviser","are you a broker dealer"],"must_include":["cpa","cpa firm","accounting firm","licensed"],"answer":"Vantage FP&A is not a CPA firm and carries no opinion on your numbers. The work is diligence and analytical support, evidenced and traceable, built for the moment someone examines the numbers closely. If your deal or your lender specifically needs a CPA firm's engagement letter, that is worth saying on the first call rather than finding out at delivery. Vantage is also not an investment adviser, a broker dealer, a law firm, or a fiduciary."},{"id":"how-different-from-enterprise-firms","triggers":["how is this different","different from a consulting firm","different from a platform","why not buy software","vs enterprise","how are you different","why not a big firm"],"must_include":["different","platform","consulting firm","enterprise"],"answer":"The large finance transformation firms sell you a platform your team then has to learn and run, on a timeline built for a much bigger company. Vantage works from the ERP exports and the Excel environment you already run, builds a system specific to your chart of accounts, and hands you a formula-driven workbook with the deck and any memo generated from it. One operator, one build, and a system built around your company rather than a product you get onboarded onto."},{"id":"diligence-scope","triggers":["what does the diligence engagement cover","what is included in diligence","scope of diligence","what does a qoe engagement cover","what do you cover in diligence"],"must_include":["diligence engagement","scope","what does the diligence","qoe engagement"],"answer":"A diligence package covers normalized EBITDA with every add-back tied to the trial balance it was folded from, and to the ledger itself when journal detail is supplied, proof of cash against bank statements when they are supplied, and a red flag register with the evidence and the diligence questions it produced. What is out of scope is stated in writing before anything starts, including no valuation work, no price opinion, and no tax or legal diligence. Every draft also carries a table of what it did not cover and what would close each gap."},{"id":"sell-side-readiness","triggers":["sell side readiness","what is sell side readiness","getting ready to sell","selling my company","prepare for a sale"],"must_include":["sell side","selling my company","prepare for a sale","ready to sell"],"answer":"Sell-side readiness is for founders heading toward a sale who want the numbers clean before a buyer's team shows up. Vantage runs an assessment against what buy-side teams typically test, does the cleanup, and documents add-back positions with evidence while the records are still fresh. Through the transaction window itself, support continues month to month so the numbers stay current and diligence requests get answered from a package built to be checked."},{"id":"proof-of-cash","triggers":["what is proof of cash","proof of cash","how do you reconcile cash","bank reconciliation","bank reconciliation process","your bank reconciliation"],"must_include":["proof of cash","reconcile cash","bank reconciliation"],"answer":"When bank statements are supplied, proof of cash reconciles what is reported against the bank, account by account and month by month, using two independent checks per account month, rising to four once there is a prior period to difference against. A month that clears all four is reconciled on those checks. A month that fails any of them lands in a register naming the check that failed and by how much, rather than getting smoothed over. There is a live version of this on the deal diligence page you can try yourself."},{"id":"red-flags-and-findings","triggers":["what are red flags","how do findings work","diligence question set","red flag analysis"],"must_include":["red flag","red flags","findings","question set"],"answer":"Findings ship as a register, each one carrying an identifier, a severity, and the evidence behind it. The diligence question set is generated from those findings, so most of the questions you take into a management meeting cite the register row that raised them, alongside a few standing requests that ship regardless. Nothing is sized quietly and nothing is asserted without the row that backs it."},{"id":"build-timeline","triggers":["how long does it take","how long does the build take","timeline","what is the timeline","how fast can you build this","how long for diligence"],"must_include":["how long","timeline","how fast"],"answer":"How long it runs depends on the shape your books are in, how much of the close is still manual, and how quickly the data comes across. For a live deal it depends on the size of the target as well. That is exactly the kind of thing worth walking through on a call rather than guessing at from a website."},{"id":"what-you-need-from-me","triggers":["what do you need from me","what do i need to provide","what data do you need","what do you need from us"],"must_include":["need from me","need from us","what data do you need","need to provide"],"answer":"To get started Vantage needs your chart of accounts, a sample trial balance export, and your most recent board or lender package, plus working sessions with your CFO or controller. Once building, the ongoing ask is one monthly trial balance submission in an agreed format and a quick turnaround on data questions."},{"id":"who-is-nic","triggers":["who is nic","who runs vantage","who is behind vantage","who is the founder","tell me about nic"],"must_include":["who is nic","who runs vantage","the founder","about nic"],"answer":"Nic Griebenow runs Vantage. Finance at UT Austin McCombs, then FP&A inside PE-backed companies, building the reporting that went to the sponsor and sitting through board scrutiny on live budget cycles. Vantage is one senior operator plus an agentic AI system doing the repetitive build work, not a bench, and the verification layer exists because Nic knows which number a board member pushes on first. Nic is an FP&A professional, not a CPA, and Vantage is not a CPA firm."},{"id":"what-is-verification","triggers":["what is the verification thing","how does verification work","how do you verify the numbers","what is verification"],"must_include":["verification","verify the numbers"],"answer":"Verification is the actual product, not a footnote. A deterministic gate runs automatically on every build and checks structure, things like whether every tab exists and whether the levers are wired to what they claim to drive. On top of that, an independent pass, today dispatched by a person rather than fired by the build, goes to someone who did not build the package. The workbooks are formula-driven and traceable to your own source data, and the deck and the memo Vantage generates are built from those same workbooks."},{"id":"does-a-model-write-the-numbers","triggers":["does a language model write the numbers","is this agentic ai","is a language model doing this","does a model touch my numbers","is this chatgpt","llm generated"],"must_include":["does a model write","language model","touch my numbers","llm"],"answer":"No. Today the numeric path is deterministic end to end and no language model writes or alters a number anywhere in it. The same inputs return the same workbook on every run. Agentic AI builds and maintains the system around that engine, but a model does not touch the figures you receive."},{"id":"industry-coverage","triggers":["do you work with my industry","do you work in my industry","do you cover my vertical","do you work with companies like mine","what industries do you serve"],"must_include":["my industry","my vertical","industries do you","companies like mine"],"answer":"Vantage is not built around one industry. The taxonomy and the chart of accounts are built to your business, and the reporting picks up the segments and the concentration your data actually carries, including a per-entity drill-down on the month's headline P&L lines where the chart of accounts carries entities. Peer benchmarking pulls comparables from your own four digit SIC code where public registrants exist in it, rather than a fixed vertical list. If there is something specific to your industry worth flagging, that is a fast thing to cover on a call."},{"id":"after-the-build-retainer","triggers":["what happens after the build","what happens after the system is built","ongoing support after build","what does the retainer include"],"must_include":["after the build","after the system is built","retainer include"],"answer":"Once the system is live, Vantage keeps it running as ongoing monthly maintenance and reporting. That means monthly data refresh, error monitoring, quarterly model updates, and board cycle support, so the reporting stays current without a rebuild every cycle."},{"id":"how-do-i-start","triggers":["how do i start","how do we get started","next step","what is the next step","how do i begin","what is the first step"],"must_include":["how do i start","get started","next step","first step"],"answer":"Pick a time and talk to Nic directly. There is no form to fill out first, just a conversation about which side of the numbers you are on and what is live right now. Twenty minutes is usually enough to know whether this fits, and if it does not, you will hear that on the call."},{"id":"brokers-referral-terms","triggers":["do you pay referral fees","broker referral","referral agreement","do you work with brokers"],"must_include":["referral","work with brokers","broker"],"answer":"For brokers and advisors, Vantage does the numbers work only and gives no opinion on whether to do the deal. Bring one live listing and twenty minutes will tell you whether it belongs on your bench."},{"id":"lenders-and-financing","triggers":["do you work with lenders","lender diligence","financing due diligence","do you work with banks"],"must_include":["lenders","lender","financing due diligence"],"answer":"Lenders underwriting an acquisition read the same evidenced package a buyer does, with every machine-identified figure carrying the source row that produced it, and anything typed by a person marked as typed. The same pre-diligence packaging a seller uses is what a lender reads, since the numbers already carry their proof rather than needing reconstruction mid-process."},{"id":"finance-automation-assessment","triggers":["what is the finance automation assessment","what is phase one","what is the first step in the build"],"must_include":["automation assessment","phase one","first step"],"answer":"The Finance Automation Assessment is the first step, a working session inside your ERP, chart of accounts, and close process to see what can be automated and in what order. The output is a written implementation plan showing what would be automated and in what sequence."},{"id":"build-once-maintain-model","triggers":["how does the engagement work","what are the phases","how does the build and retainer work","explain the model"],"must_include":["phases","build and retainer","explain the model"],"answer":"The engagement runs in three phases, a Finance Automation Assessment, then a system build, then ongoing monthly maintenance and reporting that keeps it running. One intake feeds the workbook, the deck, and the forecast every cycle, so nothing gets rekeyed and nothing drifts between them. The deal or the close is the front door, and the build is meant to outlast it."},{"id":"location-nationwide","triggers":["are you based in austin","do you work nationwide","do you work remotely","where are you located"],"must_include":["based in austin","work nationwide","where are you located","work remotely"],"answer":"Vantage is based in Austin, Texas, and takes engagements nationwide, with working sessions run remotely or on site as needed."},{"id":"pricing-routes-to-call","triggers":["how much","what does it cost","price","pricing","rates","retainer amount","the retainer amount","what are your rates","how much does it cost","what do you charge"],"must_include":["how much","cost","price","pricing","rates","charge","retainer amount"],"answer":"Vantage does not perform audits, attest engagements, valuations, or tax and legal work, at any price. Cost depends on scope, which phase you need, and what shape your data is in, so there is no single number that is honest to quote here. The fastest way to get a real figure is twenty minutes with Nic, where you get a straight answer instead of a range that does not fit your situation."},{"id":"client-references-routes-to-call","triggers":["client references","who have you worked with","examples of past work","named engagements","your clients","references","past clients","testimonials"],"must_include":["client","references","past work","testimonial","worked with"],"answer":"Client names, deal details, and named engagements do not appear on this site or in what Vantage sends you. What you can check instead is the method itself on a call, walking a real figure through the trace yourself rather than taking someone else's word for it."},{"id":"accuracy-claim-routes-to-call","triggers":["accuracy rate","how accurate","accuracy percentage","what is your accuracy","error rate","how confident"],"must_include":["accuracy","accurate","error rate","confident"],"answer":"You will not find an accuracy percentage anywhere in a Vantage package, and that is by design rather than an omission. What you get instead is a trace, a figure you can click into and follow back to your own source data, and a number you can verify yourself beats a number anyone vouches for. Walk that trace directly on a call."},{"id":"tax-legal-scope-routes-to-call","triggers":["tax advice","legal advice","tax diligence","legal diligence","tax return","attorney","do you do accounting work","do you do taxes"],"must_include":["tax","legal","attorney","lawyer"],"answer":"Tax and legal diligence sit with your CPA and your attorney, not with Vantage, and nothing here is tax, legal, or investment advice. What Vantage builds is the evidence around the numbers, the add-backs, and the cash, and where our scope stops and theirs starts is worth mapping out on a call before anything begins."},{"id":"specific-advice-routes-to-call","triggers":["what should i do","my numbers","my situation","my company specifically","should i sell","should i buy","is this a good deal","advice for my"],"must_include":["my numbers","my situation","my company","should i","good deal"],"answer":"What the findings mean for price, structure, or whether to move forward is your call and your advisors' call, not something Vantage sizes for you sight unseen. Bring the actual situation to a twenty minute call and you will get a straight read on whether this fits, not a generic answer that ignores your specifics."}]}
+{"version":"1","meeting_minutes":20,"cta":{"label":"SCHEDULE A CALL","href":"https://calendar.app.google/tAysdXyan6rFuXEZ6"},"refusal":{"text":"That one deserves a real conversation instead of a guess from a website. Pick a time and talk to Nic directly for twenty minutes. No form, no funnel. I take each question on its own and do not carry over the last one, so if you were pointing back at something earlier, ask it in full."},"opening":{"text":"Nice to meet you. I am Vannessa, the Vantage assistant. Ask me how the work gets done, what a monthly package includes, or how a diligence engagement runs. I answer from what Vantage has already put in writing. When I do not know something I will not guess at it. I will tell you, and point you to Nic, who can answer it directly in about twenty minutes. Questions here are logged so I can get better at answering them. Nothing else is collected."},"capture":{"endpoint":"https://script.google.com/macros/s/AKfycbwe_L34htZcepgPfG3ClqosjIQaGWdyMnBy7TXsGM8kMSVyrbRisAjhjc6jjJyJjXE/exec"},"entries":[{"id":"greeting","triggers":["hello","hi","hey","good morning","good afternoon","good evening","howdy"],"must_include":["hello","hi","hey","good morning","good afternoon","good evening","howdy"],"answer":"Hello. Ask me anything about how Vantage works, what is in a monthly package, or how a quality of earnings engagement runs. If I do not have it, I will tell you."},{"id":"what-vantage-does","triggers":["what do you do","what is vantage fp&a","what does vantage do","tell me about vantage","what is this company","what is vantage"],"must_include":["what do you do","what is vantage","tell me about vantage","what does vantage"],"answer":"Vantage FP&A builds the finance work that stands behind a number when someone with money at stake examines it. That covers quality of earnings support on the buy side, getting a company's numbers ready before a sale, and the monthly board package and forecast a company runs on after. One system, three doors, and the same deterministic method underneath all three."},{"id":"what-is-qoe","triggers":["what is qoe","what is a qoe","what is quality of earnings","quality of earnings","quality of earnings support","what does qoe mean","qoe meaning","what is included in a qoe report","quality of earnings engagement","how does a quality of earnings engagement work","how does a qoe engagement work","what happens in a quality of earnings engagement"],"must_include":["what is qoe","what is a qoe","quality of earnings","what does qoe mean","a qoe report","quality of earnings engagement","how does a quality of earnings engagement work","how does a qoe engagement work","what happens in a quality of earnings engagement"],"answer":"Quality of earnings support means a diligence package where every EBITDA figure ties back to the trial balance it was folded from, and to the general ledger itself when journal detail is supplied, with the trace visible to whoever asks. Vantage builds normalized EBITDA with each identified add-back carrying its basis, proof of cash when bank statements are supplied, and red flags with the evidence attached. Everything the engine identifies and cannot size ships flagged with the input that would close it, rather than estimated, and what it means for price is your call. This is not an audit, a review, a compilation, or an attest engagement, Vantage FP&A is not a CPA firm, and it carries no opinion."},{"id":"not-a-cpa-firm","triggers":["are you a cpa","are you a cpa firm","is this a cpa firm","is this an accounting engagement","cpa firm","are you a fiduciary","are you an investment adviser","are you a broker dealer"],"must_include":["cpa","cpa firm","accounting firm","licensed"],"answer":"Vantage FP&A is not a CPA firm and carries no opinion on your numbers. The work is diligence and analytical support, evidenced and traceable, built for the moment someone examines the numbers closely. If your deal or your lender specifically needs a CPA firm's engagement letter, that is worth saying on the first call rather than finding out at delivery. Vantage is also not an investment adviser, a broker dealer, a law firm, or a fiduciary."},{"id":"how-different-from-enterprise-firms","triggers":["how is this different","different from a consulting firm","different from a platform","why not buy software","vs enterprise","how are you different","why not a big firm","what makes you different","what makes vantage different","how are you different from the big firms","different from the big firms"],"must_include":["different","platform","consulting firm","enterprise","what makes you different","what makes vantage different","how are you different","how is this different","different from a consulting firm","different from a platform","how are you different from the big firms","different from the big firms"],"answer":"The large finance transformation firms sell you a platform your team then has to learn and run, on a timeline built for a much bigger company. Vantage works from the ERP exports and the Excel environment you already run, builds a system specific to your chart of accounts, and hands you a formula-driven workbook with the deck and any memo generated from it. One operator, one build, and a system built around your company rather than a product you get onboarded onto."},{"id":"diligence-scope","triggers":["what does the diligence engagement cover","what is included in diligence","scope of diligence","what does a qoe engagement cover","what do you cover in diligence"],"must_include":["diligence engagement","scope","what does the diligence","qoe engagement","what do you cover in diligence","what is included in a diligence engagement"],"answer":"A diligence package covers normalized EBITDA with every add-back tied to the trial balance it was folded from, and to the ledger itself when journal detail is supplied, proof of cash against bank statements when they are supplied, and a red flag register with the evidence and the diligence questions it produced. What is out of scope is stated in writing before anything starts, including no valuation work, no price opinion, and no tax or legal diligence. Every draft also carries a table of what it did not cover and what would close each gap."},{"id":"sell-side-readiness","triggers":["sell side readiness","what is sell side readiness","getting ready to sell","selling my company","prepare for a sale"],"must_include":["sell side","selling my company","prepare for a sale","ready to sell"],"answer":"Sell-side readiness is for founders heading toward a sale who want the numbers clean before a buyer's team shows up. Vantage runs an assessment against what buy-side teams typically test, does the cleanup, and documents add-back positions with evidence while the records are still fresh. Through the transaction window itself, support continues month to month so the numbers stay current and diligence requests get answered from a package built to be checked."},{"id":"proof-of-cash","triggers":["what is proof of cash","proof of cash","how do you reconcile cash","bank reconciliation","bank reconciliation process","your bank reconciliation"],"must_include":["proof of cash","reconcile cash","bank reconciliation"],"answer":"When bank statements are supplied, proof of cash reconciles what is reported against the bank, account by account and month by month, using two independent checks per account month, rising to four once there is a prior period to difference against. A month that clears all four is reconciled on those checks. A month that fails any of them lands in a register naming the check that failed and by how much, rather than getting smoothed over. There is a live version of this on the deal diligence page you can try yourself."},{"id":"red-flags-and-findings","triggers":["what are red flags","how do findings work","diligence question set","red flag analysis"],"must_include":["red flag","red flags","findings","question set"],"answer":"Findings ship as a register, each one carrying an identifier, a severity, and the evidence behind it. The diligence question set is generated from those findings, so most of the questions you take into a management meeting cite the register row that raised them, alongside a few standing requests that ship regardless. Nothing is sized quietly and nothing is asserted without the row that backs it."},{"id":"build-timeline","triggers":["how long does it take","how long does the build take","timeline","what is the timeline","how fast can you build this","how long for diligence"],"must_include":["how long","timeline","how fast"],"answer":"How long it runs depends on the shape your books are in, how much of the close is still manual, and how quickly the data comes across. For a live deal it depends on the size of the target as well. That is exactly the kind of thing worth walking through on a call rather than guessing at from a website."},{"id":"what-you-need-from-me","triggers":["what do you need from me","what do i need to provide","what data do you need","what do you need from us","what do you need from me to get started","what do you need from me to start","what do you need from us to get started","what do you need to get started"],"must_include":["need from me","need from us","what data do you need","need to provide","what do you need from me to get started","what do you need from me to start","what do you need from us to get started","what do you need to get started"],"answer":"To get started Vantage needs your chart of accounts, a sample trial balance export, and your most recent board or lender package, plus working sessions with your CFO or controller. Once building, the ongoing ask is one monthly trial balance submission in an agreed format and a quick turnaround on data questions."},{"id":"who-is-nic","triggers":["who is nic","who runs vantage","who is behind vantage","who is the founder","tell me about nic","who is behind this","who is behind it","who is behind the company"],"must_include":["who is nic","who runs vantage","the founder","about nic","who is behind this","who is behind vantage","who is behind it","who is behind the company","tell me about nic"],"answer":"Nic Griebenow runs Vantage. Finance at UT Austin McCombs, then FP&A inside PE-backed companies, building the reporting that went to the sponsor and sitting through board scrutiny on live budget cycles. Vantage is one senior operator plus an agentic AI system doing the repetitive build work, not a bench, and the verification layer exists because Nic knows which number a board member pushes on first. Nic is an FP&A professional, not a CPA, and Vantage is not a CPA firm."},{"id":"what-is-verification","triggers":["what is the verification thing","how does verification work","how do you verify the numbers","what is verification","how does the verification work","how does your verification work","how does the verification layer work","what does verification mean"],"must_include":["verification","verify the numbers","how does the verification work","how does your verification work","how does verification work","how do you verify the numbers","how does the verification layer work"],"answer":"Verification is the actual product, not a footnote. A deterministic gate runs automatically on every build and checks structure, things like whether every tab exists and whether the levers are wired to what they claim to drive. On top of that, an independent pass, today dispatched by a person rather than fired by the build, goes to someone who did not build the package. The workbooks are formula-driven and traceable to your own source data, and the deck and the memo Vantage generates are built from those same workbooks."},{"id":"does-a-model-write-the-numbers","triggers":["does a language model write the numbers","is this agentic ai","is a language model doing this","does a model touch my numbers","is this chatgpt","llm generated"],"must_include":["does a model write","language model","touch my numbers","llm"],"answer":"No. Today the numeric path is deterministic end to end and no language model writes or alters a number anywhere in it. The same inputs return the same workbook on every run. Agentic AI builds and maintains the system around that engine, but a model does not touch the figures you receive."},{"id":"industry-coverage","triggers":["do you work with my industry","do you work in my industry","do you cover my vertical","do you work with companies like mine","what industries do you serve"],"must_include":["my industry","my vertical","industries do you","companies like mine"],"answer":"Vantage is not built around one industry. The taxonomy and the chart of accounts are built to your business, and the reporting picks up the segments and the concentration your data actually carries, including a per-entity drill-down on the month's headline P&L lines where the chart of accounts carries entities. Peer benchmarking pulls comparables from your own four digit SIC code where public registrants exist in it, rather than a fixed vertical list. If there is something specific to your industry worth flagging, that is a fast thing to cover on a call."},{"id":"after-the-build-retainer","triggers":["what happens after the build","what happens after the system is built","ongoing support after build","what does the retainer include"],"must_include":["after the build","after the system is built","retainer include"],"answer":"Once the system is live, Vantage keeps it running as ongoing monthly maintenance and reporting. That means monthly data refresh, error monitoring, quarterly model updates, and board cycle support, so the reporting stays current without a rebuild every cycle."},{"id":"how-do-i-start","triggers":["how do i start","how do we get started","next step","what is the next step","how do i begin","what is the first step","how do i get started","how do i get going"],"must_include":["how do i start","get started","next step","first step","how do i get started","how do we get started","how do i begin","what is the first step"],"answer":"Pick a time and talk to Nic directly. There is no form to fill out first, just a conversation about which side of the numbers you are on and what is live right now. Twenty minutes is usually enough to know whether this fits, and if it does not, you will hear that on the call."},{"id":"brokers-referral-terms","triggers":["do you pay referral fees","broker referral","referral agreement","do you work with brokers"],"must_include":["referral","work with brokers","broker"],"answer":"For brokers and advisors, Vantage does the numbers work only and gives no opinion on whether to do the deal. Bring one live listing and twenty minutes will tell you whether it belongs on your bench."},{"id":"lenders-and-financing","triggers":["do you work with lenders","lender diligence","financing due diligence","do you work with banks"],"must_include":["lenders","lender","financing due diligence"],"answer":"Lenders underwriting an acquisition read the same evidenced package a buyer does, with every machine-identified figure carrying the source row that produced it, and anything typed by a person marked as typed. The same pre-diligence packaging a seller uses is what a lender reads, since the numbers already carry their proof rather than needing reconstruction mid-process."},{"id":"finance-automation-assessment","triggers":["what is the finance automation assessment","what is phase one","what is the first step in the build"],"must_include":["automation assessment","phase one","first step"],"answer":"The Finance Automation Assessment is the first step, a working session inside your ERP, chart of accounts, and close process to see what can be automated and in what order. The output is a written implementation plan showing what would be automated and in what sequence."},{"id":"build-once-maintain-model","triggers":["how does the engagement work","what are the phases","how does the build and retainer work","explain the model"],"must_include":["phases","build and retainer","explain the model"],"answer":"The engagement runs in three phases, a Finance Automation Assessment, then a system build, then ongoing monthly maintenance and reporting that keeps it running. One intake feeds the workbook, the deck, and the forecast every cycle, so nothing gets rekeyed and nothing drifts between them. The deal or the close is the front door, and the build is meant to outlast it."},{"id":"location-nationwide","triggers":["are you based in austin","do you work nationwide","do you work remotely","where are you located"],"must_include":["based in austin","work nationwide","where are you located","work remotely"],"answer":"Vantage is based in Austin, Texas, and takes engagements nationwide, with working sessions run remotely or on site as needed."},{"id":"broad-opener","triggers":["what can you help me with","what can you help with","how can you help","how can you help me","what can you tell me","what are my options","what do you cover","what can you do","what can i ask you","what do you help with","what can you answer","what topics can you cover"],"must_include":["what can you help me with","what can you help with","how can you help","how can you help me","what can you tell me","what are my options","what do you cover","what can you do","what can i ask you","what do you help with","what can you answer","what topics can you cover"],"answer":"Three doors into the same engine, and they run off one build. Quality of earnings support for a buyer underwriting a target, sell-side readiness for a founder getting the numbers ready before a process starts, and the reporting infrastructure a company runs on after close, meaning a close cycle and a board pack it can stand behind every month. Brokers, M&A advisors, and lenders have their own lane. I can also take how the verification works, what is in a monthly package, how a diligence engagement runs, who is behind Vantage, and what Vantage would need from you to start. Ask any of those directly. If I do not have it, I will tell you and point you to Nic."},{"id":"reporting-walkthrough","triggers":["through the reporting","the monthly reporting","the reporting look","the reporting work","through the close","through the build","the build work","the build look"],"must_include":["through the reporting","the monthly reporting","the reporting look","the reporting work","through the close","through the build","the build work","the build look"],"answer":"It starts from the ERP exports and the Excel environment your team lives in today, so there is no platform migration underneath it, and it runs in three phases. First a Finance Automation Assessment maps what your close actually looks like today, the chart of accounts, the close process, the reporting your board sees, and every place a person is doing work a system should be doing, and the written implementation plan it produces is yours to keep whether or not you build with us. Then the system build, where the pipeline runs from your ERP exports through variance analysis, rolling forecast refresh, and a board-ready reporting package, and every build clears an automated quality gate before anything reaches you. Then the system runs and Vantage keeps it running, with monthly data refresh, error monitoring, quarterly model updates, and board cycle support."},{"id":"monthly-package-contents","triggers":["a monthly package","the monthly package","a board package","the board package","the board pack","get every month"],"must_include":["a monthly package","the monthly package","a board package","the board package","the board pack","get every month"],"answer":"It comes off one automated pipeline from your ERP exports. Variance against budget and prior year, across month, quarter and year to date. A rolling forecast refreshed every close, with the projection method set per line item. A board pack compiled and formatted automatically. For a PE-backed company it also carries an EBITDA bridge and waterfall, a KPI framework for your vertical computed from the same intake as the board pack, and covenant schedule tracking with headroom inside the board pack. Alongside that sits a peer comp set drawn from SEC filers under the same four digit SIC code as your company, pulled from EDGAR with the source URL on every figure."},{"id":"diligence-walkthrough","triggers":["me through diligence","through the diligence","does diligence work","the diligence work","diligence engagement work","diligence engagement look","diligence process work","through a deal"],"must_include":["me through diligence","through the diligence","does diligence work","the diligence work","diligence engagement work","diligence engagement look","diligence process work","through a deal"],"answer":"Scope is agreed in writing before the work starts, and the limits are stated in the engagement letter rather than found later. From there the package is built off the target's own trial balance. An EBITDA schedule and an add-backs register put each adjustment on its own row with the account it came from, the rule that identified it, and the evidence behind it, so a buyer can accept or reject any single line without unpicking the rest. Where bank statements are supplied, reported activity is reconciled against the bank, account by account and month by month, and a month that cannot be proven says so on its own line and names what is missing. Findings ship as a register, each one carrying an identifier, a severity, and the evidence that produced it, and the diligence question list is generated from those findings. You decide what it means for price."},{"id":"team-size-one-operator","triggers":["is the team","is your team","on the team","it just you","just one person","people work on","big is vantage"],"must_include":["is the team","is your team","on the team","it just you","just one person","people work on","big is vantage"],"answer":"The work is done by one senior operator rather than a bench, and the repetitive part is done by an agentic AI system built for exactly that, with a deterministic engine computing every number. Vantage FP&A LLC is a Texas company run by Nicolas Griebenow, based in Austin and working with companies nationwide. Vantage does not ask to be taken on faith. What a buyer gets is one senior operator and work that can be checked rather than asserted."},{"id":"how-do-i-know-the-numbers-are-right","triggers":["the numbers are right","your numbers are right","the numbers are correct","know this is right","check the numbers","check your work","the work myself","can trust the numbers"],"must_include":["the numbers are right","your numbers are right","the numbers are correct","know this is right","check the numbers","check your work","the work myself","can trust the numbers"],"answer":"You check it yourself, and the deliverable is built so you can. Every deliverable arrives as a formula-driven, self-contained workbook, because a package you cannot check is a package you have to believe. Pick the figure you trust least and click it, and the formula bar shows the equation that produced it and the cells it points at. The schedule points at the register, the register row points at the account it came from, and the account points at the trial balance line exactly as you exported it. Reject an add-back, move an assumption, and watch the schedules move with it. On the cash side, every bank account and every month is proven to a tolerance of one dollar, and a month that fails a check lands in a register with the failing check quoted rather than absorbed into a plug."},{"id":"pricing-routes-to-call","triggers":["how much","what does it cost","price","pricing","rates","retainer amount","the retainer amount","what are your rates","how much does it cost","what do you charge"],"must_include":["how much","cost","price","pricing","rates","charge","retainer amount"],"answer":"Vantage does not perform audits, attest engagements, valuations, or tax and legal work, at any price. Cost depends on scope, which phase you need, and what shape your data is in, so there is no single number that is honest to quote here. The fastest way to get a real figure is twenty minutes with Nic, where you get a straight answer instead of a range that does not fit your situation."},{"id":"client-references-routes-to-call","triggers":["client references","who have you worked with","examples of past work","named engagements","your clients","references","past clients","testimonials"],"must_include":["client","references","past work","testimonial","worked with"],"answer":"Client names, deal details, and named engagements do not appear on this site or in what Vantage sends you. What you can check instead is the method itself on a call, walking a real figure through the trace yourself rather than taking someone else's word for it."},{"id":"accuracy-claim-routes-to-call","triggers":["accuracy rate","how accurate","accuracy percentage","what is your accuracy","error rate","how confident"],"must_include":["accuracy","accurate","error rate","confident"],"answer":"You will not find an accuracy percentage anywhere in a Vantage package, and that is by design rather than an omission. What you get instead is a trace, a figure you can click into and follow back to your own source data, and a number you can verify yourself beats a number anyone vouches for. Walk that trace directly on a call."},{"id":"tax-legal-scope-routes-to-call","triggers":["tax advice","legal advice","tax diligence","legal diligence","tax return","attorney","do you do accounting work","do you do taxes"],"must_include":["tax","legal","attorney","lawyer"],"answer":"Tax and legal diligence sit with your CPA and your attorney, not with Vantage, and nothing here is tax, legal, or investment advice. What Vantage builds is the evidence around the numbers, the add-backs, and the cash, and where our scope stops and theirs starts is worth mapping out on a call before anything begins."},{"id":"specific-advice-routes-to-call","triggers":["what should i do","my numbers","my situation","my company specifically","should i sell","should i buy","is this a good deal","advice for my"],"must_include":["my numbers","my situation","my company","should i","good deal"],"answer":"What the findings mean for price, structure, or whether to move forward is your call and your advisors' call, not something Vantage sizes for you sight unseen. Bring the actual situation to a twenty minute call and you will get a straight read on whether this fits, not a generic answer that ignores your specifics."}]}
 </script>
 <script id="vfpa-assist-script">
 /* VANTAGE SITE ASSIST, widget logic.
@@ -2383,6 +2386,33 @@
   // frame as the question.
   var TYPING_MS = 500;
 
+  // THE HEAD TURN (2026-07-28). Four stills of the same 96px panel
+  // photograph, index 0 facing the visitor (ATTENTIVE) through index 3
+  // turned away at her screen (IDLE). The markup ships index 3 as the
+  // <img>'s src, so that is the only frame any page load ever fetches; the
+  // other three are requested by this file, later, never at
+  // DOMContentLoaded. See initWidget's avatar section for the state machine
+  // that plays these in order.
+  var TURN_FRAMES = [
+    "vannessa_turn1@2x.png",
+    "vannessa_turn2@2x.png",
+    "vannessa_turn3@2x.png",
+    "vannessa_turn4@2x.png"
+  ];
+  // 80ms was given in the brief; four frames at that spacing is a 240ms
+  // turn in either direction, quick enough to read as a glance rather than
+  // a slow pan.
+  var TURN_FRAME_MS = 80;
+  // THE PICK, OUT OF THE 3-5s RANGE THE BRIEF ASKED FOR: 4000ms. Long
+  // enough that a visitor pausing between keystrokes to think does not
+  // watch her turn away mid-sentence, and long enough that a visitor
+  // reading the answer that just landed is not watching her leave while
+  // their eyes are still on the reply. Short enough that a visitor who has
+  // actually gone quiet is not looking at an engaged face for five-plus
+  // seconds after the exchange is over. Chosen, not measured; nothing in
+  // this codebase times an actual visitor's reading speed.
+  var TURN_IDLE_DELAY_MS = 4000;
+
   function toggleClassName(current, className, on) {
     var value = String(current || "");
     var padded = " " + value + " ";
@@ -2985,6 +3015,178 @@
       }
     }
 
+    // -----------------------------------------------------------------
+    // THE HEAD TURN. Presentation only. This section never reads or writes
+    // the bank, matchBank, or anything the visitor's question is scored
+    // against; it swaps ONE <img> element's src among the four TURN_FRAMES
+    // and nothing else. It lives inside initWidget rather than as a
+    // module-level function because every piece of state it touches
+    // (photoNode, avatarNode, whether the photo already failed) is exactly
+    // the state the block above just built.
+    //
+    // turnHooks is null under reduced motion or if there is no photo
+    // element at all, so every call site below reads
+    // `if (turnHooks) { turnHooks.___(); }` and is safe to leave in either
+    // way rather than duplicating the two guard conditions at every call
+    // site.
+    var turnHooks = null;
+
+    // A frame that 404s mid-animation must leave the monogram showing,
+    // never a broken-image glyph, so once any frame fails this flag goes
+    // true once and every function below stops touching photoNode.src for
+    // the rest of the page view. This listens in addition to, not instead
+    // of, the "error" listener already attached above; that one hides the
+    // element and ends the loading pulse, this one only remembers that it
+    // happened so the turn state machine stops trying.
+    var turnFailed = false;
+    if (photoNode) {
+      photoNode.addEventListener("error", function () {
+        turnFailed = true;
+      });
+    }
+
+    if (photoNode && prefersReducedMotion()) {
+      // RULE 5. A visitor who asked for less motion gets a person looking
+      // at them, not a person turned away: index 0 is the attentive frame,
+      // and this is the ONLY swap this element's src ever makes on a
+      // reduced-motion page view. No timer is armed, so turn2 and turn3
+      // are never requested at all, and turn1 is the one frame beyond the
+      // markup's own idle default that this visitor's browser fetches.
+      photoNode.src = TURN_FRAMES[0];
+    } else if (photoNode) {
+      var framesWarmed = false;
+      function warmTurnFrames() {
+        // Frame 4 (idle) is already the <img>'s src straight from the
+        // markup, so the browser fetched it with the rest of the page;
+        // only the three frames a visitor might never trigger are worth a
+        // request, and even those wait for this call, which never runs
+        // before the visitor has focused or typed in the question field.
+        // `new Image()` plus `.src`, with no DOM insertion, warms the
+        // browser's own HTTP cache under that exact URL string, so setting
+        // the visible <img>'s src to the same string a moment later paints
+        // from cache instead of opening a second, competing request.
+        if (framesWarmed) {
+          return;
+        }
+        framesWarmed = true;
+        for (var w = 0; w < 3; w += 1) {
+          var warmer = new Image();
+          warmer.src = TURN_FRAMES[w];
+        }
+      }
+
+      var turnState = "idle"; // idle | in | attentive | out
+      var turnFrameTimer = null;
+      var turnIdleTimer = null;
+
+      function clearTurnFrameTimer() {
+        if (turnFrameTimer !== null) {
+          window.clearTimeout(turnFrameTimer);
+          turnFrameTimer = null;
+        }
+      }
+
+      function clearTurnIdleTimer() {
+        if (turnIdleTimer !== null) {
+          window.clearTimeout(turnIdleTimer);
+          turnIdleTimer = null;
+        }
+      }
+
+      // Plays the frame indexes in `path`, TURN_FRAME_MS apart, landing on
+      // `finalState`. Cancels whatever run is already in flight first, so a
+      // visitor who resumes typing mid-turn-away reverses cleanly instead
+      // of fighting a queued timer. A failed photo (turnFailed) turns this
+      // into a no-op on the DOM while still updating turnState, so the
+      // rest of the state machine keeps behaving correctly even with the
+      // monogram standing in for the photograph.
+      function playTurn(path, finalState) {
+        clearTurnFrameTimer();
+        var i = 0;
+        function step() {
+          if (!turnFailed) {
+            photoNode.src = TURN_FRAMES[path[i]];
+          }
+          i += 1;
+          if (i < path.length) {
+            turnFrameTimer = window.setTimeout(step, TURN_FRAME_MS);
+          } else {
+            turnFrameTimer = null;
+            turnState = finalState;
+          }
+        }
+        step();
+      }
+
+      function turnToAttentive() {
+        clearTurnIdleTimer();
+        if (turnState === "attentive" || turnState === "in") {
+          return;
+        }
+        // RULE 2: 4 -> 3 -> 2 -> 1, indexes 3,2,1,0, landing on 0 (facing
+        // the visitor).
+        turnState = "in";
+        playTurn([3, 2, 1, 0], "attentive");
+      }
+
+      function turnToIdleNow() {
+        if (turnState === "idle" || turnState === "out") {
+          return;
+        }
+        // RULE 3: 1 -> 2 -> 3 -> 4, indexes 0,1,2,3, landing on 3 (turned
+        // back to her screen).
+        turnState = "out";
+        playTurn([0, 1, 2, 3], "idle");
+      }
+
+      // RULES 3 AND 4 TOGETHER. This is the only place the return-to-idle
+      // timer is armed. It is called from two places only: on every
+      // keystroke (rearming here is what makes the delay measure time
+      // since the LAST keystroke, not the first) and from settle(), once
+      // an answer or the refusal has actually rendered (rearming there,
+      // and ONLY there, is what keeps this timer from ever firing while a
+      // question is pending or being rendered: nothing schedules it
+      // between the moment a question is submitted and the moment its
+      // reply is on screen, because onSubmitStart below clears whatever a
+      // stray keystroke had already armed).
+      function scheduleReturnToIdle() {
+        clearTurnIdleTimer();
+        turnIdleTimer = window.setTimeout(function () {
+          turnIdleTimer = null;
+          turnToIdleNow();
+        }, TURN_IDLE_DELAY_MS);
+      }
+
+      turnHooks = {
+        // Focus and every keystroke both route here: warm the three
+        // frames that have not been requested yet, turn to face the
+        // visitor (a no-op if she is already facing them), and (re)start
+        // the idle clock. A focus with no typing after it still returns
+        // her to idle on schedule; a keystroke restarts the clock from
+        // that keystroke.
+        onEngage: function () {
+          warmTurnFrames();
+          turnToAttentive();
+          scheduleReturnToIdle();
+        },
+        // Called once, at the top of the submit handler, before the dots
+        // even go up. Clears any idle timer a stray keystroke left ticking
+        // so it cannot fire mid-pending-reply, and holds her on frame 1 for
+        // the whole exchange (RULE 4).
+        onSubmitStart: function () {
+          clearTurnIdleTimer();
+          turnToAttentive();
+        },
+        // Called once, from settle(), after the reply (matched answer or
+        // refusal) is already in the thread. This is the one point at
+        // which the exchange is genuinely at rest, so it is the one point
+        // the idle clock is allowed to start counting from.
+        onSettled: function () {
+          scheduleReturnToIdle();
+        }
+      };
+    }
+
     // HER OPENING MESSAGE IS IN THE THREAD BEFORE THE PANEL IS EVER OPENED,
     // which is what makes it a message rather than a header. Rendered once,
     // here, with no animation and no stagger.
@@ -3044,7 +3246,21 @@
       input.style.height = "auto";
       input.style.height = input.scrollHeight + "px";
       scrollThread(threadNode);
+      if (turnHooks) {
+        turnHooks.onEngage();
+      }
     });
+
+    // FOCUS turns her, same as a first keystroke does (RULE 2): a visitor
+    // who taps or tabs into the field and has not typed a character yet
+    // still gets looked at. Kept as its own listener rather than folded
+    // into "input" above because focus and input are different events and
+    // this one can fire with no keystroke behind it at all.
+    if (turnHooks) {
+      input.addEventListener("focus", function () {
+        turnHooks.onEngage();
+      });
+    }
 
     // ENTER SENDS, SHIFT+ENTER INSERTS A NEWLINE. Routed through the same
     // submit path a click on Ask uses (requestSubmit where available, a real
@@ -3110,6 +3326,18 @@
 
       flushPendingReply();
 
+      // SHE STAYS FACING THE VISITOR FOR THE WHOLE EXCHANGE (RULE 4). Any
+      // idle-return timer a stray keystroke armed is cancelled here, before
+      // the dots even go up, decorative and therefore wrapped so a problem
+      // here never blocks the actual answer beneath it.
+      try {
+        if (turnHooks) {
+          turnHooks.onSubmitStart();
+        }
+      } catch (turnError) {
+        // decorative only, never worth interrupting the exchange for
+      }
+
       // THE VISITOR'S OWN BUBBLE GOES UP FIRST AND SYNCHRONOUSLY, before any
       // matching, any timer and any indicator. Whatever else happens after
       // this line, the question is on screen.
@@ -3151,6 +3379,19 @@
           }
         }
         scrollThread(threadNode);
+
+        // THE RETURN-TO-IDLE CLOCK STARTS HERE (RULE 4), NOT AT THE LAST
+        // KEYSTROKE. Nothing schedules the idle timer between
+        // onSubmitStart (which clears it) and this line, whether the reply
+        // matched or fell to the refusal, so the exchange is genuinely at
+        // rest exactly once this line runs.
+        try {
+          if (turnHooks) {
+            turnHooks.onSettled();
+          }
+        } catch (turnError) {
+          // decorative only, never worth interrupting the exchange for
+        }
 
         // Capture is best effort and always subordinate to the answer the
         // visitor already has on screen.
