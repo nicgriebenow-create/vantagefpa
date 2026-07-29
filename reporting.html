@@ -1145,8 +1145,8 @@
       <p class="section-desc">The large finance-transformation firms do real work, for companies with the budget and the calendar to absorb a platform implementation. That model is built for far larger enterprises. It asks you to implement a licensed platform you then pay for every year, on a timeline that runs longer than a board cycle.</p>
     </div>
     <div class="vs-body">
-      <p>Vantage is built for the company that sits below that line. We work from the ERP exports and Excel environment you already run, build a system specific to your chart of accounts and the reporting template your board or sponsor expects, and hand you every report formula-driven and yours to keep. Maintained on a month-to-month retainer with no license and no multi-year contract underneath it.</p>
-      <p class="vs-kicker">Enterprise firms implement software. Vantage builds the reporting infrastructure your finance function runs on, then keeps it running. At your size, that is the difference that matters.</p>
+      <p>We work from the ERP exports and Excel environment you already run, build a system specific to your chart of accounts and the reporting template your board or sponsor expects, and hand you every report formula-driven and yours to keep. Maintained on a month-to-month retainer with no license and no multi-year contract underneath it.</p>
+      <p class="vs-kicker">Enterprise firms implement software. Vantage builds the reporting infrastructure your finance function runs on, then keeps it running.</p>
     </div>
   </div>
 </section>
@@ -3010,7 +3010,9 @@
       }
     }
 
-    // Back to rest, instantly. No reverse animation.
+    // Back to rest, instantly. No reverse animation. This is the panel-close
+    // path, where an instant reset is correct because nobody is watching;
+    // the animated version used on idle is turnAway() below.
     function rest() {
       if (!ready || disabled) {
         return;
@@ -3025,7 +3027,16 @@
       }
     }
 
-    return { warm: warm, rest: rest, noteActivity: noteActivity };
+    // Back to rest, ANIMATED. The mirror of the forward turn: the same
+    // stepping walk at the same TURN_FRAME_MS cadence, played from wherever
+    // she is down to the resting frame. Reuses the already-preloaded frames,
+    // so it issues no new request. Guarded no-op when animation is disabled,
+    // which is what keeps reduced motion at zero frames in BOTH directions.
+    function turnAway() {
+      playTo(-1);
+    }
+
+    return { warm: warm, rest: rest, turnAway: turnAway, noteActivity: noteActivity };
   }
 
   // -----------------------------------------------------------------
@@ -3617,11 +3628,12 @@
 
     // THE HEAD TURN, wired to the same photograph node the loading logic
     // above already found. Registering the idle hook here is what makes the
-    // attention machine's return-to-idle also return her to the resting
-    // frame; both calls are guarded no-ops until the frames have preloaded.
+    // attention machine's return-to-idle now play her back to the resting
+    // frame as an animated reverse turn, rather than resetting the frame
+    // instantly; both calls are guarded no-ops until the frames have preloaded.
     var headTurn = createHeadTurn(photoNode);
     attnIdleHook = function () {
-      headTurn.rest();
+      headTurn.turnAway();
     };
 
     // HER OPENING MESSAGE IS IN THE THREAD BEFORE THE PANEL IS EVER OPENED,

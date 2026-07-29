@@ -2915,7 +2915,9 @@
       }
     }
 
-    // Back to rest, instantly. No reverse animation.
+    // Back to rest, instantly. No reverse animation. This is the panel-close
+    // path, where an instant reset is correct because nobody is watching;
+    // the animated version used on idle is turnAway() below.
     function rest() {
       if (!ready || disabled) {
         return;
@@ -2930,7 +2932,16 @@
       }
     }
 
-    return { warm: warm, rest: rest, noteActivity: noteActivity };
+    // Back to rest, ANIMATED. The mirror of the forward turn: the same
+    // stepping walk at the same TURN_FRAME_MS cadence, played from wherever
+    // she is down to the resting frame. Reuses the already-preloaded frames,
+    // so it issues no new request. Guarded no-op when animation is disabled,
+    // which is what keeps reduced motion at zero frames in BOTH directions.
+    function turnAway() {
+      playTo(-1);
+    }
+
+    return { warm: warm, rest: rest, turnAway: turnAway, noteActivity: noteActivity };
   }
 
   // -----------------------------------------------------------------
@@ -3522,11 +3533,12 @@
 
     // THE HEAD TURN, wired to the same photograph node the loading logic
     // above already found. Registering the idle hook here is what makes the
-    // attention machine's return-to-idle also return her to the resting
-    // frame; both calls are guarded no-ops until the frames have preloaded.
+    // attention machine's return-to-idle now play her back to the resting
+    // frame as an animated reverse turn, rather than resetting the frame
+    // instantly; both calls are guarded no-ops until the frames have preloaded.
     var headTurn = createHeadTurn(photoNode);
     attnIdleHook = function () {
-      headTurn.rest();
+      headTurn.turnAway();
     };
 
     // HER OPENING MESSAGE IS IN THE THREAD BEFORE THE PANEL IS EVER OPENED,
