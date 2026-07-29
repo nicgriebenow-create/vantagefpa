@@ -576,7 +576,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--s-48);
-  align-items: end;
+  align-items: center;
 }
 
 .section-eyebrow {
