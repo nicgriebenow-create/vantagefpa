@@ -492,12 +492,76 @@ nav {
   margin-top: var(--s-40);
 }
 
-/* CATALOG STRIP, additive per Nic's 2026-07-29 homepage rework. The section
-   wrapper is the only new rule; the list reuses .service-bullets as-is. */
+/* CATALOG STRIP, additive per Nic's 2026-07-29 homepage rework. Restyled the
+   same day: the flat bulleted list read assembled next to the designed
+   sections, so the six items now ride the house card grid. Everything here is
+   the existing vocabulary at a quieter register: the hairline-gap grid and
+   off-white cells from .process-steps, the small gold index in the .step-phase
+   style, a .why-title weight lead over a .step-desc qualifier, and the one
+   house motion idea, the gold rule drawing left to right on hover. The indices
+   are CSS counters, not markup, because the strip's copy is approved verbatim
+   and generated content keeps the visible text identical to the approved list. */
 .catalog-strip {
   padding: var(--s-64) var(--s-48);
   background: var(--white);
   border-bottom: 1px solid var(--gray-100);
+}
+
+.catalog-grid {
+  list-style: none;
+  counter-reset: catalog;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--hair);
+}
+
+.catalog-item {
+  counter-increment: catalog;
+  background: var(--off-white);
+  padding: var(--s-24) var(--s-32) var(--s-32);
+  position: relative;
+}
+
+.catalog-item::before {
+  content: counter(catalog, decimal-leading-zero);
+  display: block;
+  font-size: var(--t-11);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: var(--s-12);
+}
+
+.catalog-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: var(--s-32); right: var(--s-32);
+  height: var(--hair);
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: left;
+}
+
+.catalog-item:hover::after { transform: scaleX(1); }
+
+.catalog-lead {
+  display: block;
+  font-size: var(--t-16);
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.01em;
+  line-height: var(--lh-snug);
+  margin-bottom: var(--s-8);
+}
+
+.catalog-rest {
+  display: block;
+  font-size: var(--t-14);
+  line-height: var(--lh-normal);
+  color: var(--gray-600);
+  font-weight: 300;
+  max-width: var(--measure);
 }
 
 /* CAPABILITY TAPE, full-bleed dulled gold ground, navy type, 45px per second,
@@ -1305,7 +1369,8 @@ footer {
    viewport edge. */
 @media (max-width: 1196px) {
   nav, footer,
-  .hero, .page-hero, .how, .services, .why, .why-alt, .vs, .contact, .cta-band {
+  .hero, .page-hero, .how, .services, .why, .why-alt, .vs, .contact, .cta-band,
+  .catalog-strip {
     padding-left: var(--s-32);
     padding-right: var(--s-32);
   }
@@ -1325,6 +1390,7 @@ footer {
 @media (max-width: 1024px) {
   .services-grid,
   .process-steps,
+  .catalog-grid,
   .why-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
 
   .services-grid > :last-child:nth-child(odd),
@@ -1354,6 +1420,8 @@ footer {
   .cap-tape-track { animation-duration: 32.4s; }
   .how { padding: var(--s-80) var(--s-24); }
   .services { padding: var(--s-80) var(--s-24); }
+  .catalog-strip { padding: var(--s-48) var(--s-24); }
+  .catalog-grid { grid-template-columns: 1fr; }
   .section-header { grid-template-columns: 1fr; gap: var(--s-24); }
   .process-steps { grid-template-columns: 1fr; }
   .flow { grid-template-columns: 1fr; gap: var(--s-64); }
@@ -1404,6 +1472,8 @@ footer {
 @media (max-width: 560px) {
   .service-card, .process-step { padding: var(--s-40) var(--s-24); }
   .service-card::after, .process-step::after { left: var(--s-24); right: var(--s-24); }
+  .catalog-item { padding: var(--s-24); }
+  .catalog-item::after { left: var(--s-24); right: var(--s-24); }
   .why-item { padding: var(--s-32) var(--s-24); }
   .compare-col { padding: var(--s-32) var(--s-24); }
   .contact-detail { gap: var(--s-32); }
@@ -1429,7 +1499,7 @@ footer {
     -ms-overflow-style: none;
   }
   .cap-tape-viewport::-webkit-scrollbar { display: none; }
-  .service-card::after, .process-step::after, .why-row::after { transition: none; }
+  .service-card::after, .process-step::after, .why-row::after, .catalog-item::after { transition: none; }
 }
 
 /* PRINT */
@@ -1441,7 +1511,7 @@ footer {
   .hero-sub, .page-hero-sub, .why-desc, .footer-legal { color: #333333 !important; }
   .hero { min-height: 0; padding: var(--s-24) 0; }
   .page-hero { padding: var(--s-24) 0; }
-  .services-grid, .why-grid, .why-grid.cols-3, .compare, .flow, .process-steps { grid-template-columns: 1fr !important; }
+  .services-grid, .why-grid, .why-grid.cols-3, .compare, .flow, .process-steps, .catalog-grid { grid-template-columns: 1fr !important; }
   .compare-us { background: #FFFFFF !important; }
   .compare-us li { color: #000000 !important; }
   a { text-decoration: none; color: #000000; }
