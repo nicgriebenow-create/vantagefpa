@@ -512,6 +512,7 @@ nav {
   counter-reset: catalog;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--hair);
 }
 
@@ -574,7 +575,9 @@ nav {
    into the page. */
 .cap-tape {
   background: var(--gold);
-  border-top: 1px solid rgba(13, 31, 60, 0.22);
+  /* No border-top: moved 2026-07-30 to sit directly under .hero, which already
+     draws its own gold gradient hairline along its bottom edge (.hero::after).
+     A second line here doubled that edge into a visible seam. */
   border-bottom: 1px solid rgba(13, 31, 60, 0.22);
   padding: var(--s-16) 0;
   white-space: nowrap;
