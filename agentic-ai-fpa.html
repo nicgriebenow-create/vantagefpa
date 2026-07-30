@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Evaluate an Agentic AI FP&A Supplier | Vantage FP&A</title>
+<meta name="description" content="Every agentic AI FP&A supplier claims traceability and forecasting. What actually separates them is whether a model computes the number or deterministic code does, and who checks it.">
+<link rel="canonical" href="https://vantagefpa.com/agentic-ai-fpa.html">
+<link rel="icon" type="image/png" href="vantage_favicon_32.png">
+<link rel="apple-touch-icon" href="vantage_appletouch_180.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Vantage FP&A">
+<meta property="og:title" content="How to Evaluate an Agentic AI FP&A Supplier | Vantage FP&A">
+<meta property="og:description" content="Every agentic AI FP&A supplier claims traceability and forecasting. What actually separates them is whether a model computes the number or deterministic code does, and who checks it.">
+<meta property="og:image" content="https://vantagefpa.com/vantage_lockup_light.png">
+<meta property="og:url" content="https://vantagefpa.com/agentic-ai-fpa.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vantagefpa.com/#organization",
+      "name": "Vantage FP&A",
+      "url": "https://vantagefpa.com",
+      "logo": "https://vantagefpa.com/vantage_lockup_light.png",
+      "areaServed": "US",
+      "email": "ngriebenow@vantagefpa.com"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vantagefpa.com/about.html#nic",
+      "name": "Nicolas Griebenow",
+      "jobTitle": "Founder"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://vantagefpa.com/agentic-ai-fpa.html",
+      "headline": "How to Evaluate an Agentic AI FP&A Supplier",
+      "url": "https://vantagefpa.com/agentic-ai-fpa.html",
+      "datePublished": "2026-07-29",
+      "author": {
+        "@id": "https://vantagefpa.com/about.html#nic"
+      },
+      "publisher": {
+        "@id": "https://vantagefpa.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vantagefpa.com/agentic-ai-fpa.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What do you need from us to start",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A deal folder and the engagement metadata that describes it. Every other part is optional by design. A trial balance is what most of the work runs on, general ledger detail, bank statements and a receivables or invoice register each unlock a specific section, and deal documents are inventoried rather than read for findings. Anything absent produces a named limitation, and the workstream that needed it renders as not performed with the reason attached rather than quietly thinning the report."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens when you cannot read something we sent",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It blocks rather than passing through. Intake resolves every category into one of three states, received, not provided, or unusable, and unusable means the file arrived and could not be parsed or trusted. That state stops the run instead of degrading into not provided, because reporting that we could not read a file as though you never sent it is a false statement about you inside a report sold as independent. Two states is how that happens, so there are three, and the rule is asserted in code rather than described in a procedure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we get the software or the output",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You get the deliverables and the trace behind every figure in them. The build itself stays ours. If you want to satisfy yourself about where a number came from, the answer is the formula path from the figure back to the account and period it was computed from, which you can follow without anyone explaining it, rather than a copy of the machinery that produced it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Vantage a CPA firm",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Vantage FP&A LLC is not a CPA firm. The work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing published here is investment, financial, legal, or tax advice. That is the same line the footer of every page carries, and it is worth reading before a first call rather than after one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if there is no public company in our industry code",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Then the comparable screen returns nothing and the deliverable says so on the page. Of the 47 four digit industry codes we track, 26 contain no company filing an annual report at all, and 7 of the 21 industry families are empty in every code they hold. That is a limit of the public record rather than a setting anyone can change, so the screen is one section of a package rather than the basis of it, and an empty result carrying its reason is what you get instead of a substitute quietly drawn from an adjacent industry."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ARTICLE FORM, additive for this page only. Everything else on the page
+   reuses the shared stylesheet as-is: the masthead padding that clears the
+   fixed nav now that the navy hero band is gone, the centered column an
+   authored piece reads in, a headline sized and colored for a white masthead
+   instead of the navy hero, the byline and the single closing line, and the
+   exhibit block the two charts are built from.
+
+   MEASURE, corrected 2026-07-29. The shared `--measure` is 62ch, and `ch` in
+   Inter is the advance of a zero, 0.631em, measured off Brand/fonts/Inter.ttf
+   rather than assumed. At the shared 16px body size that is a 626px column
+   carrying roughly 82 characters a line, which is ABOVE the editorial 62 to
+   75, not below it. Widening the pixel column without moving the type size
+   would have made that worse. So the type goes up a step to 20px and the
+   column to 700px, which is 12 percent wider on the page and roughly 74
+   characters a line, inside the band. Both endpoints of the size clamp are
+   steps on the shared type scale.
+
+   AT SHIP TIME, everything in this block belongs in styles.css: the article
+   rules under a page section like the others, `--rail-article`, `--t-article`
+   and the two `--viz` hexes in the `:root` token block, and the `.fig` family
+   as a new EXHIBIT section. The two viz hexes are the only new colors; they
+   are a lighter step of the brand navy and a darker step of the brand gold,
+   chosen because the brand navy itself fails a categorical-series check as a
+   fill (too dark, too little chroma) and the brand gold fails contrast on
+   white. Both replacements clear the lightness band, chroma floor, CVD
+   separation, normal-vision floor and 3 to 1 contrast on a white surface. */
+:root {
+  --rail-article: 700px;
+  --t-article: clamp(var(--t-16), 2.2vw + 2.6px, var(--t-20));
+  --viz-1: #2F5596;
+  --viz-2: #A8863A;
+}
+.article-masthead { padding: calc(var(--nav-h) + var(--s-48)) var(--s-48) 0; }
+.article-col { max-width: var(--rail-article); margin: 0 auto; }
+.article-body { padding: var(--s-48) var(--s-48) var(--s-96); }
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--t-h1-page);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: var(--lh-display);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-24);
+}
+.article-title em { font-style: italic; color: var(--gold); }
+.article-byline { font-size: var(--t-14); color: var(--gray-600); font-weight: 500; letter-spacing: 0.01em; }
+
+/* RHYTHM. The shared prose block is 16px on a 1.8 line height with a 24px
+   paragraph gap and a 40px lead-in, and the section blocks sat 96px apart.
+   At article length that reads as stranded blocks rather than one argument.
+   Body goes to the clamp above on a 1.6 line height, the paragraph gap to
+   16px, the lead-in to 24px, the section gap to 48px, and a subhead gets its
+   own 32px of air above so headings keep separation while paragraphs close up. */
+.article-body .prose { max-width: 100%; margin-top: var(--s-24); }
+.article-body .prose p {
+  font-size: var(--t-article);
+  line-height: var(--lh-normal);
+  margin-bottom: var(--s-16);
+}
+.article-body .prose .why-row-title { margin-top: var(--s-32); margin-bottom: var(--s-8); }
+.article-body .prose .why-row-title:first-child { margin-top: var(--s-16); }
+.article-section { margin-top: var(--s-48); }
+.article-close {
+  margin-top: var(--s-48);
+  padding-top: var(--s-32);
+  border-top: 1px solid var(--gray-100);
+  font-size: var(--t-16);
+  font-style: italic;
+  font-weight: 300;
+  line-height: var(--lh-loose);
+  color: var(--gray-600);
+}
+.article-close a { color: var(--navy); font-style: normal; }
+
+/* EXHIBITS. Chart text is HTML text or SVG text at a fixed pixel size, and
+   every SVG is sized in pixels with no viewBox, so nothing scales with the
+   column and nothing becomes unreadable on a phone. A cell is a mark, a
+   number inside a cell is that mark's own label, and the annotation carries
+   the finding. Marks are the only colored thing; every word wears a text
+   token. */
+.fig { margin: var(--s-40) 0; padding-top: var(--s-16); border-top: var(--hair) solid var(--navy); }
+.fig-title {
+  font-family: 'Playfair Display', serif;
+  font-size: var(--t-22);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+}
+.article-body .fig p { margin-bottom: 0; }
+.article-body .fig .fig-deck {
+  font-size: var(--t-13);
+  line-height: var(--lh-snug);
+  color: var(--gray-600);
+  margin-top: var(--s-8);
+  max-width: 62ch;
+}
+.fig-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-8) var(--s-24);
+  margin-top: var(--s-16);
+  font-size: var(--t-12);
+  color: var(--gray-600);
+}
+.fig-key span { display: inline-flex; align-items: center; gap: var(--s-8); }
+.k-dot { flex: none; }
+.fig-body { display: flex; flex-wrap: wrap; gap: var(--s-24); margin-top: var(--s-24); align-items: flex-start; }
+.fig-grid { display: grid; grid-template-columns: 190px auto; column-gap: var(--s-16); row-gap: 5px; align-items: center; }
+.m-lab { font-size: var(--t-13); line-height: var(--lh-snug); color: var(--text); font-weight: 500; text-align: right; }
+.m-cells { display: block; flex: none; }
+.m-head text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--gray-400);
+}
+.c-lab, .k-on { fill: var(--viz-1); }
+.c-ven { fill: var(--viz-2); }
+.c-off, .k-off { fill: var(--off-white); stroke: var(--gray-400); stroke-width: 1; }
+.k-on-t, .k-off-t {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+.k-on-t { fill: var(--white); }
+.k-off-t { fill: var(--gray-600); }
+.fig-call { flex: 1 1 210px; border-left: 1px solid var(--gray-100); padding-left: var(--s-16); }
+.fig-call-k { align-self: flex-end; }
+.article-body .fig .fig-call p { font-size: var(--t-13); line-height: var(--lh-normal); color: var(--gray-600); }
+.article-body .fig .fig-src {
+  margin-top: var(--s-16);
+  padding-top: var(--s-12);
+  border-top: 1px solid var(--gray-100);
+  font-size: var(--t-11);
+  line-height: var(--lh-snug);
+  color: var(--gray-400);
+}
+
+/* ATTRIBUTION. A publication credit line, deliberately not a legal notice.
+   No license grant, no permissions clause, no reproduction prohibition. The
+   canonical tag in the head is what actually tells a search engine we are the
+   origin if the text gets lifted; this block is what makes citing us easy for
+   someone acting in good faith. */
+.article-credit {
+  margin-top: var(--s-32);
+  padding-top: var(--s-12);
+  border-top: 1px solid var(--gray-100);
+  font-size: var(--t-11);
+  line-height: var(--lh-snug);
+  color: var(--gray-400);
+}
+.article-credit p + p { margin-top: var(--s-4); }
+.article-credit cite { font-style: italic; }
+
+@media (max-width: 680px) {
+  .article-masthead, .article-body { padding-left: var(--s-24); padding-right: var(--s-24); }
+  .fig-grid { grid-template-columns: 1fr; row-gap: 2px; }
+  .m-lab { text-align: left; margin-top: var(--s-8); }
+  .m-spacer { display: none; }
+  .fig-call, .fig-call-k { align-self: auto; border-left: 0; border-top: 1px solid var(--gray-100); padding-left: 0; padding-top: var(--s-12); }
+}
+
+/* Where hue is unavailable, the two bands stay distinguishable by position
+   and every code cell still carries its own number. */
+@media (forced-colors: active) {
+  .c-lab, .c-ven, .k-on { fill: CanvasText; }
+  .c-off, .k-off { fill: Canvas; stroke: CanvasText; }
+  .k-on-t { fill: Canvas; }
+  .k-off-t { fill: CanvasText; }
+}
+@media print { .fig { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="index.html"><img src="vantage_lockup_dark.png" alt="Vantage FP&A" style="height:42px;width:auto;display:block;"></a></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="deal-diligence.html">Deal Diligence</a></li>
+      <li><a href="reporting.html">Reporting</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="for-brokers.html">For Brokers</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="nav-cta">Schedule a Call</a></li>
+    </ul>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="deal-diligence.html">Deal Diligence</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
+    <li><a href="verification.html">Verification</a></li>
+    <li><a href="for-brokers.html">For Brokers</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Schedule a Call</a></li>
+  </ul>
+</div>
+
+<!-- MASTHEAD -->
+<section class="article-masthead">
+  <div class="article-col">
+    <div class="section-eyebrow">Agentic AI FP&A</div>
+    <h1 class="article-title">Agentic AI in FP&A is a work pattern. <em>Verifying it is a different question entirely.</em></h1>
+    <p class="article-byline">Nicolas Griebenow, Founder, Vantage FP&A &middot; <span class="article-date">2026-07-29</span></p>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-body">
+  <article class="article-col">
+
+    <div class="prose">
+      <p>Agentic AI FP&A software is not one product. It is any system built to run multi step finance work on its own initiative, reading a trial balance, building a variance bridge, drafting a forecast, or working a diligence file end to end, instead of answering a single question and stopping. That category is real. What it does not settle is the question that actually matters to the person signing the engagement letter, which is whether the number the system hands you was computed by a model or by code that runs the same way every time, and who checked it before you saw it.</p>
+    </div>
+
+    <figure class="fig" id="fig-vocab">
+      <h3 class="fig-title">Seven of these eleven terms are used by the model labs or by the vendors, not by both</h3>
+      <p class="fig-deck">Whether each term appears in the pages sampled from four model labs and five FP&amp;A software vendors. One sweep, 2026-07-29. A filled cell means the term appears in that source's sampled pages.</p>
+      <div class="fig-key">
+        <span><svg width="13" height="13" aria-hidden="true" class="k-dot"><rect x="0" y="1" width="13" height="11" rx="2" class="c-lab"/></svg> Model labs, column order Anthropic, OpenAI, Google, Microsoft</span> <!-- COPYGATE-ALLOW: PLAIN_AI REASON: OpenAI is the company's registered name and one of the four sampled sources this chart's column order names. Renaming it would misstate the source, which is the same carve-out the rule already documents for a proper name. The house term is untouched everywhere it describes Vantage. -->
+        <span><svg width="13" height="13" aria-hidden="true" class="k-dot"><rect x="0" y="1" width="13" height="11" rx="2" class="c-ven"/></svg> FP&amp;A vendors, column order Cube, Datarails, Pigment, Vena, Aleph</span>
+        <span><svg width="13" height="13" aria-hidden="true" class="k-dot"><rect x="0.5" y="1.5" width="12" height="10" rx="2" class="c-off"/></svg> Term absent from that source's sampled pages</span>
+      </div>
+      <div class="fig-body">
+       <div class="fig-grid">
+        <div class="m-spacer" aria-hidden="true"></div>
+        <svg class="m-cells m-head" width="205" height="13" aria-hidden="true"><text x="0" y="10">4 model labs</text><text x="93" y="10">5 FP&amp;A vendors</text></svg>
+          <div class="m-lab">Model Context Protocol</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="Model Context Protocol. three of four model labs, five of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="40" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="60" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="173" y="1" width="16" height="14" rx="2" class="c-ven"/></svg>
+          <div class="m-lab">agentic AI</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="agentic AI. two of four model labs, four of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">semantic layer</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="semantic layer. none of four model labs, three of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">hallucinations</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="hallucinations. none of four model labs, three of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="113" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173" y="1" width="16" height="14" rx="2" class="c-ven"/></svg>
+          <div class="m-lab">deterministic</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="deterministic. none of four model labs, two of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173" y="1" width="16" height="14" rx="2" class="c-ven"/></svg>
+          <div class="m-lab">human in the loop</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="human in the loop. none of four model labs, two of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">vibe coding</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="vibe coding. one of four model labs, two of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173" y="1" width="16" height="14" rx="2" class="c-ven"/></svg>
+          <div class="m-lab">multi-agent</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="multi-agent. three of four model labs, one of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="40" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="60" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="93" y="1" width="16" height="14" rx="2" class="c-ven"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">token efficiency</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="token efficiency. two of four model labs, none of five vendors."><rect x="0.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="60" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="93.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">prompt caching</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="prompt caching. two of four model labs, none of five vendors."><rect x="0" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="20" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="40.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+          <div class="m-lab">computer use</div>
+          <svg class="m-cells" width="189" height="16" role="img" aria-label="computer use. two of four model labs, none of five vendors."><rect x="0" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="20.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="40" y="1" width="16" height="14" rx="2" class="c-lab"/><rect x="60.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="93.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="113.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="133.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="153.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/><rect x="173.5" y="1.5" width="15.0" height="13.0" rx="2" class="c-off"/></svg>
+       </div>
+        <div class="fig-call">
+          <p>Shared vocabulary separates nobody. One term reaches all five vendor sources, Model Context Protocol, and what it names is a way to connect systems rather than a way to compute a number. Four terms sit with the vendors only and three with the labs only, so the vocabulary on a page tells you which side of this industry the writer reads, not what the software underneath does.</p>
+        </div>
+      </div>
+      <figcaption class="fig-src">Source &middot; Vantage vocabulary sweep, 2026-07-29. Exact phrase scan re-run 2026-07-29 over the nine raw source inventories in Vantage_QC/testlab/runs/vocab-watch-2026-07-29, consolidated at knowledge/Marketing/vocab_ledger.md. Sampling was roughly ten recent posts plus flagship product pages per source, so a cell records the pages read and not the whole site. Anthropic originated the Model Context Protocol and its sampled pages did not carry the abbreviation.</figcaption>
+    </figure>
+
+    <div class="article-section" id="what-it-covers">
+      <h2 class="section-title">Four jobs the label actually covers</h2>
+      <div class="prose">
+        <p>Agentic AI FP&A is not a single feature. Under that label, four jobs come up most often. None of the four alone tells you whether the number that comes out the other end is right.</p>
+
+        <h3 class="why-row-title">Variance analysis</h3>
+        <p>A system reads actuals against budget or against last year, works the exceptions on its own, flags what moved, and drafts the commentary a controller would otherwise write by hand.</p>
+
+        <h3 class="why-row-title">Forecasting</h3>
+        <p>A system rolls closed months into a full year estimate, projects the open months against a chosen method, and compares that estimate to budget without a person rebuilding the model at every close.</p>
+
+        <h3 class="why-row-title">Board and monthly reporting</h3>
+        <p>A system assembles the reporting package itself, variance tabs, bridges, a summary, from one underlying data set, instead of a person copying figures between several tabs and a deck by hand.</p>
+
+        <h3 class="why-row-title">Diligence support</h3>
+        <p>A system works a trial balance or a data room on its own initiative, surfacing add backs, red flags, and the questions a buyer's team would ask, rather than waiting for a person to catch each one by inspection.</p>
+      </div>
+    </div>
+
+    <div class="article-section" id="criteria">
+      <h2 class="section-title">What to check before you hire one of these suppliers</h2>
+      <div class="prose">
+        <p>This is the checklist we would want a buyer to run against Vantage as much as against anyone else claiming the term. Four criteria the category already rewards, and three questions worth asking of any supplier borrowing this label.</p>
+
+        <h3 class="why-row-title">Does it detect variance against real data</h3>
+        <p>Does the system tie its flags to the actual trial balance, with a real dollar and percentage threshold behind each one, rather than narrating a chart. Vantage runs seven variance scopes off the same income statement line, against budget and against prior year across month, quarter to date, and year to date, plus month over month, and a scope flags when either the dollar or the percentage threshold clears.</p>
+
+        <h3 class="why-row-title">Does the forecast admit its own limits</h3>
+        <p>Does the forecast method attach to a real driver, and does it say so when the data will not support the method it would prefer. Vantage sets forecast method as a property of the line item rather than a global setting, and a method whose precondition is not met falls back to a plain trailing average instead of projecting something the data cannot support.</p>
+
+        <h3 class="why-row-title">Does it land in the file you already keep</h3>
+        <p>Does the output arrive in the spreadsheet the finance team already trusts, or does it require a new platform and a new login. This one separates suppliers less than it used to. Ask it anyway, and treat a yes as table stakes rather than a differentiator. Vantage builds one workbook off one intake, so the reporting, the forecast, and the deck cannot disagree with each other.</p>
+
+        <h3 class="why-row-title">Can you trace a number, not just view it</h3>
+        <p>Can you click the figure and see the path back to source, or does the trail stop at a chart. Vantage recomputes its structural checks independently every period and renders them as live formulas, so a buyer can trace a figure to the account it came from without asking anyone to explain it. What fails the build is a named list rather than anything that could go wrong. The gate asserts that every expected tab is present, that no cell anywhere carries an error literal, that the scenario levers are wired to the cells they claim to drive, that the add back walk foots, and that a figure quoted in the deck matches the workbook cell behind it. A check that cannot run reports skip with its reason instead of passing, the list has grown with every version, and the adversarial review that reads what the gate cannot is dispatched by a person today. That is the honest shape of it, and it is a list you can ask to see.</p>
+
+        <h3 class="why-row-title">Does a model compute the number, or does code</h3>
+        <p>This is the question the category mostly does not get asked. Ask it of anyone using the term, ours included, and ask where the arithmetic happens. Today no language model computes a figure in a Vantage deliverable. Every number comes from code that returns the same answer on the same input every time, and agentic AI in the Vantage build handles the work around that core, intake, drafting, sequencing, not the arithmetic itself.</p>
+
+        <h3 class="why-row-title">Who checks the author's work</h3>
+        <p>Is the reviewer catching mistakes a different party than the one who built the output, or is the system grading its own homework. A deterministic gate runs automatically on every build. Every check has to land on pass, fail or skip with a reason, and a check that reports nothing at all fails the run rather than quietly shortening it. A fourth state exists as well, a warning, which prints in the result line alongside a check's own result and does not by itself stop the package. On top of that, an independent adversarial review is dispatched to someone who did not build the package. That dispatch is human triggered today, not automatic, and closing that loop is roadmap rather than a claim we are making now.</p>
+
+        <h3 class="why-row-title">Does it name what it did not do</h3>
+        <p>Does the deliverable list the diligence workstreams it did not perform, why, and what would close each one, on the tab a buyer opens first, or does silence stand in for a clean bill. Vantage's package names those workstreams and what would close each one, asserted by the gate so the list cannot quietly go missing between one engagement and the next.</p>
+      </div>
+    </div>
+
+    <div class="article-section" id="limits">
+      <h2 class="section-title">Understating this is the discipline, not a caveat</h2>
+      <div class="prose">
+        <p>A criteria list is only honest if it includes the place where the answer runs out. These behaviors are designed in on purpose, and they are the reason the rest of the package can be taken at face value.</p>
+
+      <figure class="fig" id="fig-gate">
+        <h3 class="fig-title">Five of seventeen checks could not assert on the first leg, and one still could not on the third</h3>
+        <p class="fig-deck">Each cell is the state one gate check reported on one leg of a single run, 2026-07-26, over synthetic specimen data generated by this repo rather than a client's books. A filled cell is a check that asserted and passed. An open cell is a check that could not assert and printed its written reason instead. Leg one supplied the trial balance only, leg two added bank statements and ledger detail, leg three added the written memo.</p>
+        <div class="fig-key">
+          <span><svg width="13" height="13" aria-hidden="true" class="k-dot"><rect x="0" y="1" width="13" height="11" rx="2" class="k-on"/></svg> Check asserted and passed</span>
+          <span><svg width="13" height="13" aria-hidden="true" class="k-dot"><rect x="0.5" y="1.5" width="12" height="10" rx="2" class="c-off"/></svg> Check could not assert and printed its reason</span>
+        </div>
+        <div class="fig-body">
+         <div class="fig-grid fig-grid-k">
+            <div class="m-spacer" aria-hidden="true"></div>
+            <svg class="m-cells m-head" width="179" height="13" aria-hidden="true"><text x="0" y="10">Leg 1</text><text x="61" y="10">Leg 2</text><text x="122" y="10">Leg 3</text></svg>
+            <div class="m-lab">Bank reconciliation</div>
+            <svg class="m-cells" width="179" height="22" role="img" aria-label="Bank reconciliation. Leg one could not assert and printed its reason, leg two passed, leg three passed."><rect x="0.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="28" y="14.5" class="k-off-t">SKIP</text><rect x="61" y="1" width="56" height="18" rx="2" class="k-on"/><text x="89" y="14.5" class="k-on-t">PASS</text><rect x="122" y="1" width="56" height="18" rx="2" class="k-on"/><text x="150" y="14.5" class="k-on-t">PASS</text></svg>
+            <div class="m-lab">GL reconciliation</div>
+            <svg class="m-cells" width="179" height="22" role="img" aria-label="GL reconciliation. Leg one could not assert and printed its reason, leg two passed, leg three passed."><rect x="0.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="28" y="14.5" class="k-off-t">SKIP</text><rect x="61" y="1" width="56" height="18" rx="2" class="k-on"/><text x="89" y="14.5" class="k-on-t">PASS</text><rect x="122" y="1" width="56" height="18" rx="2" class="k-on"/><text x="150" y="14.5" class="k-on-t">PASS</text></svg>
+            <div class="m-lab">GL exceptions</div>
+            <svg class="m-cells" width="179" height="22" role="img" aria-label="GL exceptions. Leg one could not assert and printed its reason, leg two passed, leg three passed."><rect x="0.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="28" y="14.5" class="k-off-t">SKIP</text><rect x="61" y="1" width="56" height="18" rx="2" class="k-on"/><text x="89" y="14.5" class="k-on-t">PASS</text><rect x="122" y="1" width="56" height="18" rx="2" class="k-on"/><text x="150" y="14.5" class="k-on-t">PASS</text></svg>
+            <div class="m-lab">Findings memo</div>
+            <svg class="m-cells" width="179" height="22" role="img" aria-label="Findings memo. Leg one and leg two could not assert and each printed a reason, leg three passed."><rect x="0.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="28" y="14.5" class="k-off-t">SKIP</text><rect x="61.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="89" y="14.5" class="k-off-t">SKIP</text><rect x="122" y="1" width="56" height="18" rx="2" class="k-on"/><text x="150" y="14.5" class="k-on-t">PASS</text></svg>
+            <div class="m-lab">Rendered geometry</div>
+            <svg class="m-cells" width="179" height="22" role="img" aria-label="Rendered geometry. All three legs could not assert and each printed a reason, because the run produced no rendered artifact."><rect x="0.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="28" y="14.5" class="k-off-t">SKIP</text><rect x="61.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="89" y="14.5" class="k-off-t">SKIP</text><rect x="122.5" y="1.5" width="55.0" height="17.0" rx="2" class="k-off"/><text x="150" y="14.5" class="k-off-t">SKIP</text></svg>
+         </div>
+          <div class="fig-call fig-call-k">
+            <p>The denominator did not move. Seventeen of seventeen declared checks reported a state on every leg, and a check that reports nothing at all is counted as a failure rather than passed over, so the leg with the fewest inputs reported the same number of checks as the leg with the most. What shrank was the skip count, five then two then one, and it shrank only as real inputs arrived. One skip is open, because rendered geometry needs a rendered artifact beside the workbook and this run produced none.</p>
+          </div>
+        </div>
+        <figcaption class="fig-src">Source &middot; Vantage QoE run record at Agents/Vantage_docs/_run_record_mirrors/qoe_run_record_mirror.txt, three legs executed 2026-07-26 through the offline smoke harness on gate version qc_workbook.py, sha256 c6fb7a4e1339. Cell states are read from the gate's own result lines, 12 pass and 5 skip on leg one, 15 pass and 2 skip on leg two, 16 pass and 1 skip on leg three, each of them reporting 17 of 17 declared checks. Skip reasons are printed gate output, quoted without rewording, for example bank reconciliation on leg one, "TIE-OUT section 2 carries the honest PENDING block (no bank statements provided), so no GL-to-bank identity was recomputed". The specimen is synthetic sample data generated by this repo, not a client and not an engagement.</figcaption>
+      </figure>
+
+        <h3 class="why-row-title">It will not size what it cannot prove</h3>
+        <p>Some add backs turn on a market judgment a machine has no basis to make. Owner compensation is the standing case. The actual pay sits in the trial balance and the market replacement rate does not, so the adjustment is identified, evidenced, and handed over unsized rather than guessed at.</p>
+
+        <h3 class="why-row-title">It will not smooth over a month it cannot reconcile</h3>
+        <p>When bank statements are supplied, reported activity is reconciled to the bank account by account and month by month, on two independent identities in the first period of the window and four in every period after it, because two of the four difference against the prior period's general ledger cash balance and the first period has no prior to difference against. A month that will not tie lands in a review register with the specific check that failed named on the page, rather than getting averaged away or dropped from the report. With no statements supplied the workbook renders that section pending instead of going quiet on it.</p>
+
+        <h3 class="why-row-title">It carries no accuracy claim</h3>
+        <p>You will not find a percentage anywhere in a Vantage deliverable claiming how right the numbers are. What you get instead is the formula behind the number, and a formula is something you can check yourself rather than something you have to take on faith.</p>
+
+        <h3 class="why-row-title">The review is dispatched, and judgment stays with a person</h3>
+        <p>The independent review that checks a package after the deterministic gate clears it is triggered by a person today, not fired automatically by the build. Automating that trigger is roadmap. Every call that needs judgment, an add back a buyer would contest, a figure worth a second look, stays with a person who will answer for it.</p>
+      </div>
+    </div>
+
+    <div class="article-section" id="faq">
+      <h2 class="section-title">Questions this piece does not answer</h2>
+      <div class="prose">
+        <h3 class="why-row-title">What do you need from us to start</h3>
+        <p>A deal folder and the engagement metadata that describes it. Every other part is optional by design. A trial balance is what most of the work runs on, general ledger detail, bank statements and a receivables or invoice register each unlock a specific section, and deal documents are inventoried rather than read for findings. Anything absent produces a named limitation, and the workstream that needed it renders as not performed with the reason attached rather than quietly thinning the report.</p>
+
+        <h3 class="why-row-title">What happens when you cannot read something we sent</h3>
+        <p>It blocks rather than passing through. Intake resolves every category into one of three states, received, not provided, or unusable, and unusable means the file arrived and could not be parsed or trusted. That state stops the run instead of degrading into not provided, because reporting that we could not read a file as though you never sent it is a false statement about you inside a report sold as independent. Two states is how that happens, so there are three, and the rule is asserted in code rather than described in a procedure.</p>
+
+        <h3 class="why-row-title">Do we get the software or the output</h3>
+        <p>You get the deliverables and the trace behind every figure in them. The build itself stays ours. If you want to satisfy yourself about where a number came from, the answer is the formula path from the figure back to the account and period it was computed from, which you can follow without anyone explaining it, rather than a copy of the machinery that produced it.</p>
+
+        <h3 class="why-row-title">Is Vantage a CPA firm</h3>
+        <p>No. Vantage FP&amp;A LLC is not a CPA firm. The work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing published here is investment, financial, legal, or tax advice. That is the same line the footer of every page carries, and it is worth reading before a first call rather than after one.</p>
+
+        <h3 class="why-row-title">What if there is no public company in our industry code</h3>
+        <p>Then the comparable screen returns nothing and the deliverable says so on the page. Of the 47 four digit industry codes we track, 26 contain no company filing an annual report at all, and 7 of the 21 industry families are empty in every code they hold. That is a limit of the public record rather than a setting anyone can change, so the screen is one section of a package rather than the basis of it, and an empty result carrying its reason is what you get instead of a substitute quietly drawn from an adjacent industry.</p>
+      </div>
+    </div>
+
+    <p class="article-close">If you want to run this checklist on Vantage specifically rather than take our word for it, a twenty minute call is the fastest way to see where the numbers actually come from. <a href="https://calendar.app.google/tAysdXyan6rFuXEZ6" target="_blank" rel="noopener noreferrer">Schedule one here</a>.</p>
+
+    <div class="article-credit">
+      <p>© 2026 Vantage FP&amp;A LLC. Written by Nicolas Griebenow, Founder. Published 2026-07-29.</p>
+      <p>Quoting this is welcome, and the citation is Vantage FP&amp;A LLC, <cite>How to Evaluate an Agentic AI FP&amp;A Supplier</cite>, vantagefpa.com/agentic-ai-fpa.html.</p>
+    </div>
+
+  </article>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Vantage <span>FP&A</span> LLC</div>
+    <ul class="footer-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="deal-diligence.html">Deal Diligence</a></li>
+      <li><a href="reporting.html">Reporting</a></li>
+      <li><a href="verification.html">Verification</a></li>
+      <li><a href="for-brokers.html">For Brokers</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Vantage FP&A LLC &middot; Austin, Texas &middot; ngriebenow@vantagefpa.com</div>
+    <div class="footer-legal">Vantage FP&A LLC is not a CPA firm. Our work is advisory and analytical support. It is not an audit, review, compilation, or attest engagement, and nothing on this site is investment, financial, legal, or tax advice.</div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+
+</body>
+</html>
