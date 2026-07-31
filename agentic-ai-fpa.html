@@ -239,6 +239,14 @@
   font-size: var(--t-11);
   line-height: var(--lh-snug);
   color: var(--gray-400);
+  /* Source lines cite repo file paths (a/b/c.txt) with no spaces, so the
+     default line breaker treats a full path as one unbreakable run. At
+     narrow widths that run is wider than the column and pushes the
+     document's scrollable width past the viewport without ever widening
+     this element's own box, which is why it never showed up as an
+     out-of-bounds element rect. Let a path break at any character once a
+     line has no other opportunity to wrap. */
+  overflow-wrap: anywhere;
 }
 
 /* ATTRIBUTION. A publication credit line, deliberately not a legal notice.

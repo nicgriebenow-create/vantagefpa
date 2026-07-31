@@ -359,6 +359,17 @@ nav {
   background: var(--gold);
 }
 
+/* Homepage hero sits on the navy panel above the gold hero-line, so its
+   eyebrow takes white instead of the gold used on page-hero (subpage)
+   eyebrows, same type scale and letter-spacing otherwise. */
+.hero .hero-eyebrow {
+  color: var(--white);
+}
+
+.hero .hero-eyebrow::before {
+  background: var(--white);
+}
+
 /* The balance keyword evens the two lines out so the break lands on the clause
    boundary, prove the numbers over make the call, instead of stranding a
    two-word second line. Browsers without it fall back to a ragged break inside
