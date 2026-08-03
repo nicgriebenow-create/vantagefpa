@@ -576,6 +576,12 @@ nav {
   max-width: var(--measure);
 }
 
+/* BENEFIT STRIP variant of the catalog grid, four items instead of three, no
+   counter badge (a visible index next to "Three doors into the same engine"
+   would read as a second step sequence on the same page). */
+.catalog-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.catalog-item.no-index::before { content: none; }
+
 /* CAPABILITY TAPE, full-bleed dulled gold ground, navy type, 45px per second,
    one row at every width. The ground is the house gold #C9A84C at full strength,
    which is the muted antique gold the bar carried before the six-page split, not
@@ -1407,6 +1413,8 @@ footer {
   .catalog-grid,
   .why-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
 
+  .catalog-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+
   .services-grid > :last-child:nth-child(odd),
   .process-steps > :last-child:nth-child(odd),
   .why-grid.cols-3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -1436,6 +1444,7 @@ footer {
   .services { padding: var(--s-80) var(--s-24); }
   .catalog-strip { padding: var(--s-48) var(--s-24); }
   .catalog-grid { grid-template-columns: 1fr; }
+  .catalog-grid.cols-4 { grid-template-columns: 1fr; }
   .section-header { grid-template-columns: 1fr; gap: var(--s-24); }
   .process-steps { grid-template-columns: 1fr; }
   .flow { grid-template-columns: 1fr; gap: var(--s-64); }
