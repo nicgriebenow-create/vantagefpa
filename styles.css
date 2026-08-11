@@ -192,7 +192,12 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--s-32);
+  /* Was --s-32. Remeasured 2026-08-11 with RELEASES as the eighth item: at
+     32px gaps the row no longer fits the 1100px rail next to the logo, so
+     DEAL DILIGENCE and FOR BROKERS wrapped and the gold CTA spilled its text
+     at every desktop width. 16px gaps put the full eight-item row back inside
+     the rail with air to spare. */
+  gap: var(--s-16);
   list-style: none;
 }
 
@@ -204,6 +209,9 @@ nav {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 0.2s;
+  /* A nav item never wraps. If the row is ever too wide again the fix is
+     spacing or the collapse breakpoint, not a two-line link. */
+  white-space: nowrap;
 }
 
 .nav-links a:hover { color: var(--gold); }
@@ -222,6 +230,9 @@ nav {
   font-weight: 600 !important;
   letter-spacing: 0.06em !important;
   transition: background 0.2s !important;
+  /* The button text is one line, always. Carried on the rule itself so it
+     survives any markup where the CTA sits outside .nav-links. */
+  white-space: nowrap;
 }
 
 .nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
