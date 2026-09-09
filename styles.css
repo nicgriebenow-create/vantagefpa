@@ -3,7 +3,7 @@
 /* FONTS, self-hosted variable faces */
 @font-face {
   font-family: 'Inter';
-  src: url('Inter.ttf') format('truetype');
+  src: url('Inter.woff2') format('woff2'), url('Inter.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('PlayfairDisplay.ttf') format('truetype');
+  src: url('PlayfairDisplay.woff2') format('woff2'), url('PlayfairDisplay.ttf') format('truetype');
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
