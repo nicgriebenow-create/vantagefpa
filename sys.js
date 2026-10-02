@@ -1,8 +1,7 @@
 /* The System page, flagship rebuild (prototype, batch site_v7_r3_list2_20261001). Extends web.js's orb.
-   Three movers, each self-contained and each optional on the page:
+   Two movers, each self-contained and each optional on the page (the band engine was deleted 2026-10-02):
      .sysorb    the hero: a dense spinning orb with a thread and pulses to every capability node
      .sysflow   inputs pulled into the orb, outputs pushed out of it
-     .sysengine two model nodes trading packets over a code band whose cells light in turn
    Every label is real DOM placed by CSS before this runs; this file only paints canvases and moves packets.
    Each mover paints only while on screen and the tab is visible. Under prefers-reduced-motion each paints
    one complete still frame and repaints on resize only. Seeded, no Math.random, no dependencies. */
@@ -205,34 +204,9 @@
     });
   }
 
-  /* ---------- ENGINE: packets trade along the two arcs, the code band's cells light in turn ---------- */
-  function initEngine(root) {
-    var svgs = [].slice.call(root.querySelectorAll('svg')), raf = 0, t0 = 0, visible = true;
-    if (reduce || !svgs.length) { return; }   /* the markup is the complete still frame */
-    var sets = svgs.map(function (svg) {
-      return { svg: svg, cells: [].slice.call(svg.querySelectorAll('.se-cell')), pk: [].slice.call(svg.querySelectorAll('.se-pkt')).map(function (c) {
-        var path = svg.querySelector('#' + c.getAttribute('data-arc')); return { c: c, path: path, len: path ? path.getTotalLength() : 0, ph: +c.getAttribute('data-ph') || 0 }; }) };
-    });
-    function tick(now) {
-      raf = 0; if (!visible || document.hidden) { return; } if (!t0) { t0 = now; } var t = (now - t0) / 1000;
-      sets.forEach(function (S) {
-        if (!S.svg.getClientRects().length) { return; }
-        S.pk.forEach(function (p) { if (!p.len) { return; } var pt = p.path.getPointAtLength(((p.ph + t * 0.16) % 1) * p.len); p.c.setAttribute('cx', pt.x.toFixed(1)); p.c.setAttribute('cy', pt.y.toFixed(1)); });
-        var hot = Math.floor(t * 1.6) % S.cells.length;
-        S.cells.forEach(function (c, i) { c.classList.toggle('is-hot', i === hot); });
-      });
-      raf = requestAnimationFrame(tick);
-    }
-    function start() { if (!raf && visible && !document.hidden) { raf = requestAnimationFrame(tick); } }
-    if (window.IntersectionObserver) { new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { start(); } }, { threshold: 0 }).observe(root); }
-    document.addEventListener('visibilitychange', function () { if (!document.hidden) { start(); } });
-    start();
-  }
-
   function boot() {
     [].slice.call(document.querySelectorAll('.sysorb')).forEach(initOrb);
     [].slice.call(document.querySelectorAll('.sysflow')).forEach(initFlow);
-    [].slice.call(document.querySelectorAll('.sysengine')).forEach(initEngine);
     document.documentElement.classList.add('js-sys');
     if (MQ.addEventListener) { MQ.addEventListener('change', function () { window.dispatchEvent(new Event('resize')); }); }
   }

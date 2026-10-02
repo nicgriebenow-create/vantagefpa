@@ -464,16 +464,19 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
 
 /* THE WEB (owner's order 2026-10-01 20:22 and 20:23 CT): the spinning orb at the centre of a navy ground, capability
    nodes around it. web.js paints the orb and the threads; the nodes are a real list above the canvas. */
-.webband { background: var(--navy); color: var(--white); padding: 72px 24px 80px; }
+.webband { background: var(--navy); color: var(--white); padding: 72px 24px 56px; }
 .webband .rail { max-width: 1180px; margin: 0 auto; }
 .webband h2.title { color: var(--white); }
 .webband .desc { color: #B9C4D8; margin-top: 12px; max-width: 640px; }
-.web { --r: clamp(200px, calc(50vw - 150px), 290px); position: relative; height: calc(2 * var(--r) + 130px); margin: 36px 0 0; border-radius: 16px; background: #0A1830; border: 1px solid rgba(185,196,216,.16); overflow: hidden; }
+/* 10/2 10:01 CT: smaller, no frame (it sits on the band's own navy ground), and BEST FIT, reversing the 00:27 true
+   circle: the horizontal radius tracks the box width (110px clear of each edge for the widest pill) up to 400px,
+   the vertical radius is fixed shorter, so the ring is an ellipse wider than tall. */
+.web { --rx: min(calc(50% - 110px), 400px); --ry: 158px; position: relative; height: calc(2 * var(--ry) + 84px); margin: 20px 0 0; background: transparent; border: 0; }
 .web-cv { position: absolute; inset: 0; display: block; }
 .web-core { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
 .web-core-label { position: absolute; transform: translateX(-50%); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-light); }
 .web-nodes { list-style: none; margin: 0; padding: 0; }
-.web-node { position: absolute; left: calc(50% + var(--dx, 0) * var(--r)); top: calc(50% + var(--dy, 0) * var(--r)); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
+.web-node { position: absolute; left: calc(50% + var(--dx, 0) * var(--rx)); top: calc(50% + var(--dy, 0) * var(--ry)); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
 .web-node.kind-deal { border-color: rgba(92,201,190,.65); }
 .web-node.kind-check { border-color: rgba(185,196,216,.6); }
 /* Market intelligence: a peer on the circle, slightly emphasized (owner's order 2026-10-02 00:20 CT; satellites retired from the home web). */
@@ -484,8 +487,8 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
 @media (prefers-reduced-motion: reduce) { .web-node { animation: none; } }
 @media (max-width: 700px) {
   .webband { padding: 56px 16px 64px; }
-  .web { height: auto; padding: 18px 14px 26px; }
-  .web-core { position: relative; left: auto; top: auto; width: auto; height: 270px; }
+  .web { height: auto; padding: 8px 0 0; }
+  .web-core { position: relative; left: auto; top: auto; width: auto; height: 210px; }
   .web-nodes { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 8px; }
   .web-node { position: static; transform: none; white-space: normal; text-align: center; padding: 10px 10px; grid-column: span 3; }
   .web-node.is-hub { order: -2; grid-column: 1 / -1; padding: 15px 14px; font-size: 17px; }
@@ -589,8 +592,8 @@ section.band.mkband { padding-top: 56px; background: var(--white); border-top: 1
    Four self-contained components on the site.css palette and fonts:
    .sys-hero + .sysorb   full-bleed hero, the orb with every capability threaded to it
    .sysflow              inputs flowing into the orb, outputs flowing out
-   .sysengine            two-model engine (droppable on its own)
-   .sysproof             proof strip of big numbers
+   .systrace-wrap        the trace heading, alone (owner's order 2026-10-02)
+   .sys-split + .sysviz  copy beside an SVG visual, stacked on a phone
    plus the .sys-h2 / .sys-kicker / .sys-lede headline voice.
    Layout never waits on sys.js: every label is real DOM placed by CSS. sys.js only paints canvases and
    moves packets. Breakpoint 860px matches the MQ constant in sys.js. */
@@ -666,40 +669,48 @@ body.sys-page nav .nav-toggle-bar { background: var(--white); }
 .sysflow-core-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white);
   text-shadow: 0 0 16px rgba(10,24,48,.95), 0 0 4px rgba(10,24,48,.95); }
 
-/* ---------- two-model engine ---------- */
-.sysengine-wrap { background: var(--white); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); }
-.sysengine { margin: 56px 0 0; }
-.sysengine svg { display: block; width: 100%; height: auto; }
-.sysengine .se-phone { display: none; }
-.se-halo { fill: rgba(201,168,76,.10); }
-.se-disc { fill: var(--navy); }
-.se-ring { fill: none; stroke: rgba(201,168,76,.55); stroke-width: 1.5; stroke-dasharray: 3 6; }
-.se-disc.b { fill: #13305A; }
-.se-name { font: 700 22px 'Playfair Display', Georgia, serif; fill: #FFFFFF; text-anchor: middle; }
-.se-role { font: 600 13px 'Inter', system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; fill: var(--sys-gold-l); text-anchor: middle; }
-.se-arc { fill: none; stroke: var(--navy); stroke-width: 2; stroke-opacity: .35; }
-.se-arc.b { stroke: var(--gold-deep); stroke-opacity: .55; stroke-dasharray: 6 6; }
-.se-arc-lbl { font: 600 14px 'Inter', system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; fill: var(--g600); text-anchor: middle; }
-.se-pkt { fill: var(--navy); }
-.se-pkt.b { fill: var(--gold); }
-.se-div { stroke: var(--g300); stroke-width: 1; stroke-dasharray: 2 5; }
-.se-layer { font: 600 12px 'Inter', system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; fill: var(--g400); }
-.se-band { fill: var(--navy); }
-.se-band-lbl { font: 700 26px 'Playfair Display', Georgia, serif; fill: #FFFFFF; }
-.se-cell rect { fill: #13305A; stroke: rgba(185,196,216,.25); stroke-width: 1; transition: fill .25s, stroke .25s; }
-.se-cell text { font: 500 13px ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace; fill: var(--sys-ice); text-anchor: middle; }
-.se-cell.is-hot rect { fill: #1E3F6E; stroke: var(--gold); }
-.se-cell.is-hot text { fill: #FFFFFF; }
-.sysengine-note { margin: 18px 0 0; font-size: 14px; color: var(--g600); max-width: 70ch; }
+/* ---------- the trace heading, alone (owner's order 2026-10-02: no subtext, no band) ---------- */
+.systrace-wrap { background: var(--white); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); }
+section.sys-band.systrace-wrap { padding: 72px 24px; }
+.systrace-wrap .sys-h2 { max-width: 22ch; }
 
-/* ---------- proof strip ---------- */
-.sysproof-band { padding: 72px 24px; background: var(--paper); }
-.sysproof { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.sysproof li { border-top: 3px solid var(--gold); padding-top: 20px; }
-.sysproof-n { display: block; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(48px, 5.6vw, 84px); line-height: 1; letter-spacing: -0.03em; color: var(--navy); font-variant-numeric: lining-nums tabular-nums; }
-.sysproof-c { display: block; margin-top: 12px; font-size: 15px; line-height: 1.45; color: var(--g600); max-width: 26ch; }
-.sys-dark .sysproof-n { color: var(--white); }
-.sys-dark .sysproof-c { color: var(--sys-ice); }
+/* ---------- copy beside a visual (owner's order 2026-10-02) ---------- */
+.sys-split { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; max-width: 1180px; margin: 0 auto; }
+.sys-split-copy .prose p { max-width: 60ch; }
+.sysviz { margin: 0; }
+.sysviz-svg { display: block; width: 100%; height: auto; max-width: 520px; margin: 0 auto; overflow: visible; }
+.sysviz text { font-family: 'Inter', system-ui, sans-serif; }
+/* board package: one workbook, three outputs */
+.vz-book { fill: var(--navy); }
+.vz-head { fill: #13305A; }
+.vz-book-lbl { font-size: 14px; font-weight: 600; letter-spacing: .06em; fill: #E8C97A; text-anchor: middle; }
+.vz-grid { stroke: rgba(185,196,216,.28); stroke-width: 1; }
+.vz-hot { fill: #1E3F6E; stroke: var(--gold); stroke-width: 1.2; }
+.vz-port { fill: var(--gold); }
+.vz-wire { fill: none; stroke: var(--g300); stroke-width: 1.5; }
+.vz-flow { fill: none; stroke: var(--gold); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 8 14; animation: vz-flow 2.4s linear infinite; animation-delay: var(--d, 0s); }
+.vz-card { fill: var(--white); stroke: rgba(13,31,60,.22); stroke-width: 1; }
+.vz-n { fill: var(--navy); }
+.vz-g { fill: var(--gold); }
+.vz-ln { fill: none; stroke: var(--navy); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.vz-ln.is-fc { stroke: var(--gold-deep); stroke-dasharray: 3 3; }
+.vz-slide { fill: none; stroke: var(--navy); stroke-width: 1.6; }
+.vz-lbl { font-size: 15px; font-weight: 600; fill: var(--navy); }
+@keyframes vz-flow { to { stroke-dashoffset: -44; } }
+/* deal diligence: the bridge, mirroring the deal-diligence hero bridge */
+.vz-base { stroke: var(--g300); stroke-width: 1; }
+.vz-bar { fill: var(--navy); }
+.vz-bar.is-step { fill: var(--gold); animation: vz-float 4.2s ease-in-out infinite; }
+.vz-bar.is-asked { animation-delay: -2.1s; stroke: var(--gold-deep); stroke-width: 1.5; }
+.vz-link { stroke: var(--g600); stroke-width: 1; stroke-dasharray: 3 3; }
+.vz-cap { font-size: 13px; fill: var(--g600); text-anchor: middle; }
+.vz-tag-box { fill: var(--white); stroke: var(--gold-deep); stroke-width: 1.5; }
+.vz-tag-lbl { font-size: 13px; font-weight: 600; fill: var(--navy); text-anchor: middle; }
+.vz-tag-ptr { stroke: var(--gold-deep); stroke-width: 1.5; }
+.vz-tag-tip { fill: var(--gold-deep); }
+.vz-tag { animation: vz-nudge 4.2s ease-in-out infinite; animation-delay: -2.1s; }
+@keyframes vz-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes vz-nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
 /* ---------- phone and narrow tablet ---------- */
 @media (max-width: 859.98px) {
@@ -739,18 +750,13 @@ body.sys-page nav .nav-toggle-bar { background: var(--white); }
   .sysflow-core { height: 260px; }
   .sysflow-core::before { margin: -95px 0 0 -95px; width: 190px; height: 190px; }
 
-  .sysengine { margin-top: 36px; }
-  .sysengine .se-desk { display: none; }
-  .sysengine .se-phone { display: block; }
-  .se-phone .se-name { font-size: 19px; }
-  .se-phone .se-role { font-size: 11px; letter-spacing: .1em; }
-
-  .sysproof-band { padding: 56px 16px; }
-  .sysproof { grid-template-columns: 1fr; gap: 28px; }
-  .sysproof-c { font-size: 14px; }
+  section.sys-band.systrace-wrap { padding: 48px 16px; }
+  .sys-split { grid-template-columns: 1fr; gap: 28px; }
+  .sysviz-svg { max-width: 460px; }
+  .vz-lbl { font-size: 16.5px; } .vz-cap { font-size: 15px; } .vz-tag-lbl { font-size: 14px; } .vz-book-lbl { font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .js-sys .sysorb-core::before, .js-sys .sysflow-core::before { transition: none; }
-  .se-cell rect { transition: none; }
+  .vz-flow, .vz-bar.is-step, .vz-tag { animation: none; }
 }
