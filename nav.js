@@ -1,53 +1,4 @@
 /* Vantage FP&A shared navigation script. Accessible mobile menu. No dependencies. */
-/* Vantage FP&A Releases dropdown (Nic's order 2026-10-01 19:21 CT). Desktop: a button that opens on mouse
-   hover, click, Enter or Space, ArrowDown, and closes on Escape, an outside click, or focus leaving it.
-   A phone gets the same list as an accordion row in the mobile menu, which needs only the click. */
-(function () {
-  var item = document.querySelector('.nav-links .has-sub');
-  var btn = item && item.querySelector('.nav-sub-toggle');
-  var list = item && item.querySelector('.nav-sub');
-  if (item && btn && list) {
-    var pinned = false;
-    var set = function (open) {
-      item.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (!open) { pinned = false; }
-    };
-    item.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { set(true); } });
-    item.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !pinned) { set(false); } });
-    btn.addEventListener('click', function () {
-      var open = item.classList.contains('open');
-      if (open && !pinned) { pinned = true; return; }
-      if (open) { set(false); } else { set(true); pinned = true; }
-    });
-    btn.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault(); set(true); pinned = true;
-        var first = list.querySelector('a'); if (first) { first.focus(); }
-      }
-    });
-    list.addEventListener('keydown', function (e) {
-      var links = [].slice.call(list.querySelectorAll('a')), i = links.indexOf(document.activeElement);
-      if (e.key === 'ArrowDown') { e.preventDefault(); links[(i + 1) % links.length].focus(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); links[(i - 1 + links.length) % links.length].focus(); }
-    });
-    item.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && item.classList.contains('open')) { e.stopPropagation(); set(false); btn.focus(); }
-    });
-    item.addEventListener('focusout', function (e) {
-      if (!e.relatedTarget || !item.contains(e.relatedTarget)) { if (item.classList.contains('open') && pinned) { set(false); } }
-    });
-    document.addEventListener('click', function (e) { if (!item.contains(e.target)) { set(false); } });
-  }
-  var mbtn = document.querySelector('.mobile-sub-toggle');
-  if (mbtn) {
-    mbtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      mbtn.setAttribute('aria-expanded', mbtn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
-    });
-  }
-})();
-
 (function () {
   var toggle = document.querySelector('.nav-toggle');
   var menu = document.getElementById('mobile-menu');
@@ -103,7 +54,7 @@
    keeps it on screen. */
 (function () {
   var root = document.documentElement;
-  var SOLID = 'h1, h2, h3, p, svg, [role="img"]';
+  var SOLID = 'h1, h2, h3, p, svg, [role="img"], .web-node, .web-ring-label';
   var FORM = 'input, textarea, select, button, label, .cr-summary, .cr-fail, .cr-note';
   function ownDigit(e) {
     for (var n = e.firstChild; n; n = n.nextSibling) { if (n.nodeType === 3 && /\d/.test(n.nodeValue)) return true; }

@@ -31,7 +31,7 @@
       var cols = [].slice.call(p.querySelectorAll('.col')), max = 0, floor = 0;
       cols.forEach(function (c) { max = Math.max(max, +c.dataset.value + (+c.dataset.base || 0)); if (c.dataset.floor) floor = +c.dataset.floor; });
       var total = p.querySelector('.total-chip');
-      return { el: p, cols: cols, joined: !!p.querySelector('.cols.joined'), max: max, base: p.querySelector('.baseline'), sweep: p.querySelector('.sweep'), title: p.querySelector('.chart-title'),
+      return { el: p, cols: cols, max: max, base: p.querySelector('.baseline'), sweep: p.querySelector('.sweep'), title: p.querySelector('.chart-title'),
         total: total, totalVals: total && !total.classList.contains('static') ? [].slice.call(total.querySelectorAll('b')) : [], floor: floor, start: idx === 0 ? 0.1 : 1.7 };
     });
     function rise(el, p, px) { if (!el) return; el.style.opacity = p; el.style.transform = 'translateY(' + ((1 - p) * (px || 18)) + 'px)'; }
@@ -49,9 +49,10 @@
         P.cols.forEach(function (c, i) {
           var t0 = s0 + 0.4 + i * 0.26, v = +c.dataset.value, p = sp(t, t0, 7), fl = P.floor, base = +c.dataset.base || 0;
           var hgt = ((v - fl) / (P.max - fl)) * 100 * p, off = (base / (P.max - fl)) * 100;
-          if (P.joined) { hgt = 100 * p; base = 0; off = 0; }   /* one connected bar, every segment the same height (Nic 2026-10-01 19:28 CT) */
           var bar = c.querySelector('.bar'), chip = c.querySelector('.chip'), b = chip.querySelector('b'), pre = c.dataset.prefix || '', suf = c.dataset.suffix || '';
           bar.style.height = hgt + '%'; bar.style.opacity = clamp01(p * 4);
+          var lk = c.querySelector('.link');   /* bridge connector: level from this bar's top to the next bar (Nic 2026-10-01 20:14 CT) */
+          if (lk) { lk.style.bottom = (((v + base - fl) / (P.max - fl)) * 100 * p) + '%'; lk.style.opacity = clamp01(p * 3); }
           if (base) { bar.style.position = 'relative'; bar.style.bottom = off + '%'; }
           var pc = spU(t, t0 + 0.4, 13);
           chip.style.opacity = clamp01(pc * 1.5); chip.style.transform = 'translateY(' + (-((hgt + (base ? off : 0)) / 100) * c.clientHeight - chip.offsetHeight - 12) + 'px) scale(' + (0.9 + 0.1 * pc) + ')';
