@@ -448,3 +448,33 @@ html.vfpa-icon #vfpa-assist .vfpa-assist-toggle-label {
 html.vfpa-yield #vfpa-assist .vfpa-assist-toggle { opacity: 0; pointer-events: none; transition: opacity .15s linear; }
 html.vfpa-yield #vfpa-assist .vfpa-assist-toggle:focus,
 html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; pointer-events: auto; }
+
+/* NAV: Releases dropdown (Nic's order 2026-10-01 19:21 CT). The parent is a button; nav.js opens it on
+   hover (mouse only), click and Enter or Space, closes it on Escape, outside click or focus leaving it,
+   and on a phone the same list is an accordion row inside the mobile menu. */
+.nav-links .has-sub { position: relative; }
+.nav-sub-toggle { font: inherit; font-size: 15px; line-height: 1.2; color: var(--g600); background: none; border: 0; margin: 0; padding: 10px 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.nav-sub-toggle.is-current, .nav-sub-toggle[aria-expanded="true"] { color: var(--navy); }
+.nav-sub-toggle:focus-visible, .mobile-sub-toggle:focus-visible, .nav-sub a:focus-visible { outline: 3px solid rgba(201,168,76,.6); outline-offset: 2px; border-radius: 4px; }
+.caret { flex: none; transition: transform .15s ease; }
+[aria-expanded="true"] > .caret { transform: rotate(180deg); }
+.nav-sub { display: none; position: absolute; top: 100%; left: -18px; min-width: 300px; margin: 0; padding: 8px; list-style: none; background: var(--white); border: 1px solid var(--g100); border-radius: 12px; box-shadow: var(--shadow); z-index: 30; }
+.has-sub.open > .nav-sub { display: block; }
+.nav-sub a { display: block; padding: 11px 12px; border-radius: 8px; white-space: nowrap; font-size: 15px; color: var(--navy); }
+.nav-sub a:hover { background: #F7F8FA; }
+.nav-sub a.is-current { font-weight: 600; }
+.mobile-sub-toggle { display: flex; width: 100%; min-height: 44px; align-items: center; justify-content: space-between; font: inherit; font-size: 17px; text-align: left; color: var(--navy); background: none; border: 0; border-bottom: 1px solid var(--g100); margin: 0; padding: 12px 0; cursor: pointer; }
+.mobile-sub { display: none; list-style: none; margin: 0; padding: 0 0 0 16px; }
+.mobile-sub-toggle[aria-expanded="true"] + .mobile-sub { display: block; }
+.mobile-menu .mobile-sub a { font-size: 16px; }
+.mobile-menu .mobile-sub a.is-current { font-weight: 600; }
+@media (min-width: 901px) and (max-width: 1000px) { .nav-links { gap: 16px; } }
+
+/* DEAL DILIGENCE bridge: one connected navy bar (Nic's order 2026-10-01 19:28 CT). The three segments
+   sit edge to edge on one baseline at one height, and a hairline marks each boundary. */
+.cols.three.joined { gap: 0; }
+.cols.joined .col .bar { border-radius: 0; }
+.cols.joined .col:first-child .bar { border-radius: 3px 0 0 0; }
+.cols.joined .col:last-child .bar { border-radius: 0 3px 0 0; }
+.cols.joined .col + .col .bar { box-shadow: inset 1px 0 0 rgba(255,255,255,.4); }
+@media (max-width: 900px) { .cols.three.joined { top: 132px; } }   /* the two-line chart title keeps clear of the chips */

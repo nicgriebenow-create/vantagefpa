@@ -5,22 +5,23 @@
    there while the navy still covers the page, then the navy fades evenly to the
    hero. No moving edge ever crosses the page, so no line of the h1 is ever shown
    cut, and the slot is never seen empty: the canvas wordmark sits in it until the
-   overlay goes and the real logo is under it pixel for pixel. About 1.85 s, once
+   overlay goes and the real logo is under it pixel for pixel. About 2.35 s (the 1.85 s film stretched evenly by S below, 2026-10-01), once
    per session, skippable by click, tap, key, wheel or scroll. prefers-reduced-motion never runs it. seek(t) paints any frame, seeded,
    no Math.random. The page is complete in the DOM underneath the whole time, and
-   the CSS injected below drops the veil at 2.6 s and the overlay at 3.2 s even if
+   the CSS injected below drops the veil at 3.3 s and the overlay at 4.1 s even if
    this script stalls, so the intro can never gate the content. */
 (function () {
   'use strict';
+  var S = 2.35 / 1.85;   /* every phase of the film, its spin and its pulses stretch together by S; seek(t) takes real seconds */
   var root = document.documentElement, Q = location.search, KEY = 'vfpa-intro', seen = null;
   var frozen = /[?&]introAt=([\d.]+)/.exec(Q);
   try { seen = sessionStorage.getItem(KEY); } catch (e) {}
   if (!frozen && (seen || location.hash || /[?&](capture|nointro)=1/.test(Q) ||
       (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches))) return;
   var css = document.createElement('style');
-  css.textContent = 'html.intro-on body::after{content:"";position:fixed;inset:0;background:#0D1F3C;z-index:2147483599;animation:vfpa-ik .2s linear 2.6s forwards}' +
+  css.textContent = 'html.intro-on body::after{content:"";position:fixed;inset:0;background:#0D1F3C;z-index:2147483599;animation:vfpa-ik .25s linear 3.3s forwards}' +
     'html.intro-live body::after{display:none}@keyframes vfpa-ik{to{opacity:0;visibility:hidden}}' +
-    '#intro{position:fixed;inset:0;z-index:2147483600;cursor:pointer;animation:vfpa-ik 0s linear 3.2s forwards}#intro.frz{animation:none}' +
+    '#intro{position:fixed;inset:0;z-index:2147483600;cursor:pointer;animation:vfpa-ik 0s linear 4.1s forwards}#intro.frz{animation:none}' +
     '#intro canvas{display:block}html.intro-live .nav-logo img{opacity:0}';
   (document.head || root).appendChild(css);
   root.classList.add('intro-on');
@@ -141,6 +142,7 @@
 
   /* ---------- seek(t): one frame, a pure function of t ---------- */
   function seek(t) {
+    t /= S;                                                     /* real seconds in, film time inside */
     ctx.clearRect(0, 0, W, H);
     var nA = 1 - smooth((t - T.fade) / T.fadeDur);              /* the navy fades evenly, no edge crosses the page */
     if (nA > 0) { ctx.fillStyle = rgba(NAVY, nA); ctx.fillRect(0, 0, W, H); }
@@ -218,10 +220,10 @@
     if (done) return;
     if (!t0) t0 = now;
     var t = (now - t0) / 1000;
-    try { var r = img.getBoundingClientRect(); nav = { x: r.left, y: r.top, w: r.width, h: r.height }; seek(Math.min(t, T.end)); }
+    try { var r = img.getBoundingClientRect(); nav = { x: r.left, y: r.top, w: r.width, h: r.height }; seek(Math.min(t, T.end * S)); }
     catch (err) { finish(); return; }
-    if (t >= T.reveal) reveal();
-    if (t >= T.end) { finish(); return; }
+    if (t >= T.reveal * S) reveal();
+    if (t >= T.end * S) { finish(); return; }
     raf = requestAnimationFrame(tick);
   }
 
@@ -238,12 +240,12 @@
       if (done || started) return;
       started = true;
       try { build(); seek(frozen ? +frozen[1] : 0); } catch (err) { finish(); return; }
-      window.__introSeek = seek; window.__introT = T;
+      window.__introSeek = seek; window.__introT = T; window.__introS = S;
       root.classList.add('intro-live');
       if (frozen) return;
       try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
       EV.forEach(function (e) { window.addEventListener(e, finish, true); });
-      setTimeout(finish, 3000);                        /* belt to the CSS braces */
+      setTimeout(finish, 3800);                        /* belt to the CSS braces */
       raf = requestAnimationFrame(tick);
     };
     if (img.complete) { if (img.naturalWidth) ready(); else finish(); }
