@@ -449,20 +449,20 @@ html.vfpa-yield #vfpa-assist .vfpa-assist-toggle { opacity: 0; pointer-events: n
 html.vfpa-yield #vfpa-assist .vfpa-assist-toggle:focus,
 html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; pointer-events: auto; }
 
-/* DEAL DILIGENCE bridge (Nic 2026-10-01 20:14 CT): a true waterfall on a zero baseline, all navy. Reported and
-   Adjusted are full bars, the add-backs bar floats between them in a lighter navy tint, and a hairline runs
-   level from the top of each bar to the start of the next. */
+/* DEAL DILIGENCE bridge (owner's order 2026-10-01 20:14 CT, colour revised round 3): a true waterfall on a zero
+   baseline. Reported and Adjusted are full navy bars, the add-backs bar floats on top of the Reported level in
+   house gold, and a hairline runs level from the top of each bar to the start of the next. */
 .cols.three { --cgap: 56px; gap: var(--cgap); }
-.cols.bridge-wf .col.step .bar { background: #6B7F9E; }
+.cols.bridge-wf .col.step .bar { background: var(--gold); }
 .cols.bridge-wf .link { position: absolute; left: 100%; width: var(--cgap); height: 0; border-top: 1px solid var(--g600); opacity: 0; pointer-events: none; }
 @media (max-width: 900px) { .cols.three { --cgap: 14px; } }
 
-/* Restored launch release (Nic 2026-10-01 20:03 CT): sub-heads and the list sit in the article column. */
+/* Restored launch release (owner's order 2026-10-01 20:03 CT): sub-heads and the list sit in the article column. */
 .article .prose h3 { font-family: inherit; font-size: 18px; font-weight: 600; margin-top: 28px; }
 .article .prose ul.ticks { margin: 12px 0 20px; }
 .article .prose ul.ticks li { font-size: 17px; }
 
-/* THE WEB (Nic 2026-10-01 20:22 and 20:23 CT): the spinning orb at the centre of a navy ground, capability
+/* THE WEB (owner's order 2026-10-01 20:22 and 20:23 CT): the spinning orb at the centre of a navy ground, capability
    nodes around it. web.js paints the orb and the threads; the nodes are a real list above the canvas. */
 .webband { background: var(--navy); color: var(--white); padding: 72px 24px 80px; }
 .webband .rail { max-width: 1180px; margin: 0 auto; }
@@ -476,6 +476,9 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
 .web-node { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
 .web-node.kind-deal { border-color: rgba(92,201,190,.65); }
 .web-node.kind-check { border-color: rgba(185,196,216,.6); }
+/* Market intelligence: one prominent hub, same pill style at a larger size, with small satellites threaded to it (round 3). */
+.web-node.is-hub { padding: 14px 26px; font-size: 17px; font-weight: 500; border-width: 1.5px; border-color: rgba(201,168,76,.9); box-shadow: 0 0 22px 2px rgba(201,168,76,.18); }
+.web-node.is-sat { padding: 6px 12px; font-size: 12.5px; border-color: rgba(201,168,76,.45); }
 @keyframes web-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } 50% { box-shadow: 0 0 14px 1px rgba(201,168,76,.22); } }
 .web-ring-label { position: absolute; transform: translate(-50%, -50%); padding: 4px 14px; border-radius: 999px; background: #0A1830; border: 1px solid rgba(92,201,190,.55); color: #A5E4DD; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .web-node { animation: none; } }
@@ -483,16 +486,19 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
   .webband { padding: 56px 16px 64px; }
   .web { height: auto; padding: 18px 14px 26px; }
   .web-core { position: relative; left: auto; top: auto; width: auto; height: 270px; }
-  .web-nodes { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-  .web-node { position: static; transform: none; white-space: normal; text-align: center; padding: 10px 10px; }
+  .web-nodes { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 8px; }
+  .web-node { position: static; transform: none; white-space: normal; text-align: center; padding: 10px 10px; grid-column: span 3; }
+  .web-node.is-hub { order: -2; grid-column: 1 / -1; padding: 15px 14px; font-size: 17px; }
+  .web-node.is-sat { order: -1; grid-column: span 2; padding: 8px 6px; font-size: 12.5px; }
+  .web-node.is-sat.is-solo { grid-column: 1 / -1; padding: 8px 12px; }
   .web[data-ring] { padding-bottom: 44px; }
 }
 
-/* HOME hero subline (Nic 2026-10-01 20:19 CT) and the menu under the web. */
+/* HOME hero subline (owner's order 2026-10-01 20:19 CT) and the menu under the web. */
 .hero-sub.tagline { font-size: clamp(18px, 2vw, 22px); font-weight: 500; letter-spacing: .01em; color: var(--navy); }
 .menu { padding: 88px 24px; }
 .menu .rail { max-width: 1180px; margin: 0 auto; }
-.menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+.menu-grid { display: grid; grid-template-columns: repeat(var(--mcols, 4), 1fr); gap: 16px; margin-top: 36px; }
 .menu-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--g100); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
 .menu-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 1.2; }
 .menu-card p { margin: 10px 0 0; font-size: 15px; line-height: 1.5; color: var(--g600); }
@@ -521,3 +527,7 @@ section#web.webband { padding-top: 52px; }
 @media (max-width: 700px) { .web-core-label { display: none; } section.sys-sec { padding: 40px 16px; } }
 @media (max-width: 900px) { .frame.single .panel:not(.hpanel) { height: 340px; } .cols.three { top: 178px; } }
 @media (min-width: 901px) and (max-width: 1000px) { .nav-links { gap: 10px; } .nav-links a { font-size: 13px; } .nav-links a.nav-cta { padding: 8px 11px; } .nav-inner { padding: 0 16px; } }
+
+/* Deal diligence: the SBA note stands alone now that the scope blocks are gone, so it takes less air (round 3). */
+section.band#scope { padding-top: 40px; padding-bottom: 72px; }
+section.band#scope .foot { margin-top: 0; border-top: 0; padding-top: 0; }

@@ -51,7 +51,7 @@
           var hgt = ((v - fl) / (P.max - fl)) * 100 * p, off = (base / (P.max - fl)) * 100;
           var bar = c.querySelector('.bar'), chip = c.querySelector('.chip'), b = chip.querySelector('b'), pre = c.dataset.prefix || '', suf = c.dataset.suffix || '';
           bar.style.height = hgt + '%'; bar.style.opacity = clamp01(p * 4);
-          var lk = c.querySelector('.link');   /* bridge connector: level from this bar's top to the next bar (Nic 2026-10-01 20:14 CT) */
+          var lk = c.querySelector('.link');   /* bridge connector: level from this bar's top to the next bar (owner's order 2026-10-01 20:14 CT) */
           if (lk) { lk.style.bottom = (((v + base - fl) / (P.max - fl)) * 100 * p) + '%'; lk.style.opacity = clamp01(p * 3); }
           if (base) { bar.style.position = 'relative'; bar.style.bottom = off + '%'; }
           var pc = spU(t, t0 + 0.4, 13);

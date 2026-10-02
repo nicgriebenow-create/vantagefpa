@@ -1,4 +1,4 @@
-/* Vantage FP&A web (Nic's order 2026-10-01 20:22 and 20:23 CT). The gold intelligence orb of the approved
+/* Vantage FP&A web (the owner's order 2026-10-01 20:22 and 20:23 CT). The gold intelligence orb of the approved
    orb_to_wordmark intro, spinning slowly at the centre of a navy ground, with a thread to each capability
    node and a pulse running out along it. The nodes are real DOM (a list, readable by a screen reader);
    this script only paints the orb, the threads and the pulses on a canvas behind them. One canvas per
@@ -48,7 +48,8 @@
       cx = c.left - b.left + c.width / 2; cy = c.top - b.top + c.height / 2;
       R = Math.max(54, Math.min(c.height * 0.38, W * 0.3));
       if (wide = W > 700) { R = Math.max(70, Math.min(H * 0.21, W * 0.13)); }
-      anchors = pills.map(function (p) { var r = p.getBoundingClientRect(); return { x: r.left - b.left + r.width / 2, y: r.top - b.top + r.height / 2, w: r.width, h: r.height }; });
+      anchors = pills.map(function (p) { var r = p.getBoundingClientRect(); return { x: r.left - b.left + r.width / 2, y: r.top - b.top + r.height / 2, w: r.width, h: r.height,
+        parent: p.hasAttribute('data-parent') ? +p.getAttribute('data-parent') : -1 }; });
       var cl = root.querySelector('.web-core-label');
       if (cl) { cl.style.left = cx + 'px'; cl.style.top = (cy + R * 1.22) + 'px'; }
       if (ringLabel) { ringLabel.style.left = (W / 2) + 'px'; ringLabel.style.top = (H - 14) + 'px'; }
@@ -62,10 +63,11 @@
         ctx.save(); ctx.setLineDash([7, 8]); ctx.lineDashOffset = -t * 6; ctx.strokeStyle = rgba(TEAL, 0.5); ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.ellipse(W / 2, H / 2, Math.max(10, W / 2 - 14), Math.max(10, H / 2 - 14), 0, 0, 6.2832); ctx.stroke(); ctx.restore();
       }
-      /* links between neighbouring nodes, wide layout only */
-      if (wide && anchors.length > 2) {
+      /* links between neighbouring ring nodes, wide layout only; satellites hang off their parent and are not in the ring */
+      var ringN = anchors.filter(function (z) { return z.parent < 0; });
+      if (wide && ringN.length > 2) {
         ctx.lineWidth = 0.8; ctx.strokeStyle = rgba(ICE, 0.16); ctx.beginPath();
-        for (i = 0; i < anchors.length; i++) { a = anchors[i]; q = anchors[(i + 1) % anchors.length]; ctx.moveTo(a.x, a.y); ctx.lineTo(q.x, q.y); }
+        for (i = 0; i < ringN.length; i++) { a = ringN[i]; q = ringN[(i + 1) % ringN.length]; ctx.moveTo(a.x, a.y); ctx.lineTo(q.x, q.y); }
         ctx.stroke();
       }
       /* soft glow under the orb */
@@ -86,11 +88,12 @@
         ctx.fillStyle = rgba(q.hot ? PALE : GOLD, Math.min(1, 0.45 + 0.55 * (1 - (q.dz + 1) / 2) + (q.hot ? 0.25 : 0)));
         ctx.beginPath(); ctx.arc(q.sx, q.sy, Math.max(0.9, q.s * q.k * R / 95), 0, 6.2832); ctx.fill();
       }
-      /* a thread from the orb to each node, with a pulse or two running out along it */
+      /* a thread from the orb to each node, with a pulse or two running out along it; a satellite's thread starts at its parent node instead */
       for (i = 0; i < anchors.length; i++) {
         a = anchors[i];
-        var dx = a.x - cx, dy = a.y - cy, dl = Math.sqrt(dx * dx + dy * dy) || 1, ux = dx / dl, uy = dy / dl;
-        var sx = cx + ux * R * 0.95, sy = cy + uy * R * 0.95, bow = (i % 2 ? 1 : -1) * Math.min(40, dl * 0.08), mx = (sx + a.x) / 2 - uy * bow, my = (sy + a.y) / 2 + ux * bow;
+        var par = a.parent >= 0 && anchors[a.parent] ? anchors[a.parent] : null, ox = par ? par.x : cx, oy = par ? par.y : cy, oR = par ? 0 : R * 0.95;
+        var dx = a.x - ox, dy = a.y - oy, dl = Math.sqrt(dx * dx + dy * dy) || 1, ux = dx / dl, uy = dy / dl;
+        var sx = ox + ux * oR, sy = oy + uy * oR, bow = (i % 2 ? 1 : -1) * Math.min(40, dl * 0.08), mx = (sx + a.x) / 2 - uy * bow, my = (sy + a.y) / 2 + ux * bow;
         ctx.lineWidth = 1.1; ctx.strokeStyle = rgba(GOLD, 0.38); ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo(mx, my, a.x, a.y); ctx.stroke();
         for (j = 0; j < 2; j++) {
           p = pulses[i * 2 + j]; var u = (reduce ? (p.ph * 0.9 + 0.05) : ((p.ph + t * p.sp) % 1)), w = 1 - u;
