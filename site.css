@@ -468,16 +468,16 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
 .webband .rail { max-width: 1180px; margin: 0 auto; }
 .webband h2.title { color: var(--white); }
 .webband .desc { color: #B9C4D8; margin-top: 12px; max-width: 640px; }
-.web { position: relative; height: 560px; margin: 36px 0 0; border-radius: 16px; background: #0A1830; border: 1px solid rgba(185,196,216,.16); overflow: hidden; }
+.web { --r: clamp(200px, calc(50vw - 150px), 290px); position: relative; height: calc(2 * var(--r) + 130px); margin: 36px 0 0; border-radius: 16px; background: #0A1830; border: 1px solid rgba(185,196,216,.16); overflow: hidden; }
 .web-cv { position: absolute; inset: 0; display: block; }
 .web-core { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
 .web-core-label { position: absolute; transform: translateX(-50%); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-light); }
 .web-nodes { list-style: none; margin: 0; padding: 0; }
-.web-node { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
+.web-node { position: absolute; left: calc(50% + var(--dx, 0) * var(--r)); top: calc(50% + var(--dy, 0) * var(--r)); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
 .web-node.kind-deal { border-color: rgba(92,201,190,.65); }
 .web-node.kind-check { border-color: rgba(185,196,216,.6); }
-/* Market intelligence: one prominent hub, same pill style at a larger size, with small satellites threaded to it (round 3). */
-.web-node.is-hub { padding: 14px 26px; font-size: 17px; font-weight: 500; border-width: 1.5px; border-color: rgba(201,168,76,.9); box-shadow: 0 0 22px 2px rgba(201,168,76,.18); }
+/* Market intelligence: a peer on the circle, slightly emphasized (owner's order 2026-10-02 00:20 CT; satellites retired from the home web). */
+.web-node.is-hub { padding: 11px 20px; font-size: 15.5px; font-weight: 500; border-width: 1.5px; border-color: rgba(201,168,76,.9); box-shadow: 0 0 22px 2px rgba(201,168,76,.18); }
 .web-node.is-sat { padding: 6px 12px; font-size: 12.5px; border-color: rgba(201,168,76,.45); }
 @keyframes web-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } 50% { box-shadow: 0 0 14px 1px rgba(201,168,76,.22); } }
 .web-ring-label { position: absolute; transform: translate(-50%, -50%); padding: 4px 14px; border-radius: 999px; background: #0A1830; border: 1px solid rgba(92,201,190,.55); color: #A5E4DD; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
@@ -531,3 +531,226 @@ section#web.webband { padding-top: 52px; }
 /* Deal diligence: the SBA note stands alone now that the scope blocks are gone, so it takes less air (round 3). */
 section.band#scope { padding-top: 40px; padding-bottom: 72px; }
 section.band#scope .foot { margin-top: 0; border-top: 0; padding-top: 0; }
+
+/* For-brokers market charts (round 3 list 2). Static marks, no animation, so prefers-reduced-motion sees the same complete charts. */
+section.band.mkband { padding-top: 56px; background: var(--white); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); }
+.mk-fig { margin: 0 0 72px; padding: 0; min-width: 0; }
+.mk-fig:last-of-type { margin-bottom: 40px; }
+.mk-head { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; color: var(--navy); margin: 0; max-width: 34ch; }
+.mk-cap { margin: 10px 0 0; color: var(--g600); font-size: 16px; max-width: 68ch; }
+.mk-legend, .rg-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; font-size: 13px; color: var(--g600); }
+.mk-legend span { display: inline-flex; align-items: center; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.fy24 { background: var(--navy); } .fy25 { background: var(--navy-mid); } .fy26 { background: var(--gold); }
+.mk-ylab, .mk-xlab { font-size: 12px; color: var(--g400); letter-spacing: .02em; }
+.mk-ylab { margin: 16px 0 6px; }
+.mk-xlab { margin-top: 6px; }
+.mk-cols { position: relative; display: flex; align-items: flex-end; gap: 2px; height: 260px; margin-left: 40px; border-bottom: 1px solid var(--g300); }
+.mk-gl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed var(--g100); pointer-events: none; }
+.mk-gl i { position: absolute; right: 100%; margin-right: 6px; transform: translateY(-50%); font-style: normal; font-size: 11px; color: var(--g400); white-space: nowrap; }
+.mk-col { position: relative; flex: 1 1 0; min-width: 0; height: 100%; display: flex; align-items: flex-end; }
+.mk-col.empty { border-bottom: 2px dotted var(--g300); }
+.mk-bar { display: block; width: 100%; border-radius: 2px 2px 0 0; }
+.mk-ticks { position: relative; height: 20px; margin-left: 40px; }
+.mk-tick { position: absolute; top: 4px; transform: translateX(-50%); font-size: 11px; color: var(--g600); white-space: nowrap; }
+.mk-tick.end { transform: translateX(-100%); }
+.mk-tick:first-child { transform: none; }
+.mk-src { margin: 14px 0 0; font-size: 12px; line-height: 1.45; color: var(--g600); max-width: 90ch; }
+.rg-rows { margin-top: 18px; }
+.rg-row, .rg-axis { display: grid; grid-template-columns: 170px minmax(0, 1fr) 190px; gap: 14px; align-items: center; min-height: 30px; }
+.rg-lbl { font-size: 14px; color: var(--ink); }
+.rg-val { font-size: 13px; color: var(--g600); }
+.rg-track { position: relative; height: 12px; background: var(--g100); border-radius: 6px; }
+.rg-bar { position: absolute; top: 0; bottom: 0; background: var(--navy); border-radius: 6px; }
+.rg-bar.open { background: linear-gradient(90deg, rgba(13,31,60,.15), var(--navy)); }
+.rg-row.cluster .rg-bar { background: var(--gold); }
+.rg-row.cluster .rg-lbl { font-weight: 600; }
+.rg-row.vann { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--g300); }
+.rg-row.vann .rg-lbl { font-weight: 600; }
+.rg-row.vann .rg-val { color: var(--ink); }
+.rg-mark { position: absolute; left: 0; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(255,255,255,.9); }
+.mk-note { margin-top: 6px; }
+.rg-ticks { position: relative; height: 18px; border-top: 1px solid var(--g300); }
+.rg-ticks span { position: absolute; top: 3px; transform: translateX(-50%); font-size: 11px; color: var(--g400); white-space: nowrap; }
+.rg-ticks span:first-child { transform: none; }
+.rg-ticks span:last-child { transform: translateX(-100%); }
+.mk-close { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 2.8vw, 38px); color: var(--navy); margin: 8px 0 0; }
+@media (max-width: 700px) {
+  section.band.mkband { padding-top: 40px; }
+  .mk-fig { margin-bottom: 56px; }
+  .mk-cols { height: 200px; gap: 1px; margin-left: 32px; }
+  .mk-ticks { margin-left: 32px; }
+  .mk-tick { font-size: 10px; }
+  .rg-row, .rg-axis { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 6px 0; }
+  .rg-axis .rg-lbl, .rg-axis .rg-val { display: none; }
+  .rg-val { font-size: 12px; }
+}
+/* The System page, flagship rebuild (prototype, batch site_v7_r3_list2_20261001).
+   Four self-contained components on the site.css palette and fonts:
+   .sys-hero + .sysorb   full-bleed hero, the orb with every capability threaded to it
+   .sysflow              inputs flowing into the orb, outputs flowing out
+   .sysengine            two-model engine (droppable on its own)
+   .sysproof             proof strip of big numbers
+   plus the .sys-h2 / .sys-kicker / .sys-lede headline voice.
+   Layout never waits on sys.js: every label is real DOM placed by CSS. sys.js only paints canvases and
+   moves packets. Breakpoint 860px matches the MQ constant in sys.js. */
+
+:root { --sys-ink: #0A1830; --sys-ice: #B9C4D8; --sys-teal: #5CC9BE; --sys-gold-l: #E8C97A; }
+
+/* ---------- headline voice ---------- */
+.sys-kicker { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep); }
+.sys-h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(36px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -0.028em; color: var(--navy); max-width: 18ch; }
+.sys-h2 em { font-style: normal; color: var(--gold-deep); }
+.sys-lede { margin: 20px 0 0; max-width: 58ch; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--g600); }
+.sys-dark .sys-kicker { color: var(--gold); }
+.sys-dark .sys-h2 { color: var(--white); }
+.sys-dark .sys-h2 em { color: var(--gold); }
+.sys-dark .sys-lede { color: var(--sys-ice); }
+section.sys-band { padding: 112px 24px; }
+.sys-dark { background: var(--navy); color: var(--white); }
+
+/* ---------- nav over a dark hero (the generator emits vantage_lockup_dark.png on this page) ---------- */
+body.sys-page nav .nav-links a { color: rgba(255,255,255,.78); }
+body.sys-page nav .nav-links a.is-current { color: var(--white); }
+body.sys-page nav .nav-links a.nav-cta { background: var(--gold); color: var(--navy); }
+body.sys-page nav .nav-toggle-bar { background: var(--white); }
+
+/* ---------- hero ---------- */
+.sys-hero { position: relative; background: radial-gradient(120% 80% at 50% 70%, #142C52 0%, var(--navy) 55%, #081428 100%); color: var(--white);
+  padding: calc(var(--nav-h) + 24px) 24px 32px; overflow: hidden; }
+.sys-hero-copy { max-width: 980px; margin: 0 auto; text-align: center; position: relative; z-index: 3; }
+.sys-hero .sys-kicker { color: var(--gold); margin-bottom: 12px; }
+.sys-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: var(--white); font-size: clamp(38px, 5vw, 68px); line-height: 1.03; letter-spacing: -0.028em; }
+.sys-hero-sub { margin: 14px auto 0; max-width: 72ch; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.55; color: var(--sys-ice); }
+.sys-hero .hero-actions { margin-top: 22px; }
+.sys-hero .btn { background: var(--gold); color: var(--navy); }
+.sys-hero .btn:hover { background: #D8B85C; }
+.sys-hero .link-quiet { color: var(--sys-ice); border-bottom-color: rgba(185,196,216,.4); }
+
+/* ---------- the orb with every capability (hero) ---------- */
+.sysorb { position: relative; margin: -2px auto 0; max-width: 1360px; }
+.sysorb-stage { position: relative; height: clamp(540px, 47vw, 660px); }
+.sysorb-cv { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+/* the core paints before any script runs: a CSS glow where the canvas orb will land */
+.sysorb-core, .sysflow-core { position: absolute; left: 50%; top: 52%; width: 0; height: 0; }
+.sysorb-core::before, .sysflow-core::before { content: ""; position: absolute; left: -150px; top: -150px; width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,201,122,.30) 0%, rgba(201,168,76,.12) 38%, rgba(201,168,76,0) 70%); }
+.js-sys .sysorb-core::before, .js-sys .sysflow-core::before { opacity: 0; transition: opacity .6s; }
+.sysorb-core-label { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; letter-spacing: .02em; color: var(--white);
+  text-shadow: 0 0 18px rgba(10,24,48,.95), 0 0 4px rgba(10,24,48,.95); z-index: 2; }
+.sysorb-nodes { list-style: none; margin: 0; padding: 0; }
+.sysorb-node { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); z-index: 2; padding: 10px 18px; border-radius: 999px; background: #0D1F3C;
+  border: 1px solid rgba(201,168,76,.7); color: #F4F5F8; font-size: 15px; line-height: 1.25; white-space: nowrap; box-shadow: 0 6px 24px rgba(4,10,22,.45); }
+.sysorb-node a { color: inherit; text-decoration: none; display: block; }
+.sysorb-node a:hover, .sysorb-node a:focus-visible { text-decoration: underline; }
+.sysorb-node.kind-deal { border-color: rgba(92,201,190,.75); }
+.sysorb-node.kind-check { border-color: rgba(185,196,216,.7); }
+.sysorb-node.kind-intel { border-color: rgba(232,201,122,.9); }
+.sysorb-node.is-hub { font-weight: 600; background: #142C52; box-shadow: 0 0 0 4px rgba(232,201,122,.10), 0 6px 24px rgba(4,10,22,.45); }
+.sysorb-node.is-sat { font-size: 13px; padding: 7px 14px; border-style: dashed; color: #DCE2EC; }
+.sysorb-groups { display: none; }
+
+/* ---------- inputs in, outputs out ---------- */
+.sysflow { position: relative; margin: 56px 0 0; display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: center; min-height: 500px; }
+.sysflow-cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.sysflow-col { position: relative; z-index: 2; }
+.sysflow-head { position: relative; z-index: 2; margin: 0 0 16px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.sysflow-out .sysflow-head { text-align: right; }
+.sysflow-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.sysflow-item { padding: 14px 18px; border-radius: 12px; background: #0F2546; border: 1px solid rgba(185,196,216,.22); font-size: 17px; font-weight: 500; color: #F4F5F8; max-width: 250px; }
+.sysflow-in .sysflow-item { border-left: 3px solid var(--sys-ice); }
+.sysflow-out ul { justify-items: end; }
+.sysflow-out .sysflow-item { border-right: 3px solid var(--gold); text-align: right; }
+.sysflow-core { position: relative; left: auto; top: auto; width: auto; height: 340px; }
+.sysflow-core::before { left: 50%; top: 50%; margin: -120px 0 0 -120px; width: 240px; height: 240px; }
+.sysflow-core-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white);
+  text-shadow: 0 0 16px rgba(10,24,48,.95), 0 0 4px rgba(10,24,48,.95); }
+
+/* ---------- two-model engine ---------- */
+.sysengine-wrap { background: var(--white); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); }
+.sysengine { margin: 56px 0 0; }
+.sysengine svg { display: block; width: 100%; height: auto; }
+.sysengine .se-phone { display: none; }
+.se-halo { fill: rgba(201,168,76,.10); }
+.se-disc { fill: var(--navy); }
+.se-ring { fill: none; stroke: rgba(201,168,76,.55); stroke-width: 1.5; stroke-dasharray: 3 6; }
+.se-disc.b { fill: #13305A; }
+.se-name { font: 700 22px 'Playfair Display', Georgia, serif; fill: #FFFFFF; text-anchor: middle; }
+.se-role { font: 600 13px 'Inter', system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; fill: var(--sys-gold-l); text-anchor: middle; }
+.se-arc { fill: none; stroke: var(--navy); stroke-width: 2; stroke-opacity: .35; }
+.se-arc.b { stroke: var(--gold-deep); stroke-opacity: .55; stroke-dasharray: 6 6; }
+.se-arc-lbl { font: 600 14px 'Inter', system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; fill: var(--g600); text-anchor: middle; }
+.se-pkt { fill: var(--navy); }
+.se-pkt.b { fill: var(--gold); }
+.se-div { stroke: var(--g300); stroke-width: 1; stroke-dasharray: 2 5; }
+.se-layer { font: 600 12px 'Inter', system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; fill: var(--g400); }
+.se-band { fill: var(--navy); }
+.se-band-lbl { font: 700 26px 'Playfair Display', Georgia, serif; fill: #FFFFFF; }
+.se-cell rect { fill: #13305A; stroke: rgba(185,196,216,.25); stroke-width: 1; transition: fill .25s, stroke .25s; }
+.se-cell text { font: 500 13px ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace; fill: var(--sys-ice); text-anchor: middle; }
+.se-cell.is-hot rect { fill: #1E3F6E; stroke: var(--gold); }
+.se-cell.is-hot text { fill: #FFFFFF; }
+.sysengine-note { margin: 18px 0 0; font-size: 14px; color: var(--g600); max-width: 70ch; }
+
+/* ---------- proof strip ---------- */
+.sysproof-band { padding: 72px 24px; background: var(--paper); }
+.sysproof { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.sysproof li { border-top: 3px solid var(--gold); padding-top: 20px; }
+.sysproof-n { display: block; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(48px, 5.6vw, 84px); line-height: 1; letter-spacing: -0.03em; color: var(--navy); font-variant-numeric: lining-nums tabular-nums; }
+.sysproof-c { display: block; margin-top: 12px; font-size: 15px; line-height: 1.45; color: var(--g600); max-width: 26ch; }
+.sys-dark .sysproof-n { color: var(--white); }
+.sys-dark .sysproof-c { color: var(--sys-ice); }
+
+/* ---------- phone and narrow tablet ---------- */
+@media (max-width: 859.98px) {
+  section.sys-band { padding: 72px 16px; }
+  .sys-hero { padding: calc(var(--nav-h) + 24px) 16px 32px; }
+  .sys-hero h1 { font-size: clamp(34px, 9.4vw, 52px); }
+  .sysorb { margin-top: 18px; }
+  /* the stage holds the orb and the dots; the labels drop into a readable list under it */
+  .sysorb-stage { height: auto; padding-top: 340px; }
+  .sysorb-cv { height: 340px; }
+  .sysorb-core { top: 170px; }
+  .sysorb-core::before { left: -110px; top: -110px; width: 220px; height: 220px; }
+  .sysorb-core-label { font-size: 20px; }
+  .sysorb-groups { display: block; list-style: none; margin: 0; padding: 0; }
+  .sysorb-group { position: absolute; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--sys-ice); }
+  .sysorb-group.at-tl { left: 4px; top: 6px; } .sysorb-group.at-tr { right: 4px; top: 6px; text-align: right; }
+  .sysorb-group.at-bl { left: 4px; top: 314px; } .sysorb-group.at-br { right: 4px; top: 314px; text-align: right; }
+  .sysorb-group.kind-reporting { color: var(--sys-gold-l); } .sysorb-group.kind-deal { color: var(--sys-teal); }
+  .sysorb-group.kind-intel { color: #F1DDA4; }
+  .sysorb-nodes { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .sysorb-node { position: relative; left: auto; top: auto; transform: none; white-space: normal; font-size: 14px; padding: 10px 12px 10px 26px; border-radius: 10px; box-shadow: none; }
+  .sysorb-node::before { content: ""; position: absolute; left: 11px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--gold); }
+  .sysorb-node.kind-deal::before { background: var(--sys-teal); } .sysorb-node.kind-check::before { background: var(--sys-ice); }
+  .sysorb-node.kind-intel::before { background: #F1DDA4; }
+  .sysorb-node.is-sat { font-size: 13px; padding: 8px 10px 8px 26px; }
+  .sysorb-node.is-sat::before { background: transparent; border: 1.5px solid #F1DDA4; }
+
+  .sysflow { grid-template-columns: 1fr; min-height: 0; margin-top: 40px; }
+  .sysflow-col ul { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sysflow-out ul { justify-items: stretch; }
+  .sysflow-head, .sysflow-out .sysflow-head { display: table; margin: 0 auto 12px; padding: 2px 12px; background: var(--navy); text-align: center; }
+  .sysflow-out .sysflow-head { margin-top: 4px; }
+  .sysflow-item { max-width: none; font-size: 15px; padding: 12px 12px; text-align: center; }
+  .sysflow-in .sysflow-item { border-left-width: 1px; border-top: 3px solid var(--sys-ice); }
+  .sysflow-out .sysflow-item { border-right-width: 1px; border-top: 3px solid var(--gold); text-align: center; }
+  .sysflow-out li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .sysflow-core { height: 260px; }
+  .sysflow-core::before { margin: -95px 0 0 -95px; width: 190px; height: 190px; }
+
+  .sysengine { margin-top: 36px; }
+  .sysengine .se-desk { display: none; }
+  .sysengine .se-phone { display: block; }
+  .se-phone .se-name { font-size: 19px; }
+  .se-phone .se-role { font-size: 11px; letter-spacing: .1em; }
+
+  .sysproof-band { padding: 56px 16px; }
+  .sysproof { grid-template-columns: 1fr; gap: 28px; }
+  .sysproof-c { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-sys .sysorb-core::before, .js-sys .sysflow-core::before { transition: none; }
+  .se-cell rect { transition: none; }
+}

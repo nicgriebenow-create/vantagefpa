@@ -6,7 +6,7 @@
 
 /* THE ONE SETTING. Paste the Apps Script web app /exec URL here, keep the quotes.
    Deploy steps: Website/_apps_script/call_request/DEPLOY.md */
-var CALL_REQUEST_ENDPOINT = 'PASTE_APPS_SCRIPT_EXEC_URL_HERE';
+var CALL_REQUEST_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx0PjftXHBMkuGKBsxC9N-1pg6cRTqy2PYIyEYIqXyBPoZ1Gdu0c8aAr7nMxdgnfPsR/exec';
 
 (function () {
   'use strict';

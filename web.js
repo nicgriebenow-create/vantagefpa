@@ -47,7 +47,7 @@
       var c = core.getBoundingClientRect();
       cx = c.left - b.left + c.width / 2; cy = c.top - b.top + c.height / 2;
       R = Math.max(54, Math.min(c.height * 0.38, W * 0.3));
-      if (wide = W > 700) { R = Math.max(70, Math.min(H * 0.21, W * 0.13)); }
+      if (wide = W > 700) { R = Math.max(64, Math.min(H * 0.17, W * 0.11)); }   /* 10/2: smaller orb, wider circle, room to breathe */
       anchors = pills.map(function (p) { var r = p.getBoundingClientRect(); return { x: r.left - b.left + r.width / 2, y: r.top - b.top + r.height / 2, w: r.width, h: r.height,
         parent: p.hasAttribute('data-parent') ? +p.getAttribute('data-parent') : -1 }; });
       var cl = root.querySelector('.web-core-label');
