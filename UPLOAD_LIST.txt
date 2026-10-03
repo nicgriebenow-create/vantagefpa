@@ -1,0 +1,6 @@
+# 5 files differing from live vantagefpa.com, deploy gate CLEAN and copy gate 0 at 2026-10-02 22:3x CT. for-brokers.html = v8 turnaround block replacing the ten-provider chart (Nic 22:20 CT, Fitz-corrected). index.html, reporting.html, system.html, site.css = Security section, commit 42842d6b (Nic 21:25 to 21:29 CT); site.css carries both. Supersedes v7_security_2026-10-02. Upload these 5 on top of live by hand. Never upload CNAME. Source: Website/_candidate_2026-10-01_v7.
+361d27fc32478c2adc79a92ac02372be8dfba100563bf9b795663748c7506aa9 *for-brokers.html
+16e30e7dfaebe50969b887d7acf707a82ae52da42acb45f5d6d542adf63f97cf *index.html
+d5e50e10a2e2a45311351d6271abd712d12d0fa8b62dbbd133744e07c4b8523b *reporting.html
+147019708e9b0a8da9e0f567328fa3c736420b1ca454e260963e396979e8e3ad *system.html
+bb29de425c017b9afa2c4e7d5f1506a6d0b22c31f39fdc166d951f0ff44910c6 *site.css

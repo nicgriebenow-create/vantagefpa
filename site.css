@@ -479,7 +479,7 @@ html.vfpa-yield #vfpa-assist:focus-within .vfpa-assist-toggle { opacity: 1; poin
 .web-node { position: absolute; left: calc(50% + var(--dx, 0) * var(--rx)); top: calc(50% + var(--dy, 0) * var(--ry)); transform: translate(-50%, -50%); padding: 9px 16px; border-radius: 999px; background: #0D1F3C; border: 1px solid rgba(201,168,76,.6); color: #F4F5F8; font-size: 14px; line-height: 1.25; white-space: nowrap; animation: web-pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.6s); }
 .web-node.kind-deal { border-color: rgba(92,201,190,.65); }
 .web-node.kind-check { border-color: rgba(185,196,216,.6); }
-/* Market intelligence: a peer on the circle, slightly emphasized (owner's order 2026-10-02 00:20 CT; satellites retired from the home web). */
+/* The hub node (Security, owner's order 2026-10-02 21:28 CT): a peer on the circle, slightly emphasized (owner's order 2026-10-02 00:20 CT; satellites retired from the home web). */
 .web-node.is-hub { padding: 11px 20px; font-size: 15.5px; font-weight: 500; border-width: 1.5px; border-color: rgba(201,168,76,.9); box-shadow: 0 0 22px 2px rgba(201,168,76,.18); }
 .web-node.is-sat { padding: 6px 12px; font-size: 12.5px; border-color: rgba(201,168,76,.45); }
 @keyframes web-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); } 50% { box-shadow: 0 0 14px 1px rgba(201,168,76,.22); } }
@@ -588,6 +588,25 @@ section.band.mkband { padding-top: 56px; background: var(--white); border-top: 1
   .rg-axis .rg-lbl, .rg-axis .rg-val { display: none; }
   .rg-val { font-size: 12px; }
 }
+
+/* For brokers turnaround block, ported from _build_v8/src/site.css lines 245 to 258 and the mobile rule at 407.
+   Token map (v8 to v7): slate-deep to navy, slate to navy-mid, rule to g100, card to white, ink-2 to g600,
+   gold-light to gold. ink keeps the v7 value of the same name. #E3E8F1 is a literal in v8 and stays a literal. */
+.vs { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vs-col { background: var(--white); border: 1px solid var(--g100); border-radius: 16px; padding: 28px; }
+.vs-col.us { background: var(--navy); color: var(--white); border-color: var(--navy-mid); border-top: 3px solid var(--gold); }
+.vs-label { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; color: var(--g600); margin-bottom: 12px; }
+.vs-col.us .vs-label { color: var(--gold); }
+.vs-col p { margin: 0; font-size: 18px; line-height: 1.6; }
+.vs-col.us p { color: #E3E8F1; }
+.vs-col p.big { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 3vw, 42px); line-height: 1.15; color: var(--white); }
+.sources-block { margin-top: 24px; font-size: 13.5px; color: var(--g600); }
+.sources-block summary { cursor: pointer; font-weight: 600; color: var(--ink); display: inline-block; padding: 6px 0; border-bottom: 1px solid var(--g100); }
+.sources-block ul { margin: 10px 0 0; padding-left: 18px; }
+.sources-block li { margin: 4px 0; word-break: break-all; }
+.sources-block a { color: var(--g600); }
+.src-head { margin: 10px 0 0; }
+@media (max-width: 960px) { .vs { grid-template-columns: 1fr; } }
 /* The System page, flagship rebuild (prototype, batch site_v7_r3_list2_20261001).
    Four self-contained components on the site.css palette and fonts:
    .sys-hero + .sysorb   full-bleed hero, the orb with every capability threaded to it
