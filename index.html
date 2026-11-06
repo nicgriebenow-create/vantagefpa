@@ -38,6 +38,12 @@
    "logo": "https://vantagefpa.com/vantage_lockup_light.png",
    "image": "https://vantagefpa.com/og_home_1200x627.png",
    "email": "ngriebenow@vantagefpa.com",
+   "sameAs": [
+    "https://x.com/VantageFPA",
+    "https://www.linkedin.com/company/vantage-fp-a-llc",
+    "https://www.youtube.com/@VantageFPA",
+    "https://www.linkedin.com/in/nicgriebenow/"
+   ],
    "description": "Vantage FP&A LLC, headquartered in Austin, works with companies nationwide. It runs monthly reporting, forecasting and deal diligence through one orchestrated agentic AI build in which each figure from a company's books traces to its own export.",
    "address": {
     "@type": "PostalAddress",
@@ -84,8 +90,8 @@
  "thumbnailUrl": "https://vantagefpa.com/video_poster_1280x720.png",
  "uploadDate": "2026-11-06",
  "duration": "PT2M6S",
- "embedUrl": "https://www.youtube-nocookie.com/embed/2k_HlIk5i20",
- "contentUrl": "https://www.youtube.com/watch?v=2k_HlIk5i20",
+ "contentUrl": "https://vantagefpa.com/vantage_film_2026-11.mp4",
+ "sameAs": "https://www.youtube.com/watch?v=2k_HlIk5i20",
  "publisher": {
   "@id": "https://vantagefpa.com/#organization"
  }
@@ -653,7 +659,8 @@
 .film-text a{font-size:15px;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--g300)}
 .film-fig{margin:0;flex:0 1 480px;width:480px;max-width:100%}
 .film-box{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--navy);box-shadow:0 10px 30px rgba(13,31,60,.18)}
-.film-box img,.film-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.film-box video{position:absolute;inset:0;width:100%;height:100%;display:block;background:var(--navy);object-fit:cover}
+.film-box img{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .film-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer}
 .film-play span{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.35);transition:transform .18s ease,background .18s ease}
 .film-play span:after{content:"";position:absolute;left:25px;top:20px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--navy)}
@@ -671,10 +678,10 @@
 <a href="/verification">Read how verification works</a>
 </div>
 <figure class="film-fig">
-<div class="film-box" id="film-box"><img src="video_poster_1280x720.webp" width="1280" height="720" alt="Vantage FP&amp;A film poster" loading="lazy"><button type="button" class="film-play" aria-label="Play the Vantage FP&amp;A film"><span></span></button></div>
+<div class="film-box" id="film-box"><video id="film-video" controls preload="none" playsinline poster="video_poster_1280x720.webp" aria-label="Vantage FP&amp;A film"><source src="vantage_film_2026-11.mp4" type="video/mp4"></video><button type="button" class="film-play" aria-label="Play the Vantage FP&amp;A film"><span></span></button></div>
 </figure>
 </div>
-<script>(function(){var b=document.getElementById("film-box");if(!b)return;var p=b.querySelector(".film-play");p.addEventListener("click",function(){var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/2k_HlIk5i20?autoplay=1&rel=0&modestbranding=1";f.title="Vantage FP&A: The Orchestrated Agentic AI Solution for Finance";f.allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";b.innerHTML="";b.appendChild(f);});})();</script>
+<script>(function(){var v=document.getElementById("film-video"),p=document.querySelector("#film-box .film-play");if(!v||!p)return;function hide(){p.style.display="none"}p.addEventListener("click",function(){hide();v.play()});v.addEventListener("play",hide);})();</script>
 </section>
 
 <section class="menu" id="menu">
@@ -765,6 +772,11 @@
   </div>
 </section>
 
+<style id="vfpa-footer-social">
+.footer-social{display:flex;gap:16px;align-items:center;margin-top:4px}
+.footer-social a{display:inline-flex;color:var(--g600);line-height:0;transition:color .15s ease}
+.footer-social a:hover,.footer-social a:focus-visible{color:var(--gold-deep)}
+</style>
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">Vantage <span>FP&amp;A</span> LLC</div>
@@ -778,6 +790,7 @@
       <li><a href="/about">About</a></li>
       <li><a href="/releases">Releases</a></li>
     </ul>
+    <div class="footer-social"><a href="https://x.com/VantageFPA" target="_blank" rel="noopener" aria-label="Vantage FP&amp;A on X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L1.5 2h6.7l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 3.9H5.5L17.7 20z"/></svg></a><a href="https://www.linkedin.com/company/vantage-fp-a-llc" target="_blank" rel="noopener" aria-label="Vantage FP&amp;A on LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.8v1.6h.06c.53-1 1.84-2.06 3.78-2.06 4.04 0 4.78 2.66 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75z"/></svg></a><a href="https://www.youtube.com/@VantageFPA" target="_blank" rel="noopener" aria-label="Vantage FP&amp;A on YouTube"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23 7.2a2.8 2.8 0 0 0-2-2C19.3 4.7 12 4.7 12 4.7s-7.3 0-9 .5a2.8 2.8 0 0 0-2 2C0.5 8.9 0.5 12 0.5 12s0 3.1.5 4.8a2.8 2.8 0 0 0 2 2c1.7.5 9 .5 9 .5s7.3 0 9-.5a2.8 2.8 0 0 0 2-2c.5-1.7.5-4.8.5-4.8s0-3.1-.5-4.8zM9.7 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg></a></div>
     <div class="footer-copy">&copy; 2026 Vantage FP&amp;A LLC &middot; Austin, Texas &middot; ngriebenow@vantagefpa.com</div>
     <div class="footer-legal">Vantage FP&amp;A LLC is not a CPA firm. Its work is advisory and analytical, not an audit, review, compilation or attest engagement, and nothing on this site is investment, legal or tax advice.</div>
     <div class="footer-legal">Questions asked of the site assistant are logged to sharpen its answers, and a call request arrives by email. Neither is sold or shared.</div>
