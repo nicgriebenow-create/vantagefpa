@@ -81,7 +81,7 @@
  "@type": "VideoObject",
  "name": "Vantage FP&A: The Orchestrated Agentic AI Solution for Finance",
  "description": "Figures in the memo in a diligence package carry tab and cell references into the workbook. Vantage FP&A is the orchestrated agentic AI solution for finance.",
- "thumbnailUrl": "https://i.ytimg.com/vi/2k_HlIk5i20/maxresdefault.jpg",
+ "thumbnailUrl": "https://vantagefpa.com/video_poster_1280x720.png",
  "uploadDate": "2026-11-06",
  "duration": "PT2M6S",
  "embedUrl": "https://www.youtube-nocookie.com/embed/2k_HlIk5i20",
@@ -621,13 +621,6 @@
   </div>
 </section>
 
-<section class="band" id="film">
-  <div class="rail" style="max-width:880px">
-<div style="position:relative;width:100%;aspect-ratio:16/9;background:#1A202C"><iframe src="https://www.youtube-nocookie.com/embed/2k_HlIk5i20" title="Vantage FP&amp;A: The Orchestrated Agentic AI Solution for Finance" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
-<p style="margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--g600)">The company shown is fictional</p>
-  </div>
-</section>
-
 <section class="band webband" id="web">
   <div class="rail">
     <h2 class="title">What Vann does</h2>
@@ -649,6 +642,39 @@
   <figcaption class="sr">A gold and navy orb sits at the center with threads running out to monthly reporting, the board package, variance analysis, forecast and reforecast, deal diligence, cash tied to bank and books tied to tax returns when the statements and returns are supplied, red flags, and security.</figcaption>
 </figure>
   </div>
+</section>
+
+<style id="vfpa-film-facade">
+.film{padding:48px 24px 8px;background:var(--paper)}
+.film-row{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:56px}
+.film-text{flex:1 1 0;max-width:380px}
+.film-text h3{font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,2vw,28px);line-height:1.2;color:var(--navy)}
+.film-text p{margin:12px 0 14px;font-size:16px;line-height:1.6;color:var(--g600)}
+.film-text a{font-size:15px;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--g300)}
+.film-fig{margin:0;flex:0 1 480px;width:480px;max-width:100%}
+.film-box{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--navy);box-shadow:0 10px 30px rgba(13,31,60,.18)}
+.film-box img,.film-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.film-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer}
+.film-play span{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.35);transition:transform .18s ease,background .18s ease}
+.film-play span:after{content:"";position:absolute;left:25px;top:20px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--navy)}
+.film-play:hover span,.film-play:focus-visible span{background:var(--gold-deep);transform:scale(1.08)}
+.film-play:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.film-cap{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--g600)}
+@media (max-width:860px){.film-row{flex-direction:column;align-items:stretch;gap:24px}.film-text{max-width:none}.film-fig{width:100%;flex:none}}
+@media (max-width:720px){.film{padding:32px 16px 0}}
+</style>
+<section class="film" id="film">
+<div class="film-row">
+<div class="film-text">
+<h3>Built so you can check it</h3>
+<p>Figures are calculated from your exports. Open the workbook, click a number, and see the cells it came from.</p>
+<a href="/verification">Read how verification works</a>
+</div>
+<figure class="film-fig">
+<div class="film-box" id="film-box"><img src="video_poster_1280x720.webp" width="1280" height="720" alt="Vantage FP&amp;A film poster" loading="lazy"><button type="button" class="film-play" aria-label="Play the Vantage FP&amp;A film"><span></span></button></div>
+</figure>
+</div>
+<script>(function(){var b=document.getElementById("film-box");if(!b)return;var p=b.querySelector(".film-play");p.addEventListener("click",function(){var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/2k_HlIk5i20?autoplay=1&rel=0&modestbranding=1";f.title="Vantage FP&A: The Orchestrated Agentic AI Solution for Finance";f.allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";b.innerHTML="";b.appendChild(f);});})();</script>
 </section>
 
 <section class="menu" id="menu">
