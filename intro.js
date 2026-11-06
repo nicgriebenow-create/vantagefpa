@@ -80,6 +80,7 @@
       if (px[k + 3] > 140) tg.push({ x: word.x + x, y: word.y + y, gold: px[k] - px[k + 2] > 40 });
     }
 
+    /* Vann, the gold cell, upper left; Tage, the teal cell, lower right, as in the film */
     var n = tg.length, nV = Math.round(n * 0.62), RV = mob ? Math.min(W * 0.3, H * 0.17) : Math.min(H * 0.24, W * 0.17, 220);
     var vx = W * (mob ? 0.4 : 0.45), vy = H * (mob ? 0.35 : 0.39);
     cells = [{ x: vx, y: vy, R: RV, col: GOLD, ec: ICE, yaw: 0.5, spin: 0.9 },
@@ -149,6 +150,7 @@
     project(Math.min(t, T.flow));
 
     if (eA > 0.003) {
+      /* the dashed bridge from Tage to Vann, then each cell's links, then gold pulses running them */
       var A = cells[1], B = cells[0], dx = B.x - A.x, dy = B.y - A.y, dl = Math.sqrt(dx * dx + dy * dy);
       var g = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
       g.addColorStop(0, rgba(TEAL, 0.6 * eA)); g.addColorStop(1, rgba(GOLD, 0.5 * eA));
